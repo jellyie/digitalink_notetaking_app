@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:digitalink_notetaking_app/features/canvas/point.dart';
+import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/gesture.dart';
+import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/q_dollar_recognizer.dart';
+import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/point.dart';
 import 'package:digitalink_notetaking_app/features/canvas/stroke.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +15,14 @@ class CanvasScreen extends StatefulWidget {
 
 class _CanvasScreenState extends State<CanvasScreen> {
   List<Stroke?> strokes = <Stroke>[];
-  Stroke? singleStroke;
+  Stroke? activeStroke;
 
-  StreamController<List<Stroke?>> linesStreamController =
+  StreamController<List<Stroke?>> strokesStreamController =
       StreamController<List<Stroke?>>.broadcast();
-  StreamController<Stroke?> currentLineStreamController =
+  StreamController<Stroke?> activeStrokeStreamController =
       StreamController<Stroke?>.broadcast();
+
+  QDollarRecognizer qDollarRecognizer = QDollarRecognizer();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,24 @@ class _CanvasScreenState extends State<CanvasScreen> {
         children: [
           buildAllStrokes(context),
           buildActiveStroke(context),
+          buildRecognizeButton()
         ],
+      ),
+    );
+  }
+
+  Widget buildRecognizeButton() {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ElevatedButton(
+        onPressed: () async {
+          List<Point> candidate = activeStroke!.strokePoints;
+          String result = await qDollarRecognizer.recognize(Gesture(candidate));
+          final snackBar =
+              SnackBar(content: Text('Gesture was recognized as $result'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        },
+        child: const Text('Recognize Gesture'),
       ),
     );
   }
@@ -46,7 +67,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.topLeft,
         child: StreamBuilder<List<Stroke?>>(
-          stream: linesStreamController.stream,
+          stream: strokesStreamController.stream,
           builder: (context, snapshot) {
             return CustomPaint(
               painter: CanvasPainter(
@@ -63,21 +84,20 @@ class _CanvasScreenState extends State<CanvasScreen> {
     return GestureDetector(
         onPanStart: (details) {
           final Offset _localPosition = details.localPosition;
-          final _p = Point(x: _localPosition.dx, y: _localPosition.dy);
-          singleStroke = Stroke(strokePoints: [_p]);
+          final _p = Point(_localPosition.dx, _localPosition.dy);
+          activeStroke = Stroke(strokePoints: [_p]);
         },
         onPanUpdate: (details) {
           final Offset _localPosition = details.localPosition;
-          final _p = Point(x: _localPosition.dx, y: _localPosition.dy);
-          // Stroke _s = Stroke(strokePoints: );
-          final _s = singleStroke!.strokePoints;
+          final _p = Point(_localPosition.dx, _localPosition.dy);
+          final _s = activeStroke!.strokePoints;
 
           List<Point> _points = List.from(_s)..add(_p);
-          singleStroke = Stroke(strokePoints: _points);
-          currentLineStreamController.add(singleStroke);
+          activeStroke = Stroke(strokePoints: _points);
+          activeStrokeStreamController.add(activeStroke);
         },
         onPanEnd: (details) {
-          strokes = List.from(strokes)..add(singleStroke);
+          strokes = List.from(strokes)..add(activeStroke);
         },
         child: RepaintBoundary(
           child: Container(
@@ -87,11 +107,11 @@ class _CanvasScreenState extends State<CanvasScreen> {
             padding: const EdgeInsets.all(4.0),
             color: Colors.transparent,
             child: StreamBuilder<Stroke?>(
-              stream: currentLineStreamController.stream,
+              stream: activeStrokeStreamController.stream,
               builder: (context, snapshot) {
                 return CustomPaint(
                     painter: CanvasPainter(
-                  strokes: [singleStroke],
+                  strokes: [activeStroke],
                 ));
               },
             ),

@@ -1,4 +1,4 @@
-import 'package:digitalink_notetaking_app/features/canvas/point.dart';
+import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/point.dart';
 
 class Stroke {
   List<Point> strokePoints;

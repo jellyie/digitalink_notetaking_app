@@ -1,83 +1,120 @@
-import 'dart:ffi';
 import 'dart:math';
 
-import '../point.dart';
+import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/gesture.dart';
+import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/point.dart';
+import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/templates.dart';
 
 class QDollarRecognizer {
-  final List<Point> points;
-  final List<Point> templates;
-  static const NUM_POINT_CLOUDS = 16;
-  static const NUM_POINTS = 32;
-  static final ORIGIN = Point.c1(0, 0, 0);
-  static const MAX_INT_COORD =
-      1024; // (IntX, IntY) range from [0, MaxIntCoord - 1]
+  static bool useEarlyAbandoning = true;
+  static bool useLowerBounding = true;
+  static final List<Gesture> _templateSet =
+      List<Gesture>.of(Templates.templates);
 
-  static const int DEFAULT_CLOUD_SIZE = 32; // size of cloud
-  static const int DEFAULT_LUT_SIZE = 64; // size of the look-up table
-  static const LUT_SCALE_FACTOR = MAX_INT_COORD /
-      DEFAULT_LUT_SIZE; // used to scale from (IntX, IntY) to LUT
+  Future<String> recognize(Gesture candidate) async {
+    double minDistance = double.maxFinite;
+    String gesture = "";
+    for (Gesture template in _templateSet) {
+      double distance = _greedyCloudMatch(candidate, template, minDistance);
+      if (distance < minDistance) {
+        minDistance = distance;
+        gesture = template.name;
+      }
+    }
+    return gesture;
+  }
 
-  QDollarRecognizer(this.points, this.templates);
+  static double _greedyCloudMatch(Gesture g1, Gesture g2, double currentMin) {
+    int totalPoints = g1.points.length;
+    double numTrials = 0.5;
+    int step = pow(totalPoints, 1.0 - numTrials).floor();
 
-  void normalize(List<Point> points, int n, int m) {}
+    if (useLowerBounding) {
+      List<double> lb1 = _computeLowerBound(g1.points, g2.points, g2.lut, step);
+      List<double> lb2 = _computeLowerBound(g2.points, g1.points, g1.lut, step);
 
-  void resample(List<Point> points, int n) {}
-
-  void translate(List<Point> points, int n) {}
-
-  void scale(List<Point> points, int m) {}
-
-  void cloudDistance(List<Point> points, List<Point> templates, int n,
-      int start, double minSoFar) {}
-
-  void computeLowerBound(
-      List<Point> points, List<Point> templates, int step, Array lut) {}
-
-  // Compute Look up Table (default size: 64 x 64)
-  List<dynamic> computeLUT(List<Point> points) {
-    List lookUpTable = List.empty(growable: true);
-
-    for (int i = 0; i < DEFAULT_LUT_SIZE; i++) {
-      lookUpTable[i] = List.empty(growable: true);
-      for (int x = 0; x < DEFAULT_LUT_SIZE; x++) {
-        for (int y = 0; y < DEFAULT_LUT_SIZE; y++) {
-          double u = -1;
-          double b = double.infinity;
-          for (int i = 0; i < points.length; i++) {
-            int row = (points[i].intX! / LUT_SCALE_FACTOR).round();
-            int col = (points[i].intY! / LUT_SCALE_FACTOR).round();
-            int d = ((row - x) * (row - x)) + ((col - y) * (col - y));
-            if (d < b) {
-              b = d as double;
-              u = i as double;
-            }
-          }
-          lookUpTable[x][y] = u;
+      for (int i = 0, lowerBoundIndex = 0;
+          i < totalPoints;
+          i += step, lowerBoundIndex++) {
+        if (lb1[lowerBoundIndex] < currentMin) {
+          currentMin = min(
+              currentMin, _cloudDistance(g1.points, g2.points, i, currentMin));
+        }
+        if (lb2[lowerBoundIndex] < currentMin) {
+          currentMin = min(
+              currentMin, _cloudDistance(g2.points, g1.points, i, currentMin));
         }
       }
-    }
-    return lookUpTable;
-  }
-
-  // Computes the path length
-  double pathLength(List<Point> points) {
-    double distance = 0.0;
-    for (int x = 1; x < points.length; x++) {
-      if (points[x].strokeID == points[x - 1].strokeID) {
-        distance += euclideanDistance(points[x - 1], points[x]);
+    } else {
+      for (int i = 0; i < totalPoints; i += step) {
+        currentMin = min(
+            currentMin, _cloudDistance(g1.points, g2.points, i, currentMin));
+        currentMin = min(
+            currentMin, _cloudDistance(g2.points, g1.points, i, currentMin));
       }
     }
-    return distance;
+    return currentMin;
   }
 
-// Geometry methods
-  double sqrEuclideanDistance(Point a, Point b) {
-    var dx = a.x - b.x;
-    var dy = a.y - b.y;
-    return (dx * dx + dy * dy);
+  static List<double> _computeLowerBound(List<Point> points1,
+      List<Point> points2, List<List<int>> lookupTable, int step) {
+    int totalPoints = points1.length;
+    List<double> lowerBound = [];
+    List<double> summedAreaTable = [];
+
+    lowerBound[0] = 0;
+    for (int i = 0; i < totalPoints; i++) {
+      int index = lookupTable[points1[i].intY / Gesture.lutScaleFactor as int]
+          [points1[i].intX / Gesture.lutScaleFactor as int];
+      double distance =
+          Gesture.sqrEuclideanDistance(points1[i], points2[index]);
+      summedAreaTable[i] =
+          (i == 0) ? distance : summedAreaTable[i - 1] + distance;
+      lowerBound[0] += (totalPoints - i) * distance;
+    }
+
+    for (int i = step, lowerBoundIndex = 1;
+        i < totalPoints;
+        i += step, lowerBoundIndex++) {
+      lowerBound[lowerBoundIndex] = lowerBound[0] +
+          i * summedAreaTable[totalPoints - 1] -
+          totalPoints * summedAreaTable[i - 1];
+    }
+    return lowerBound;
   }
 
-  double euclideanDistance(Point a, Point b) {
-    return sqrt(sqrEuclideanDistance(a, b));
+  static double _cloudDistance(List<Point> points1, List<Point> points2,
+      int startIndex, double currentMin) {
+    int totalPoints = points1.length;
+
+    List<int> indexesNotMatched =
+        List.generate(totalPoints, (i) => i, growable: false);
+
+    double sum = 0;
+    int i = startIndex;
+    int weight = totalPoints;
+    int indexNotMatched = 0;
+
+    do {
+      int index = -1;
+      double minDistance = double.maxFinite;
+      for (int j = indexNotMatched; j < totalPoints; j++) {
+        double distance = Gesture.sqrEuclideanDistance(
+            points1[i], points2[indexesNotMatched[j]]);
+        if (distance < minDistance) {
+          minDistance = distance;
+          index = j;
+        }
+      }
+      indexesNotMatched[index] = indexesNotMatched[indexNotMatched];
+      sum += (weight--) * minDistance;
+
+      if (useEarlyAbandoning) {
+        if (sum >= currentMin) return sum;
+      }
+
+      i = (i + 1) % totalPoints;
+      indexNotMatched++;
+    } while (i != startIndex);
+    return sum;
   }
 }
