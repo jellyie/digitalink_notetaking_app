@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/point.dart';
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/gesture.dart';
+import 'gesture.dart';
+import 'point.dart';
 
 class Templates {
   static final List<Gesture> _templates = [

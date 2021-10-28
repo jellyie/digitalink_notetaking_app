@@ -1,11 +1,11 @@
 import 'dart:math';
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/point.dart';
+import '../q_dollar_recognizer/point.dart';
 
 /// Implements a gesture as a cloud of points (i.e., an unordered set of points).
 /// For $P, gestures are normalized with respect to scale, translated to origin, and resampled into a fixed number of 32 points.
 /// For $Q, a LUT is also computed.
 class Gesture {
-  List<Point> points; // gesture points (normalized)
+  List<Point> points = []; // gesture points (normalized)
   List<Point> rawPoints =
       []; // gesture points (not normalized, as captured from the input device)
   String name = ''; // gesture class
@@ -33,9 +33,9 @@ class Gesture {
   /// The $Q recognizer requires an extra normalization step, the computation of the LUT,
   /// which can be enabled with the computeLUT parameter.
   void normalize({bool computeLUT = true}) {
-    points = resample(rawPoints, _samplingResolution);
-    points = _scale(points);
-    points = translateTo(points, centroid(points));
+    points = List<Point>.of(resample(rawPoints, _samplingResolution));
+    points = List<Point>.of(_scale(points));
+    points = List<Point>.of(translateTo(points, centroid(points)));
 
     if (computeLUT) {
       _makeIntCoords();
@@ -44,40 +44,41 @@ class Gesture {
   }
 
   /// Resamples a list of points into n equally-distanced points
-  List<Point> resample(List<Point> p, int n) {
-    List<Point> points = List<Point>.of(p);
-    List<Point> resampledPoints = List.filled(1, points[0], growable: true);
-    // int numPoints = 1;
+  List<Point> resample(List<Point> points, int n) {
+    List<Point> resampledPoints = List.filled(n, points[0]);
 
     double interval = _pathLength(points) / (n - 1);
     double distance = 0;
+    int numPoints = 1;
 
-    for (int i = 1; i < p.length; i++) {
+    for (int i = 1; i < points.length; i++) {
       final p1 = points[i], p2 = points[i - 1];
       if (p1.strokeID == p2.strokeID) {
-        double d = euclideanDistance(p2, p1);
+        double d = euclideanDistance(points[i - 1], points[i]);
         if (distance + d >= interval) {
-          if ((distance + d) >= interval) {
-            final px = p2.x + ((interval - distance) / d) * (p1.x - p2.x);
-            final py = p2.y + ((interval - distance) / d) * (p1.y - p2.y);
-            final p = Point(px, py, points[i].strokeID);
-            print(
-                'this is i: $i and this is idistance: $distance and this is d: $d and this is interval: $interval');
-            resampledPoints.add(p); // append new point 'p'
-            points.insert(i, p); // insert 'p' at position i in points
+          Point firstPoint = points[i - 1];
+          while (distance + d >= interval) {
+            double t = min(max((interval - distance) / d, 0.0), 1.0);
+            if (t.isNaN) t = 0.5;
+            resampledPoints[numPoints++] = Point(
+                (1.0 - t) * firstPoint.x + t * points[i].x,
+                (1.0 - t) * firstPoint.y + t * points[i].y);
+            d = distance + d - interval;
             distance = 0;
+            firstPoint = resampledPoints[numPoints - 1];
           }
+          distance = d;
         } else {
           distance += d;
         }
       }
     }
 
-    if (resampledPoints.length == n - 1) {
+    if (numPoints == n - 1) {
       final p1 = points[points.length - 1].x;
       final p2 = points[points.length - 1].y;
       final iD = points[points.length - 1].strokeID;
-      resampledPoints[resampledPoints.length++] = Point(p1, p2, iD);
+      resampledPoints[numPoints++] = Point(p1, p2, iD);
     }
     return resampledPoints;
   }
@@ -149,17 +150,10 @@ class Gesture {
   void _makeIntCoords() {
     for (int i = 0; i < points.length; i++) {
       var x1 = points[i].x + 1;
-      var x2 = 2 * (_maxIntCoordinates - 1);
-      print('this is x1: $x1 and this is x2: $x2 and this is them divided: ' +
-          (x1 / x2).toString());
       var y1 = points[i].y + 1;
-      var y2 = 2 * (_maxIntCoordinates - 1);
-      var xf = (x1 ~/ x2);
-      int yf = (y1 ~/ y2);
-      points[i].intX = xf.isFinite ? xf : 0;
-      points[i].intY = yf.isFinite ? yf : 0;
-      // TODO: fix this bug :(
-      // possible solutions... make points nullable and check for null, or use abs value to get an int?
+      var d = 2 * (_maxIntCoordinates - 1);
+      points[i].intX = x1.isNaN ? 0 : (x1 ~/ d);
+      points[i].intY = y1.isNaN ? 0 : (y1 ~/ d);
     }
   }
 
@@ -189,8 +183,8 @@ class Gesture {
 
   // Geometry methods
   static double sqrEuclideanDistance(Point a, Point b) {
-    var dx = a.x - b.x;
-    var dy = a.y - b.y;
+    double dx = a.x - b.x;
+    double dy = a.y - b.y;
     return (dx * dx + dy * dy);
   }
 

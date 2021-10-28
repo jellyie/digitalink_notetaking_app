@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/gesture.dart';
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/q_dollar_recognizer.dart';
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/point.dart';
-import 'package:digitalink_notetaking_app/features/canvas/stroke.dart';
-import 'package:flutter/material.dart';
+import '../q_dollar_recognizer/point.dart';
+import '../q_dollar_recognizer/gesture.dart';
+import '../q_dollar_recognizer/q_dollar_recognizer.dart';
+import '../stroke.dart';
 
 // ignore: use_key_in_widget_constructors
 class CanvasScreen extends StatefulWidget {
@@ -23,6 +23,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
       StreamController<Stroke?>.broadcast();
 
   QDollarRecognizer qDollarRecognizer = QDollarRecognizer();
+  String result = 'try again :(';
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +48,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
       padding: const EdgeInsets.all(10.0),
       child: ElevatedButton(
         onPressed: () async {
-          List<Point> candidate = activeStroke!.strokePoints;
-          String result = await qDollarRecognizer.recognize(Gesture(candidate));
           final snackBar =
-              SnackBar(content: Text('Gesture was recognized as $result'));
+              SnackBar(content: Text('Gesture was recognized as.... $result'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         },
         child: const Text('Recognize Gesture'),
@@ -96,8 +95,16 @@ class _CanvasScreenState extends State<CanvasScreen> {
           activeStroke = Stroke(strokePoints: _points);
           activeStrokeStreamController.add(activeStroke);
         },
-        onPanEnd: (details) {
+        onPanEnd: (details) async {
           strokes = List.from(strokes)..add(activeStroke);
+          List<Point> p = [];
+          for (Stroke? s in strokes) {
+            if (s == null) continue;
+            for (Point pt in s.strokePoints) {
+              p.add(pt);
+            }
+          }
+          result = await qDollarRecognizer.recognize(Gesture(p));
         },
         child: RepaintBoundary(
           child: Container(

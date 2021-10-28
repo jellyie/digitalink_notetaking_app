@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/gesture.dart';
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/point.dart';
-import 'package:digitalink_notetaking_app/features/canvas/QDollarRecognizer/templates.dart';
+import '../q_dollar_recognizer/gesture.dart';
+import '../q_dollar_recognizer/point.dart';
+import '../q_dollar_recognizer/templates.dart';
 
 class QDollarRecognizer {
   static bool useEarlyAbandoning = true;
@@ -29,8 +29,10 @@ class QDollarRecognizer {
     int step = pow(totalPoints, 1.0 - numTrials).floor();
 
     if (useLowerBounding) {
-      List<double> lb1 = _computeLowerBound(g1.points, g2.points, g2.lut, step);
-      List<double> lb2 = _computeLowerBound(g2.points, g1.points, g1.lut, step);
+      List<double> lb1 = List<double>.of(
+          _computeLowerBound(g1.points, g2.points, g2.lut, step));
+      List<double> lb2 = List<double>.of(
+          _computeLowerBound(g2.points, g1.points, g1.lut, step));
 
       for (int i = 0, lowerBoundIndex = 0;
           i < totalPoints;
@@ -58,13 +60,14 @@ class QDollarRecognizer {
   static List<double> _computeLowerBound(List<Point> points1,
       List<Point> points2, List<List<int>> lookupTable, int step) {
     int totalPoints = points1.length;
-    List<double> lowerBound = [];
-    List<double> summedAreaTable = [];
+    List<double> lowerBound =
+        List.generate((totalPoints / step + 1).round(), (i) => 0);
+    List<double> summedAreaTable = List.generate(totalPoints, (i) => 0);
 
-    lowerBound[0] = 0;
     for (int i = 0; i < totalPoints; i++) {
-      int index = lookupTable[points1[i].intY / Gesture.lutScaleFactor as int]
-          [points1[i].intX / Gesture.lutScaleFactor as int];
+      int index =
+          lookupTable[(points1[i].intY / Gesture.lutScaleFactor).round()]
+              [(points1[i].intX / Gesture.lutScaleFactor).round()];
       double distance =
           Gesture.sqrEuclideanDistance(points1[i], points2[index]);
       summedAreaTable[i] =
