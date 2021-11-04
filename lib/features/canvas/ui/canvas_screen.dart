@@ -1,3 +1,4 @@
+import 'package:digitalink_notetaking_app/features/canvas/q_dollar_recognizer/templates.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:ui';
@@ -5,7 +6,8 @@ import 'dart:ui';
 import '../q_dollar_recognizer/point.dart';
 import '../q_dollar_recognizer/gesture.dart';
 import '../q_dollar_recognizer/q_dollar_recognizer.dart';
-import '../stroke.dart';
+import 'painter/stroke.dart';
+import 'painter/canvas_painter.dart';
 
 // ignore: use_key_in_widget_constructors
 class CanvasScreen extends StatefulWidget {
@@ -37,20 +39,116 @@ class _CanvasScreenState extends State<CanvasScreen> {
         children: [
           buildAllStrokes(context),
           buildActiveStroke(context),
-          buildRecognizeButton()
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    List<Point> p = [];
+                    for (Stroke? s in strokes) {
+                      if (s == null) continue;
+                      for (Point pt in s.strokePoints) {
+                        p.add(pt);
+                      }
+                    }
+                    result = qDollarRecognizer.recognize(Gesture(p));
+                    final snackBar = SnackBar(
+                        content: Text('Gesture was recognized as.... $result'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                  child: const Text('Recognize Gesture'),
+                ),
+                buildClearCanvasButton(),
+                buildAddGestureButton(),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
+  ElevatedButton buildClearCanvasButton() {
+    return ElevatedButton(
+      onPressed: () {
+        strokes = <Stroke>[];
+        activeStroke = null;
+      },
+      child: const Text('Clear Canvas'),
+    );
+  }
+
+// Ignore this method, it's for creating the gesture templates
+  Widget buildAddGestureButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: ElevatedButton(
+        onPressed: () {
+          saveGesture();
+        },
+        child: const Text('Add gesture'),
+      ),
+    );
+  }
+
+// Ignore this method, it's for creating the gesture templates
+  void saveGesture() {
+    print('\n\n');
+
+    for (int x = 0; x < strokes.length; ++x) {
+      final _stroke = strokes[x];
+      if (_stroke == null) continue;
+      for (int y = 0; y < _stroke.strokePoints.length - 1; ++y) {
+        final p1 = _stroke.strokePoints[y].asOffset;
+        print("Stroke: $x Point $y: OFFSET = ${p1.toString()}");
+      }
+    }
+    print('----------------------------------------------------------------');
+  }
+
+  // Future<void> _recogniseText() async {
+  //   showDialog(
+  //       context: context,
+  //       builder: (context) => const AlertDialog(
+  //             title: Text('Recognising'),
+  //           ),
+  //       barrierDismissible: true);
+  //   try {
+  //     // List<Point> points = List<Point>.of(activeStroke!.strokePoints);
+  //     // List<Offset> o = [];
+  //     // for (Point p in points) {
+  //     //   o.add(p.asOffset);
+  //     // } MLKIT
+  //     // List<Point> p = [];
+  //     //     for (Stroke? s in strokes) {
+  //     //       if (s == null) continue;
+  //     //       for (Point pt in s.strokePoints) {
+  //     //         p.add(pt);
+  //     //       }
+  //     //     }
+  //     //     result = qDollarRecognizer.recognize(Gesture(p));
+  //     final snackBar =
+  //         SnackBar(content: Text('Gesture was recognized as.... $result'));
+  //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text(e.toString()),
+  //     ));
+  //   }
+  //   Navigator.pop(context);
+  // }
+
   Widget buildRecognizeButton() {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ElevatedButton(
-        onPressed: () async {
-          final snackBar =
-              SnackBar(content: Text('Gesture was recognized as.... $result'));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        onPressed: () {
+          // final snackBar =
+          //     SnackBar(content: Text('Gesture was recognized as.... $result'));
+          // ScaffoldMessenger.of(context).showSnackBar(snackBar);
         },
         child: const Text('Recognize Gesture'),
       ),
@@ -95,16 +193,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
           activeStroke = Stroke(strokePoints: _points);
           activeStrokeStreamController.add(activeStroke);
         },
-        onPanEnd: (details) async {
+        onPanEnd: (details) {
           strokes = List.from(strokes)..add(activeStroke);
-          List<Point> p = [];
-          for (Stroke? s in strokes) {
-            if (s == null) continue;
-            for (Point pt in s.strokePoints) {
-              p.add(pt);
-            }
-          }
-          result = await qDollarRecognizer.recognize(Gesture(p));
         },
         child: RepaintBoundary(
           child: Container(
@@ -125,33 +215,4 @@ class _CanvasScreenState extends State<CanvasScreen> {
           ),
         ));
   }
-}
-
-class CanvasPainter extends CustomPainter {
-  final List<Stroke?> strokes;
-
-  CanvasPainter({required this.strokes});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = Colors.blue
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 5.0
-      ..isAntiAlias = true;
-
-    for (int x = 0; x < strokes.length; ++x) {
-      final stroke = strokes[x];
-      if (stroke == null) continue;
-      for (int y = 0; y < stroke.strokePoints.length - 1; ++y) {
-        final p1 = stroke.strokePoints[y].asOffset;
-        final p2 = stroke.strokePoints[y + 1].asOffset;
-        canvas.drawLine(p1, p2, paint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(CanvasPainter oldDelegate) =>
-      oldDelegate.strokes != strokes;
 }

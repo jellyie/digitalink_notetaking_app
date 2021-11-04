@@ -21,21 +21,22 @@ class Gesture {
 
   List<List<int>> lut = List.generate(
       64, (i) => List.filled(64, 0, growable: false),
-      growable: true); // Lookup table
+      growable: false); // Lookup table
 
   /// Constructs a gesture from a list of points
   Gesture(this.points, {this.name = ''}) {
     rawPoints = List<Point>.of(points, growable: false);
     normalize();
+    print('\n\nGesture: $name \n'); // for debugging..
   }
 
   /// Normalizes the gesture path.
   /// The $Q recognizer requires an extra normalization step, the computation of the LUT,
   /// which can be enabled with the computeLUT parameter.
   void normalize({bool computeLUT = true}) {
-    points = List<Point>.of(resample(rawPoints, _samplingResolution));
-    points = List<Point>.of(_scale(points));
-    points = List<Point>.of(translateTo(points, centroid(points)));
+    points = resample(rawPoints, _samplingResolution);
+    points = translateTo(points, centroid(points));
+    points = _scale(points);
 
     if (computeLUT) {
       _makeIntCoords();
@@ -149,26 +150,26 @@ class Gesture {
   /// Scales point coordinates to the integer domain [0..MAXINT-1] x [0..MAXINT-1]
   void _makeIntCoords() {
     for (int i = 0; i < points.length; i++) {
-      var x1 = points[i].x + 1;
-      var y1 = points[i].y + 1;
-      var d = 2 * (_maxIntCoordinates - 1);
-      points[i].intX = x1.isNaN ? 0 : (x1 ~/ d);
-      points[i].intY = y1.isNaN ? 0 : (y1 ~/ d);
+      var x1 = (points[i].x + 1) ~/ 2.0;
+      var y1 = (points[i].y + 1) ~/ 2.0;
+      var d = (_maxIntCoordinates - 1);
+      points[i].intX = x1.isNaN ? 0 : (x1 * d);
+      points[i].intY = y1.isNaN ? 0 : (y1 * d);
     }
   }
 
   /// Constructs a Lookup Table that maps grip points to the closest point from the gesture path
   void _makeLUT() {
     for (int i = 0; i < lutSize; i++) {
-      lut[i] = List.generate(lutSize, (i) => 0);
+      lut[i] = List.filled(lutSize, 0);
 
       for (int x = 0; x < lutSize; x++) {
         for (int y = 0; y < lutSize; y++) {
           int minIndex = -1;
           int minDistance = double.maxFinite.toInt();
           for (int i = 0; i < points.length; i++) {
-            int row = (points[i].intY / lutSize).round();
-            int col = (points[i].intX / lutSize).round();
+            int row = points[i].intY ~/ lutSize;
+            int col = points[i].intX ~/ lutSize;
             int d = (row - x) * (row - x) + (col - y) * (col - y);
             if (d < minDistance) {
               minDistance = d;
@@ -183,9 +184,7 @@ class Gesture {
 
   // Geometry methods
   static double sqrEuclideanDistance(Point a, Point b) {
-    double dx = a.x - b.x;
-    double dy = a.y - b.y;
-    return (dx * dx + dy * dy);
+    return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
   }
 
   static double euclideanDistance(Point a, Point b) {

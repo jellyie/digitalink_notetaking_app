@@ -7,14 +7,13 @@ import '../q_dollar_recognizer/templates.dart';
 class QDollarRecognizer {
   static bool useEarlyAbandoning = true;
   static bool useLowerBounding = true;
-  static final List<Gesture> _templateSet =
-      List<Gesture>.of(Templates.templates);
+  static final List<Gesture> _templateSet = Templates.templates;
 
-  Future<String> recognize(Gesture candidate) async {
-    double minDistance = double.maxFinite;
+  String recognize(Gesture candidate) {
+    var minDistance = double.maxFinite;
     String gesture = "";
     for (Gesture template in _templateSet) {
-      double distance = _greedyCloudMatch(candidate, template, minDistance);
+      double distance = _greedyCloudMatch(template, candidate, minDistance);
       if (distance < minDistance) {
         minDistance = distance;
         gesture = template.name;
@@ -29,10 +28,8 @@ class QDollarRecognizer {
     int step = pow(totalPoints, 1.0 - numTrials).floor();
 
     if (useLowerBounding) {
-      List<double> lb1 = List<double>.of(
-          _computeLowerBound(g1.points, g2.points, g2.lut, step));
-      List<double> lb2 = List<double>.of(
-          _computeLowerBound(g2.points, g1.points, g1.lut, step));
+      List<double> lb1 = _computeLowerBound(g1.points, g2.points, g2.lut, step);
+      List<double> lb2 = _computeLowerBound(g2.points, g1.points, g1.lut, step);
 
       for (int i = 0, lowerBoundIndex = 0;
           i < totalPoints;
@@ -60,14 +57,13 @@ class QDollarRecognizer {
   static List<double> _computeLowerBound(List<Point> points1,
       List<Point> points2, List<List<int>> lookupTable, int step) {
     int totalPoints = points1.length;
-    List<double> lowerBound =
-        List.generate((totalPoints / step + 1).round(), (i) => 0);
-    List<double> summedAreaTable = List.generate(totalPoints, (i) => 0);
+    List<double> lowerBound = List.filled((totalPoints / step + 1).round(), 0);
+    List<double> summedAreaTable = List.filled(totalPoints, 0);
 
     for (int i = 0; i < totalPoints; i++) {
       int index =
-          lookupTable[(points1[i].intY / Gesture.lutScaleFactor).round()]
-              [(points1[i].intX / Gesture.lutScaleFactor).round()];
+          lookupTable[(points1[i].intY / Gesture.lutScaleFactor).truncate()]
+              [(points1[i].intX / Gesture.lutScaleFactor).truncate()];
       double distance =
           Gesture.sqrEuclideanDistance(points1[i], points2[index]);
       summedAreaTable[i] =
