@@ -1,8 +1,9 @@
-import 'package:digitalink_notetaking_app/features/canvas/ui/canvas_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'features/canvas/ui/canvas_ui.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 // ignore: use_key_in_widget_constructors
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CanvasScreen(),
+      home: const CanvasUI(),
     );
   }
 }

@@ -16,8 +16,8 @@ class Gesture {
       1024; // $Q only: each point has two additional x and y integer coordinates in the interval [0..MAX_INT_COORDINATES-1] used to operate the LUT table efficiently (O(1))
   static int lutSize =
       64; // $Q only: the default size of the lookup table is 64 x 64
-  static int lutScaleFactor = _maxIntCoordinates ~/
-      lutSize; // $Q only: scale factor to convert between integer x and y coordinates and the size of the LUT
+  static int lutScaleFactor =
+      16; // $Q only: scale factor to convert between integer x and y coordinates and the size of the LUT
 
   List<List<int>> lut = List.generate(
       64, (i) => List.filled(64, 0, growable: false),
@@ -35,8 +35,8 @@ class Gesture {
   /// which can be enabled with the computeLUT parameter.
   void normalize({bool computeLUT = true}) {
     points = resample(rawPoints, _samplingResolution);
-    points = translateTo(points, centroid(points));
     points = _scale(points);
+    points = translateTo(points, centroid(points));
 
     if (computeLUT) {
       _makeIntCoords();

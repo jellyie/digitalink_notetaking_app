@@ -1,11 +1,14 @@
+import '../../models/state/canvas_state.dart';
 import 'package:flutter/material.dart';
 
-import 'stroke.dart';
+import '../../models/stroke/stroke.dart';
 
 class CanvasPainter extends CustomPainter {
-  final List<Stroke?> strokes;
+  final CanvasState state;
 
-  CanvasPainter({required this.strokes});
+  CanvasPainter({required this.state});
+
+  List<Stroke> get strokes => state.strokes;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -17,7 +20,8 @@ class CanvasPainter extends CustomPainter {
 
     for (int x = 0; x < strokes.length; ++x) {
       final stroke = strokes[x];
-      if (stroke == null) continue;
+      // ignore: unnecessary_null_comparison
+      if (stroke.strokePoints.isEmpty) continue;
       for (int y = 0; y < stroke.strokePoints.length - 1; ++y) {
         final p1 = stroke.strokePoints[y].asOffset;
         final p2 = stroke.strokePoints[y + 1].asOffset;
