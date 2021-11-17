@@ -1,3 +1,63 @@
+///
+/// The $Q Point-Cloud Recognizer (.NET Framework C# version)
+///
+/// 	    Radu-Daniel Vatavu, Ph.D.
+///     University Stefan cel Mare of Suceava
+///     Suceava 720229, Romania
+///     radu.vatavu@usm.ro
+///
+///     Lisa Anthony, Ph.D.
+///      Department of CISE
+///      University of Florida
+///      Gainesville, FL 32611, USA
+///      lanthony@cise.ufl.edu
+///
+///     Jacob O. Wobbrock, Ph.D.
+/// 	    The Information School
+///     University of Washington
+///     Seattle, WA 98195-2840
+///     wobbrock@uw.edu
+///
+/// The academic publication for the $Q recognizer, and what should be
+/// used to cite it, is:
+///
+/// Vatavu, R.-D., Anthony, L. and Wobbrock, J.O. (2018).
+///   $Q: A Super-Quick, Articulation-Invariant Stroke-Gesture
+///    Recognizer for Low-Resourc Devices. Proceedings of 20th International Conference on
+///    Human-Computer Interaction with Mobile Devices and Services (MobileHCI '18). Barcelona, Spain
+///   (September 3-6, 2018). New York: ACM Press.
+///   DOI: https://doi.org/10.1145/3229434.3229465
+///
+/// This software is distributed under the "New BSD License" agreement:
+///
+/// Copyright (c) 2018, Radu-Daniel Vatavu, Lisa Anthony, and
+/// Jacob O. Wobbrock. All rights reserved.
+///
+/// Redistribution and use in source and binary forms, with or without
+/// modification, are permitted provided that the following conditions are met:
+///    * Redistributions of source code must retain the above copyright
+///      notice, this list of conditions and the following disclaimer.
+///    * Redistributions in binary form must reproduce the above copyright
+///      notice, this list of conditions and the following disclaimer in the
+///      documentation and/or other materials provided with the distribution.
+///    * Neither the names of the University Stefan cel Mare of Suceava,
+///     University of Washington, nor University of Florida, nor the names of its contributors
+///     may be used to endorse or promote products derived from this software
+///     without specific prior written permission.
+///
+/// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+/// IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+/// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+/// PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Radu-Daniel Vatavu OR Lisa Anthony
+/// OR Jacob O. Wobbrock BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+/// EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+/// OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+/// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+/// STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+/// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+/// SUCH DAMAGE.
+///
+
 import 'dart:math';
 import '../q_dollar_recognizer/point.dart';
 
@@ -5,19 +65,14 @@ import '../q_dollar_recognizer/point.dart';
 /// For $P, gestures are normalized with respect to scale, translated to origin, and resampled into a fixed number of 32 points.
 /// For $Q, a LUT is also computed.
 class Gesture {
-  List<Point> points = []; // gesture points (normalized)
-  List<Point> rawPoints =
-      []; // gesture points (not normalized, as captured from the input device)
-  String name = ''; // gesture class
+  List<Point> points = [];
+  List<Point> rawPoints = [];
+  String name = '';
 
-  static const int _samplingResolution =
-      64; // default number of points on the gesture path
-  static const int _maxIntCoordinates =
-      1024; // $Q only: each point has two additional x and y integer coordinates in the interval [0..MAX_INT_COORDINATES-1] used to operate the LUT table efficiently (O(1))
-  static int lutSize =
-      64; // $Q only: the default size of the lookup table is 64 x 64
-  static int lutScaleFactor =
-      16; // $Q only: scale factor to convert between integer x and y coordinates and the size of the LUT
+  static const int _samplingResolution = 64;
+  static const int _maxIntCoordinates = 1024;
+  static int lutSize = 64;
+  static int lutScaleFactor = 16;
 
   List<List<int>> lut = List.generate(
       64, (i) => List.filled(64, 0, growable: false),
@@ -63,7 +118,8 @@ class Gesture {
             if (t.isNaN) t = 0.5;
             resampledPoints[numPoints++] = Point(
                 (1.0 - t) * firstPoint.x + t * points[i].x,
-                (1.0 - t) * firstPoint.y + t * points[i].y);
+                (1.0 - t) * firstPoint.y + t * points[i].y,
+                points[i].strokeID);
             d = distance + d - interval;
             distance = 0;
             firstPoint = resampledPoints[numPoints - 1];
@@ -92,10 +148,10 @@ class Gesture {
         ymax = double.minPositive;
 
     for (int i = 0; i < points.length; i++) {
-      xmin = min(xmin, points[i].x);
-      ymin = min(ymin, points[i].y);
-      xmax = max(xmax, points[i].x);
-      ymax = max(ymax, points[i].y);
+      if (xmin > points[i].x) xmin = points[i].x;
+      if (ymin > points[i].y) ymin = points[i].y;
+      if (xmax < points[i].x) xmax = points[i].x;
+      if (ymax < points[i].y) ymax = points[i].y;
     }
 
     double scale = max(xmax - xmin, ymax - ymin);
@@ -130,10 +186,7 @@ class Gesture {
       cy += points[i].y;
     }
 
-    cx /= points.length;
-    cy /= points.length;
-
-    return Point(cx, cy, 0);
+    return Point(cx / points.length, cy / points.length, 0);
   }
 
   /// Computes the path length for a list of points
@@ -166,7 +219,7 @@ class Gesture {
       for (int x = 0; x < lutSize; x++) {
         for (int y = 0; y < lutSize; y++) {
           int minIndex = -1;
-          int minDistance = double.maxFinite.toInt();
+          int minDistance = double.maxFinite.ceil();
           for (int i = 0; i < points.length; i++) {
             int row = points[i].intY ~/ lutSize;
             int col = points[i].intX ~/ lutSize;
@@ -182,7 +235,7 @@ class Gesture {
     }
   }
 
-  // Geometry methods
+  /// Geometry methods
   static double sqrEuclideanDistance(Point a, Point b) {
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
   }

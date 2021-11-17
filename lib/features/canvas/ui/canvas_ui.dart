@@ -4,7 +4,7 @@ import 'package:digitalink_notetaking_app/features/canvas/q_dollar_recognizer/te
 import '../models/canvas_notifier.dart';
 import '../models/state/canvas_state.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'painter/canvas_painter.dart';
 
 final canvasNotifierProvider =

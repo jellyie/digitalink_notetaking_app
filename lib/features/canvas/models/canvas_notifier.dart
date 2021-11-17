@@ -2,7 +2,7 @@ import '../q_dollar_recognizer/gesture.dart';
 import '../q_dollar_recognizer/q_dollar_recognizer.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'stroke/stroke.dart';
 import 'canvas/canvas.dart';
 import 'state/canvas_state.dart';
@@ -97,15 +97,14 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     if (state is GestureMode) {
       state = _completeStroke(state);
     }
-    for (Stroke s in state.strokes) {
-      qpoints.addAll(s.strokePoints);
-    }
   }
 
+  /// Clear the state or reset the canvas
   void clear() {
     state = const CanvasState.gesture(canvas: Canvas(strokes: []));
   }
 
+  /// Return the value of the handwritten text as recognised string
   Future<void> recgoniseText() async {
     List<Offset> points = [];
     for (Stroke s in state.strokes) {
@@ -126,8 +125,13 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     print('Recognised as......$_recogniseText');
   }
 
+  /// Return the value of the drawn shape as a string
   void recogniseShape(List<Gesture> g) {
+    for (Stroke s in state.strokes) {
+      qpoints.addAll(s.strokePoints);
+    }
     _gesture = _recognizer.recognize(Gesture(qpoints), g);
+    qpoints = []; // reset after recognition
     print('Recognised as......$_gesture');
   }
 }
