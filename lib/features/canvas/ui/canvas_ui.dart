@@ -1,3 +1,6 @@
+import 'package:digitalink_notetaking_app/features/canvas/q_dollar_recognizer/gesture.dart';
+import 'package:digitalink_notetaking_app/features/canvas/q_dollar_recognizer/templates.dart';
+
 import '../models/canvas_notifier.dart';
 import '../models/state/canvas_state.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +13,8 @@ final canvasNotifierProvider =
 
 class CanvasUI extends ConsumerWidget {
   const CanvasUI({Key? key}) : super(key: key);
+
+  static final List<Gesture> _trainingSet = Templates.templates;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,9 +49,11 @@ class CanvasUI extends ConsumerWidget {
             padding: const EdgeInsets.all(10.0),
             child: ElevatedButton(
               onPressed: () {
+                // notifier.recgoniseText();
+                notifier.recogniseShape(_trainingSet);
                 notifier.clear();
               },
-              child: const Text('Clear'),
+              child: const Text('Recognize'),
             ),
           ),
         ],

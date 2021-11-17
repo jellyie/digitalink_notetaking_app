@@ -99,12 +99,12 @@ class Gesture {
     }
 
     double scale = max(xmax - xmin, ymax - ymin);
-    List<Point> scaledPoints = List.filled(points.length, Point(0, 0));
+    List<Point> scaledPoints = [];
 
     for (int i = 0; i < points.length; i++) {
       var px = (points[i].x - xmin) / scale;
       var py = (points[i].y - ymin) / scale;
-      scaledPoints[i] = Point(px, py, points[i].strokeID);
+      scaledPoints.add(Point(px, py, points[i].strokeID));
     }
 
     return scaledPoints;
@@ -112,11 +112,11 @@ class Gesture {
 
   /// Translates a list of points by p
   List<Point> translateTo(List<Point> points, Point p) {
-    List<Point> translatedPoints = List.filled(points.length, Point(0, 0));
+    List<Point> translatedPoints = [];
 
     for (int i = 0; i < points.length; i++) {
-      translatedPoints[i] =
-          Point(points[i].x - p.x, points[i].y - p.y, points[i].strokeID);
+      translatedPoints
+          .add(Point(points[i].x - p.x, points[i].y - p.y, points[i].strokeID));
     }
 
     return translatedPoints;

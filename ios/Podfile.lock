@@ -1,31 +1,15 @@
 PODS:
-  - FirebaseCore (8.9.1):
-    - FirebaseCoreDiagnostics (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.6)
-    - GoogleUtilities/Logger (~> 7.6)
-  - FirebaseCoreDiagnostics (8.9.0):
-    - GoogleDataTransport (~> 9.1)
-    - GoogleUtilities/Environment (~> 7.6)
-    - GoogleUtilities/Logger (~> 7.6)
-    - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (8.9.0):
-    - FirebaseCore (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.6)
-    - GoogleUtilities/UserDefaults (~> 7.6)
-    - PromisesObjC (< 3.0, >= 1.2)
   - Flutter (1.0.0)
   - google_ml_kit (0.6.0):
     - Flutter
-    - GoogleMLKit/BarcodeScanning (~> 2.2.0)
-    - GoogleMLKit/DigitalInkRecognition (~> 2.2.0)
-    - GoogleMLKit/FaceDetection (~> 2.2.0)
-    - GoogleMLKit/ImageLabeling (~> 2.2.0)
-    - GoogleMLKit/ImageLabelingCustom (~> 2.2.0)
-    - GoogleMLKit/LanguageID (~> 2.2.0)
-    - GoogleMLKit/LinkFirebase (~> 2.2.0)
-    - GoogleMLKit/PoseDetection (~> 2.2.0)
-    - GoogleMLKit/PoseDetectionAccurate (~> 2.2.0)
-    - GoogleMLKit/TextRecognition (~> 2.2.0)
+    - GoogleMLKit/BarcodeScanning
+    - GoogleMLKit/DigitalInkRecognition
+    - GoogleMLKit/FaceDetection
+    - GoogleMLKit/ImageLabeling
+    - GoogleMLKit/ImageLabelingCustom
+    - GoogleMLKit/PoseDetection
+    - GoogleMLKit/PoseDetectionAccurate
+    - GoogleMLKit/TextRecognition
   - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
@@ -45,12 +29,6 @@ PODS:
   - GoogleMLKit/ImageLabelingCustom (2.2.0):
     - GoogleMLKit/MLKitCore
     - MLKitImageLabelingCustom (~> 1.3.0)
-  - GoogleMLKit/LanguageID (2.2.0):
-    - GoogleMLKit/MLKitCore
-    - MLKitLanguageID (~> 1.3.0)
-  - GoogleMLKit/LinkFirebase (2.2.0):
-    - GoogleMLKit/MLKitCore
-    - MLKitLinkFirebase (~> 1.3.0)
   - GoogleMLKit/MLKitCore (2.2.0):
     - MLKitCommon (~> 3.0.0)
   - GoogleMLKit/PoseDetection (2.2.0):
@@ -62,29 +40,27 @@ PODS:
   - GoogleMLKit/TextRecognition (2.2.0):
     - GoogleMLKit/MLKitCore
     - MLKitTextRecognition (~> 1.3.0)
-  - GoogleToolboxForMac/DebugUtils (2.3.2):
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-  - GoogleToolboxForMac/Defines (2.3.2)
-  - GoogleToolboxForMac/Logger (2.3.2):
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-  - "GoogleToolboxForMac/NSData+zlib (2.3.2)":
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.2)":
-    - GoogleToolboxForMac/DebugUtils (= 2.3.2)
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
-  - GoogleToolboxForMac/StringEncoding (2.3.2):
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-  - GoogleUtilities/Environment (7.6.0):
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.6.0):
+  - GoogleToolboxForMac/DebugUtils (2.3.1):
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+  - GoogleToolboxForMac/Defines (2.3.1)
+  - GoogleToolboxForMac/Logger (2.3.1):
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.1)":
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.3.1)
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.3.1)"
+  - GoogleUtilities/Environment (7.4.3):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.4.3):
     - GoogleUtilities/Environment
-  - GoogleUtilities/UserDefaults (7.6.0):
+  - GoogleUtilities/UserDefaults (7.4.3):
     - GoogleUtilities/Logger
   - GoogleUtilitiesComponents (1.0.0):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.7.0)
+  - GTMSessionFetcher/Core (1.6.1)
   - MLImage (1.0.0-beta1)
   - MLKitBarcodeScanning (1.3.0):
     - MLKitCommon (~> 3.0)
@@ -118,23 +94,8 @@ PODS:
     - MLKitImageLabelingCommon (~> 1.3)
     - MLKitVision (~> 1.3)
     - MLKitVisionKit (~> 2.2)
-  - MLKitLanguageID (1.3.0):
-    - MLKitNaturalLanguage (~> 1.3)
-  - MLKitLinkFirebase (1.3.0):
-    - FirebaseCore (~> 8.0)
-    - FirebaseInstallations (~> 8.0)
-    - GTMSessionFetcher/Core (~> 1.1)
-    - MLKitCommon (~> 3.0)
   - MLKitMDD (1.3.0):
     - MLKitCommon (~> 3.0)
-  - MLKitNaturalLanguage (1.3.0):
-    - GoogleToolboxForMac/Logger (~> 2.1)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
-    - GoogleToolboxForMac/StringEncoding (~> 2.1)
-    - GTMSessionFetcher/Core (~> 1.1)
-    - MLKitCommon (~> 3.0)
-    - Protobuf (~> 3.12)
   - MLKitObjectDetectionCommon (1.3.0):
     - MLKitCommon (~> 3.0)
     - MLKitVision (~> 1.3)
@@ -172,8 +133,8 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - PromisesObjC (2.0.0)
-  - Protobuf (3.19.1)
+  - PromisesObjC (1.2.12)
+  - Protobuf (3.17.0)
   - SSZipArchive (2.4.2)
 
 DEPENDENCIES:
@@ -182,9 +143,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - FirebaseCore
-    - FirebaseCoreDiagnostics
-    - FirebaseInstallations
     - GoogleDataTransport
     - GoogleMLKit
     - GoogleToolboxForMac
@@ -199,10 +157,7 @@ SPEC REPOS:
     - MLKitImageLabeling
     - MLKitImageLabelingCommon
     - MLKitImageLabelingCustom
-    - MLKitLanguageID
-    - MLKitLinkFirebase
     - MLKitMDD
-    - MLKitNaturalLanguage
     - MLKitObjectDetectionCommon
     - MLKitPoseDetection
     - MLKitPoseDetectionAccurate
@@ -223,17 +178,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_ml_kit/ios"
 
 SPEC CHECKSUMS:
-  FirebaseCore: c5aab092d9c4b8efea894946166b04c9d9ef0e68
-  FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
-  FirebaseInstallations: caa7c8e0d3e2345b8829d2fa9ca1b4dfbf2fcc85
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  google_ml_kit: a85eefb9ea6156b27ee2fba2b71e461e7b26a4f6
+  google_ml_kit: 3e25499de151048da453504d2b676cfd1c6c6bd0
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleMLKit: 85ffdc9641d05311c76dbba5bbf93059087be12f
-  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
-  GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
+  GoogleToolboxForMac: 471e0c05d39506e50e6398f46fa9a12ae0efeff9
+  GoogleUtilities: 45dbb24a7f351d69d0a601482b39ad6c32e30dab
   GoogleUtilitiesComponents: a69c0b3b369ba443e988141e75ef49d9010b1c80
-  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   MLImage: 647f3d580c10b3c9a3f6154f5d7baead60c42a0c
   MLKitBarcodeScanning: 6b998bd1cfe471ae407a7f647d649494617787c0
   MLKitCommon: 6d6be0a2e9a6340aad1c1f2b9449c11dee8af70f
@@ -242,10 +194,7 @@ SPEC CHECKSUMS:
   MLKitImageLabeling: fc44a4f90b1cf16bcb62c043d477c052ba7539ca
   MLKitImageLabelingCommon: fbe695a04fb236555e6b7e69e7def153a04324c1
   MLKitImageLabelingCustom: 83e609e6b7dd8a16dc8790ef325bab1372d1d91d
-  MLKitLanguageID: 3848cf59a1693e2076ba65b37da261c674f97170
-  MLKitLinkFirebase: ae5bd6996d0a1a3d3e0bb4c634b594101c07d094
   MLKitMDD: 37b4fbb5fd45809e646fca676945d6a8479ae66e
-  MLKitNaturalLanguage: 2a0295232578461ec25bf5933e45570c3b651d27
   MLKitObjectDetectionCommon: 6abf300c61cd781ee3abc8abea8a3f8baca886dc
   MLKitPoseDetection: bbc263ae4e961e83c9350abe919cff183797e687
   MLKitPoseDetectionAccurate: c87162574669a84b89fdd0279a1f0722faa99b6e
@@ -255,8 +204,8 @@ SPEC CHECKSUMS:
   MLKitVisionKit: 226bac429eda1d84285409e31ce9da72606850fb
   MLKitXenoCommon: bf5b3528d77cabe0d04f3c13536ba1302346e31c
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  Protobuf: 3724efa50cb2846d7ccebc8691c574e85fd74471
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
   SSZipArchive: e7b4f3d9e780c2acc1764cd88fbf2de28f26e5b2
 
 PODFILE CHECKSUM: 57c8aed26fba39d3ec9424816221f294a07c58eb

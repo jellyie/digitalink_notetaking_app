@@ -2,18 +2,16 @@ import 'dart:math';
 
 import '../q_dollar_recognizer/gesture.dart';
 import '../q_dollar_recognizer/point.dart';
-import '../q_dollar_recognizer/templates.dart';
 
 class QDollarRecognizer {
   static bool useEarlyAbandoning = true;
   static bool useLowerBounding = false;
-  static final List<Gesture> _templateSet = Templates.templates;
 
-  String recognize(Gesture candidate) {
+  String recognize(Gesture candidate, List<Gesture> trainingSet) {
     var minDistance = double.maxFinite;
     String gesture = "";
-    for (Gesture template in _templateSet) {
-      double distance = _greedyCloudMatch(template, candidate, minDistance);
+    for (Gesture template in trainingSet) {
+      double distance = _greedyCloudMatch(candidate, template, minDistance);
       if (distance < minDistance) {
         minDistance = distance;
         gesture = template.name;
@@ -24,7 +22,7 @@ class QDollarRecognizer {
 
   static double _greedyCloudMatch(Gesture g1, Gesture g2, double currentMin) {
     int totalPoints = g1.points.length;
-    int step = pow(totalPoints, 0.5).toInt();
+    int step = pow(totalPoints, 0.5).floor();
 
     if (useLowerBounding) {
       List<double> lb1 = _computeLowerBound(g1.points, g2.points, g2.lut, step);
@@ -56,25 +54,27 @@ class QDollarRecognizer {
   static List<double> _computeLowerBound(List<Point> points1,
       List<Point> points2, List<List<int>> lookupTable, int step) {
     int totalPoints = points1.length;
-    List<double> lowerBound = List.filled((totalPoints ~/ step + 1), 0);
-    List<double> summedAreaTable = List.filled(totalPoints, 0);
-
+    List<double> lowerBound = [];
+    List<double> summedAreaTable = [];
+    lowerBound.add(0);
     for (int i = 0; i < totalPoints; i++) {
       int index = lookupTable[(points1[i].intY ~/ Gesture.lutScaleFactor)]
           [(points1[i].intX ~/ Gesture.lutScaleFactor)];
       double distance =
           Gesture.sqrEuclideanDistance(points1[i], points2[index]);
-      summedAreaTable[i] =
-          (i == 0) ? distance : summedAreaTable[i - 1] + distance;
-      lowerBound[0] += (totalPoints - i) * distance;
+      summedAreaTable
+          .add((i == 0) ? distance : summedAreaTable[i - 1] + distance);
+      lowerBound.insert(0, lowerBound[0] += (totalPoints - i) * distance);
     }
 
     for (int i = step, lowerBoundIndex = 1;
         i < totalPoints;
         i += step, lowerBoundIndex++) {
-      lowerBound[lowerBoundIndex] = lowerBound[0] +
-          i * summedAreaTable[totalPoints - 1] -
-          totalPoints * summedAreaTable[i - 1];
+      lowerBound.insert(
+          lowerBoundIndex,
+          lowerBound.first +
+              i * summedAreaTable[totalPoints - 1] -
+              totalPoints * summedAreaTable[i - 1]);
     }
     return lowerBound;
   }
@@ -84,7 +84,7 @@ class QDollarRecognizer {
     int totalPoints = points1.length;
 
     List<int> indexesNotMatched =
-        List.generate(totalPoints, (i) => i, growable: false);
+        List<int>.generate(totalPoints, (i) => i, growable: false);
 
     double sum = 0;
     int i = startIndex;

@@ -1,3 +1,5 @@
+import '../q_dollar_recognizer/gesture.dart';
+import '../q_dollar_recognizer/q_dollar_recognizer.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,10 +18,26 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     state = CanvasState.gesture(
       canvas: canvas ?? const Canvas(strokes: []),
     );
+
+    _languageModelManager.downloadModel(_language);
   }
 
   final GlobalKey _globalKey = GlobalKey();
   GlobalKey get globalkey => _globalKey;
+
+  // Initiate digital ink recogniser
+  final DigitalInkRecogniser _digitalInkRecogniser =
+      GoogleMlKit.vision.digitalInkRecogniser();
+  final LanguageModelManager _languageModelManager =
+      GoogleMlKit.vision.languageModelManager();
+
+  String _recogniseText = ' ';
+  final String _language = 'zxx-Zsye-x-emoji';
+
+  // Initiate gesture recogniser
+  String _gesture = ' ';
+  final QDollarRecognizer _recognizer = QDollarRecognizer();
+  List<Point> qpoints = [];
 
   /// Returns the most recent Offset as a Point
   Point _getPoint(Offset o) {
@@ -79,9 +97,37 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     if (state is GestureMode) {
       state = _completeStroke(state);
     }
+    for (Stroke s in state.strokes) {
+      qpoints.addAll(s.strokePoints);
+    }
   }
 
   void clear() {
     state = const CanvasState.gesture(canvas: Canvas(strokes: []));
+  }
+
+  Future<void> recgoniseText() async {
+    List<Offset> points = [];
+    for (Stroke s in state.strokes) {
+      List<Offset> _p = s.strokePoints.map((p) => p.asOffset).toList();
+      points.addAll(_p);
+    }
+
+    try {
+      final candidates =
+          await _digitalInkRecogniser.readText(points, _language);
+      _recogniseText = "";
+      for (final candidate in candidates) {
+        _recogniseText += "\n ${candidate.text}";
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    print('Recognised as......$_recogniseText');
+  }
+
+  void recogniseShape(List<Gesture> g) {
+    _gesture = _recognizer.recognize(Gesture(qpoints), g);
+    print('Recognised as......$_gesture');
   }
 }
