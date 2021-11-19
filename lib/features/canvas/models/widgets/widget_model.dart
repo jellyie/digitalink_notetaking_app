@@ -17,8 +17,9 @@ enum WidgetType {
 
 class WidgetModel {
   final String data;
+  final WidgetType? wType;
 
-  WidgetModel({required this.data});
+  WidgetModel({required this.wType, required this.data});
 
   final Map<WidgetType, dynamic> _baseWidgetModel = {
     WidgetType.heading: Heading.widget(content: 'content'),
@@ -29,6 +30,10 @@ class WidgetModel {
 
   Map<WidgetType, dynamic> get _widgetModel =>
       Map.unmodifiable(_baseWidgetModel);
+
+  Widget getWidget() {
+    return Paragraph.widget(content: data.length == 0 ? 'content' : data);
+  }
 }
 
 class Heading {

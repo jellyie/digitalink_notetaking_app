@@ -1,3 +1,6 @@
+import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_data.dart';
+import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_model.dart';
+
 import '../q_dollar_recognizer/gesture.dart';
 import '../q_dollar_recognizer/q_dollar_recognizer.dart';
 import 'package:flutter/rendering.dart';
@@ -126,12 +129,15 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   }
 
   /// Return the value of the drawn shape as a string
-  void recogniseShape(List<Gesture> g) {
+  void recogniseShape(List<Gesture> g, WidgetData widgetData) {
     for (Stroke s in state.strokes) {
       qpoints.addAll(s.strokePoints);
     }
     _gesture = _recognizer.recognize(Gesture(qpoints), g);
     qpoints = []; // reset after recognition
     print('Recognised as......$_gesture');
+
+    /// add the count to notify the list that there's a new style
+    widgetData.addNewWidget(WidgetType.paragraph);
   }
 }
