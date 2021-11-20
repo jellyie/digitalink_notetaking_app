@@ -47,10 +47,7 @@ class _WidgetListState extends State<WidgetList> {
           InkWell(
             key: Key('$i'),
             child: Container(
-              child: WidgetModel(
-                      wType: widgetData.getWidgetType(i),
-                      data: widgetData.getContent(i))
-                  .getWidget(),
+              child: WidgetModel(widgetData: widgetData, index: i).getWidget(),
               decoration: BoxDecoration(
                 border: widgetData.isSelected(i)
                     ? Border.all(color: Colors.blueGrey.shade200, width: 2.0)

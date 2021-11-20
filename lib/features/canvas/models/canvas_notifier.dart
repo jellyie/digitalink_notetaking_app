@@ -138,6 +138,6 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     print('Recognised as......$_gesture');
 
     /// add the count to notify the list that there's a new style
-    widgetData.addNewWidget(WidgetType.paragraph);
+    widgetData.addNewGesture(_gesture);
   }
 }
