@@ -1,16 +1,19 @@
 import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_data.dart';
 import 'package:flutter/material.dart';
+import 'image_from_gallery.dart';
 
 enum WidgetType {
-  paragraph, // Component (8)
-  heading,
-  blockquote,
+  // Component (8)
+  paragraph, //ok
+  heading, //ok
+  blockquote, //ok
   bold,
   italicize,
   image,
   table,
   bulletlist,
-  duplicate, // Command (4)
+  // Command (4)
+  duplicate,
   erase,
   split,
   newline
@@ -43,6 +46,10 @@ class WidgetModel {
         {
           return Blockquote.widget(quote: data.isEmpty ? 'quote' : data);
         }
+      case WidgetType.image:
+        {
+          return ImageFromGalleryEx(ImageSourceType.gallery);
+        }
       default:
         {
           return Paragraph.widget(content: data.isEmpty ? 'content' : data);
@@ -62,7 +69,6 @@ class Heading extends StatefulWidget {
 }
 
 class _HeadingState extends State<Heading> {
-  // final GlobalKey _key = GlobalKey();
   static List<TextStyle> values = [h1, h2, h3, h4, h5, h6];
 
   static TextStyle get h1 => const TextStyle(
@@ -103,13 +109,15 @@ class _HeadingState extends State<Heading> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey _key = GlobalKey();
     return Container(
         child: GestureDetector(
-      onTap: () {
+      onTapUp: (details) {
         if (widget.widgetData.isSelected(widget.index)) {
           showMenu(
             context: context,
-            position: const RelativeRect.fromLTRB(0, 0, 0, 0),
+            position: RelativeRect.fromLTRB(
+                details.globalPosition.dx, details.globalPosition.dx, 0, 0),
             items: <PopupMenuEntry>[
               const PopupMenuItem(
                 value: 0,
@@ -136,7 +144,10 @@ class _HeadingState extends State<Heading> {
                 child: Text("h6"),
               ),
             ],
-          ).then((value) => widget.widgetData.updateParam(value, widget.index));
+          ).then((value) => {
+                if (value != null)
+                  widget.widgetData.updateParam(value, widget.index)
+              });
         } else {
           widget.widgetData.updateSelectedNum(widget.index);
         }
@@ -271,14 +282,14 @@ class Table {
   //     );
 }
 
-class Image {
-  // Image_picker package
-  const Image._();
+// class Image {
+//   // Image_picker package
+//   const Image._();
 
-  // static Image widget() => Image(
-  //       image: Image.file(file: null, scale: 1.0, repeat: false),
-  //     );
-}
+//   static Image widget() => Image(
+//         image: Image.file(file: null, scale: 1.0, repeat: false),
+//       );
+// }
 
 class Erase {}
 

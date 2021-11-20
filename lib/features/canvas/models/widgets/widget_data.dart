@@ -5,7 +5,8 @@ import 'widget_model.dart';
 class WidgetData extends ChangeNotifier {
   final Map<String, WidgetType?> gestureToType = {
     "SQUARE": WidgetType.heading,
-    "BLOCKQUOTE": WidgetType.blockquote
+    "BLOCKQUOTE": WidgetType.blockquote,
+    "IMAGE": WidgetType.image
   };
   int _selectedNum = -1; // the selected widget index
   final List _allGestureList = [];
