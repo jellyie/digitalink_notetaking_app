@@ -31,27 +31,29 @@ class WidgetData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setImagePath(String path, int index) {
-    _widgetDataList[index]["path"] = path;
-    updateParam(1, index);
-  }
-
-  String getImagePath(int index) {
-    return _widgetDataList[index]["path"];
-  }
-
   //add a new widget
   void addNewWidget(WidgetType? newType) {
     _widgetDataList.add({"type": newType, "content": "", "param": 0});
     updateSelectedNum(_widgetDataList.length - 1);
   }
 
-  //add a new gesture
-  void addNewGesture(String gestureName) {
-    _allGestureList.add(gestureName);
-    if (gestureToType.containsKey(gestureName)) {
-      addNewWidget(gestureToType[gestureName]);
+  void insertNewWidget() {
+    if (_widgetDataList.isNotEmpty) {
+      final data = getWidgetData(_selectedNum);
+      _widgetDataList.insert(_selectedNum, data);
+      updateSelectedNum(_selectedNum + 1);
     }
+  }
+
+  //for Images: set image
+  void setImagePath(String path, int index) {
+    _widgetDataList[index]["path"] = path;
+    updateParam(1, index);
+  }
+
+  // for Images: get image
+  String getImagePath(int index) {
+    return _widgetDataList[index]["path"];
   }
 
   //get the length of the widget list
@@ -70,6 +72,23 @@ class WidgetData extends ChangeNotifier {
 
   int getParam(int index) {
     return _widgetDataList[index]["param"];
+  }
+
+  //add a new gesture
+  void addNewGesture(String gestureName) {
+    _allGestureList.add(gestureName);
+
+    // for components
+    if (gestureToType.containsKey(gestureName)) {
+      addNewWidget(gestureToType[gestureName]);
+    }
+
+    // for commands
+    if (gestureName == "DUPLICATE") {
+      if (_widgetDataList.isNotEmpty) {
+        insertNewWidget();
+      }
+    }
   }
 
   //reorder the widgets

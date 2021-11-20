@@ -5,17 +5,20 @@ import 'widget_library/heading.dart';
 import 'widget_library/image_from_gallery.dart';
 
 enum WidgetType {
-  // Component (8)
+  // Component (6)
   paragraph, //ok
   heading, //ok
   blockquote, //ok
-  bold,
-  italicize,
   image, //ok
   table,
   bulletlist,
+
+  // Edit inside a widget (2)
+  bold,
+  italicize,
+
   // Command (4)
-  duplicate,
+  duplicate, //ok
   erase,
   split,
   newline
@@ -191,7 +194,7 @@ class Table {
 
 class Erase {}
 
-class Duplicate {}
+// class Duplicate {}
 
 class Split {}
 
