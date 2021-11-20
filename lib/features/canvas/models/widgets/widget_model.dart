@@ -16,12 +16,12 @@ enum WidgetType {
   // Edit inside a widget (2)
   bold,
   italicize,
+  split,
+  newline,
 
   // Command (4)
   duplicate, //ok
-  erase,
-  split,
-  newline
+  erase, //ok
 }
 
 class WidgetModel {

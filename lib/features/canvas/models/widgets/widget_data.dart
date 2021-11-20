@@ -37,11 +37,24 @@ class WidgetData extends ChangeNotifier {
     updateSelectedNum(_widgetDataList.length - 1);
   }
 
+  // for command duplicate
   void insertNewWidget() {
     if (_widgetDataList.isNotEmpty) {
       final data = getWidgetData(_selectedNum);
       _widgetDataList.insert(_selectedNum, data);
       updateSelectedNum(_selectedNum + 1);
+    }
+  }
+
+  // for command erase
+  void deleteWidget() {
+    if (_widgetDataList.isNotEmpty) {
+      _widgetDataList.removeAt(_selectedNum);
+      if (_selectedNum == _widgetDataList.length) {
+        updateSelectedNum(_selectedNum - 1);
+      } else {
+        updateSelectedNum(_selectedNum);
+      }
     }
   }
 
@@ -87,6 +100,11 @@ class WidgetData extends ChangeNotifier {
     if (gestureName == "DUPLICATE") {
       if (_widgetDataList.isNotEmpty) {
         insertNewWidget();
+      }
+    }
+    if (gestureName == "ERASE") {
+      if (_widgetDataList.isNotEmpty) {
+        deleteWidget();
       }
     }
   }
