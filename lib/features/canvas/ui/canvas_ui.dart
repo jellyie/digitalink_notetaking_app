@@ -1,5 +1,5 @@
-import 'package:digitalink_notetaking_app/features/canvas/q_dollar_recognizer/gesture.dart';
-import 'package:digitalink_notetaking_app/features/canvas/q_dollar_recognizer/templates.dart';
+import '../q_dollar_recognizer/gesture.dart';
+import '../q_dollar_recognizer/templates.dart';
 
 import '../models/canvas_notifier.dart';
 import '../models/state/canvas_state.dart';
@@ -29,6 +29,7 @@ class CanvasUI extends ConsumerWidget {
       body: Stack(
         children: [
           GestureDetector(
+            behavior: HitTestBehavior.opaque,
             child: RepaintBoundary(
               key: notifier.globalkey,
               child: Container(
@@ -40,6 +41,9 @@ class CanvasUI extends ConsumerWidget {
                 ),
               ),
             ),
+            onLongPress: () {
+              print('Long press detected');
+            },
             onPanStart: notifier.onPanStart,
             onPanUpdate: notifier.onPanUpdate,
             onPanEnd: notifier.onPanEnd,
