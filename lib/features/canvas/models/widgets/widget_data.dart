@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widget_model.dart';
+import 'dart:io';
 
 // For storing widget data and methods
 class WidgetData extends ChangeNotifier {
@@ -28,6 +29,15 @@ class WidgetData extends ChangeNotifier {
   void updateParam(int newParam, int index) {
     _widgetDataList[index]["param"] = newParam;
     notifyListeners();
+  }
+
+  void setImagePath(String path, int index) {
+    _widgetDataList[index]["path"] = path;
+    updateParam(1, index);
+  }
+
+  String getImagePath(int index) {
+    return _widgetDataList[index]["path"];
   }
 
   //add a new widget
