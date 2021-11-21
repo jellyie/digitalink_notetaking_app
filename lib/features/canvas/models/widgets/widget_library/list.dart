@@ -32,26 +32,44 @@ class _BulletListState extends State<BulletList> {
                       items: [
                         const PopupMenuItem(
                           value: 0,
-                          child: Text("add bullet point below"),
+                          child: Text("Ordered/Unordered"),
                         ),
                         const PopupMenuItem(
                           value: 1,
+                          child: Text("add bullet point below"),
+                        ),
+                        const PopupMenuItem(
+                          value: 2,
                           child: Text("delete bullet point"),
                         ),
                       ]).then((value) => {
                         if (value == 0)
                           {
-                            // add bullet point below
-                            widget.widgetData.addBulletPoint(widget.index, i)
+                            // change the order
+                            widget.widgetData.getParam(widget.index) == 0
+                                ? widget.widgetData.updateParam(1, widget.index)
+                                : widget.widgetData.updateParam(0, widget.index)
                           }
                         else
                           {
-                            //delete bullet point
-                            widget.widgetData.deleteBulletPoint(widget.index, i)
+                            if (value == 1)
+                              {
+                                // add bullet point below
+                                widget.widgetData
+                                    .addBulletPoint(widget.index, i)
+                              }
+                            else
+                              {
+                                //delete bullet point
+                                widget.widgetData
+                                    .deleteBulletPoint(widget.index, i)
+                              }
                           }
                       });
                 },
-                child: Text(bullet + listData[i]))
+                child: widget.widgetData.getParam(widget.index) == 0
+                    ? Text(bullet + listData[i])
+                    : Text((i + 1).toString() + ".\t" + listData[i]))
         ],
       ),
     );

@@ -168,16 +168,35 @@ class WidgetData extends ChangeNotifier {
   // ------------------------------------------------------------------------//
   // add a new widget
   void addNewWidget(WidgetType? newType) {
-    if (newType == WidgetType.bulletlist) {
-      // initialize the bulletlist
-      _widgetDataList.add({
-        "type": newType,
-        "content": "",
-        "param": 0,
-        "list": ["bullet point"]
-      });
-    } else {
-      _widgetDataList.add({"type": newType, "content": "", "param": 0});
+    switch (newType) {
+      case (WidgetType.bulletlist):
+        {
+          // Initialize the bullet list
+          _widgetDataList.add({
+            "type": newType,
+            "content": "",
+            "param": 0,
+            "list": ["bullet point"]
+          });
+          break;
+        }
+      case (WidgetType.table):
+        {
+          // Initialize the table
+          _widgetDataList.add({
+            "type": newType,
+            "content": "",
+            "param": 0,
+            "table": [
+              ["cell"],
+            ]
+          });
+          break;
+        }
+      default:
+        {
+          _widgetDataList.add({"type": newType, "content": "", "param": 0});
+        }
     }
     updateSelectedNum(_widgetDataList.length - 1);
   }
