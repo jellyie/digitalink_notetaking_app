@@ -60,7 +60,7 @@ class _HeadingState extends State<Heading> {
           showMenu(
             context: context,
             position: RelativeRect.fromLTRB(
-                details.globalPosition.dx, details.globalPosition.dx, 0, 0),
+                details.globalPosition.dx, details.globalPosition.dy, 0, 0),
             items: <PopupMenuEntry>[
               const PopupMenuItem(
                 value: 0,

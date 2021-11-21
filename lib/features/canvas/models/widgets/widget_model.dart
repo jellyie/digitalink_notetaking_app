@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'widget_library/heading.dart';
 import 'widget_library/image_from_gallery.dart';
+import 'widget_library/table.dart';
 
 enum WidgetType {
   // Component (6)
@@ -10,7 +11,7 @@ enum WidgetType {
   heading, //ok
   blockquote, //ok
   image, //ok
-  table,
+  table, //ok
   bulletlist,
 
   // Edit inside a widget (2)
@@ -19,7 +20,7 @@ enum WidgetType {
   split,
   newline,
 
-  // Command (4)
+  // Command outside the widget (4)
   duplicate, //ok
   erase, //ok
 }
@@ -54,6 +55,10 @@ class WidgetModel {
       case WidgetType.image:
         {
           return ImageFromGalleryEx(widgetData: widgetData, index: index);
+        }
+      case WidgetType.table:
+        {
+          return TableWidget(widgetData: widgetData, index: index);
         }
       default:
         {
@@ -170,18 +175,18 @@ class BulletList {
   //static widget() =>
 }
 
-class Table {
-  const Table._();
+// class Table {
+//   const Table._();
 
-  // static Table widget() => Table(
-  //       border: TableBorder.all(),
-  //       children: <TableRow>[
-  //         const TableRow(
-  //           children: <Widget>[],
-  //         ),
-  //       ],
-  //     );
-}
+// static Table widget() => Table(
+//       border: TableBorder.all(),
+//       children: <TableRow>[
+//         const TableRow(
+//           children: <Widget>[],
+//         ),
+//       ],
+//     );
+// }
 
 // class Image {
 //   // Image_picker package
@@ -192,7 +197,7 @@ class Table {
 //       );
 // }
 
-class Erase {}
+// class Erase {}
 
 // class Duplicate {}
 

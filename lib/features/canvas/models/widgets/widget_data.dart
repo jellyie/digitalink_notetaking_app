@@ -7,7 +7,8 @@ class WidgetData extends ChangeNotifier {
   final Map<String, WidgetType?> gestureToType = {
     "SQUARE": WidgetType.heading,
     "BLOCKQUOTE": WidgetType.blockquote,
-    "IMAGE": WidgetType.image
+    "IMAGE": WidgetType.image,
+    "TABLE": WidgetType.table,
   };
   int _selectedNum = -1; // the selected widget index
   final List _allGestureList = [];
