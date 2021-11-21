@@ -1,22 +1,35 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'widget_model.dart';
-import 'dart:io';
 
 // For storing widget data and methods
 class WidgetData extends ChangeNotifier {
+  // ------------------------------------------------------------------------//
+  // -------------- initializations -----------------------------------------//
+  // ------------------------------------------------------------------------//
   final Map<String, WidgetType?> gestureToType = {
     "SQUARE": WidgetType.heading,
     "BLOCKQUOTE": WidgetType.blockquote,
     "IMAGE": WidgetType.image,
     "TABLE": WidgetType.table,
+    "LIST": WidgetType.bulletlist,
   };
+
   int _selectedNum = -1; // the selected widget index
   final List _allGestureList = [];
 
-  /// {WidgetType? type, String content, param}
+  /// { WidgetType? type, String content, param, (optional) addtional info }
+  /// Heading: "param": heading style
+  /// Image: "path": String path (when param ==1)
+  /// Table: "table": List[][] cell (when param == 1)
+  /// List:  "list": List[] listInfo (when param == 1)
   final List _widgetDataList = [];
 
-  //update the currently selected widget number
+  // ------------------------------------------------------------------------//
+  // -------------- Update methods ------------------------------------------//
+  // ------------------------------------------------------------------------//
+  // update the currently selected widget index
   void updateSelectedNum(int newNum) {
     _selectedNum = newNum;
     //print(_selectedNum);
@@ -24,7 +37,12 @@ class WidgetData extends ChangeNotifier {
   }
 
   // update content
-  void updateContent(String content, int index) {}
+  void updateContent(String content, int index) {
+    if (_selectedNum != -1) {
+      _widgetDataList[index]["content"] = content;
+      notifyListeners();
+    }
+  }
 
   // update param
   void updateParam(int newParam, int index) {
@@ -32,14 +50,18 @@ class WidgetData extends ChangeNotifier {
     notifyListeners();
   }
 
-  //add a new widget
-  void addNewWidget(WidgetType? newType) {
-    _widgetDataList.add({"type": newType, "content": "", "param": 0});
-    updateSelectedNum(_widgetDataList.length - 1);
+  // reorder the widgets
+  void reorderWidgets(int oldIndex, int newIndex) {
+    final tempType = _widgetDataList.removeAt(oldIndex);
+    _widgetDataList.insert(newIndex, tempType);
+    updateSelectedNum(newIndex);
   }
 
-  // for command duplicate
-  void insertNewWidget() {
+  // ------------------------------------------------------------------------//
+  // -------------- Commands (duplicate and erase) --------------------------//
+  // ------------------------------------------------------------------------//
+  // DUPLICATE
+  void duplicateWidget() {
     if (_widgetDataList.isNotEmpty) {
       final data = getWidgetData(_selectedNum);
       _widgetDataList.insert(_selectedNum, data);
@@ -47,7 +69,7 @@ class WidgetData extends ChangeNotifier {
     }
   }
 
-  // for command erase
+  // ERASE
   void deleteWidget() {
     if (_widgetDataList.isNotEmpty) {
       _widgetDataList.removeAt(_selectedNum);
@@ -59,36 +81,108 @@ class WidgetData extends ChangeNotifier {
     }
   }
 
-  //for Images: set image
+  // ------------------------------------------------------------------------//
+  // -------------- Specific widget gets and sets ---------------------------//
+  // -------------- Image, table, bullet list -------------------------------//
+  // ------------------------------------------------------------------------//
+  //for Image: set image
   void setImagePath(String path, int index) {
     _widgetDataList[index]["path"] = path;
     updateParam(1, index);
   }
 
-  // for Images: get image
+  // for Image: get image
   String getImagePath(int index) {
     return _widgetDataList[index]["path"];
   }
 
-  //get the length of the widget list
+  // for Table: set table
+  void setTable(int row, int column) {}
+
+  // for List: get list
+  List getList(int index) {
+    return _widgetDataList[index]["list"];
+  }
+
+  // for List: add bullet point
+  void addBulletPoint(int index, int subIndex) {
+    List bulletList = _widgetDataList[index]['list'];
+    bulletList.insert(subIndex + 1, "bullet point");
+    _widgetDataList[index]['list'] = bulletList;
+    notifyListeners();
+  }
+
+  // for List: delete bullet point
+  void deleteBulletPoint(int index, int subIndex) {
+    List bulletList = _widgetDataList[index]['list'];
+    if (bulletList.length == 1) {
+      // delete the widget
+      deleteWidget();
+    } else {
+      // delete the bullet point
+      bulletList.removeAt(subIndex);
+      _widgetDataList[index]['list'] = bulletList;
+    }
+    notifyListeners();
+  }
+
+  // ------------------------------------------------------------------------//
+  // -------------- General widget gets -------------------------------------//
+  // ------------------------------------------------------------------------//
+  // get the length of the widget list
   int getListLength() {
     return _widgetDataList.length;
   }
 
+  // get the data {} of the specific widget
   Map getWidgetData(int index) {
     return _widgetDataList[index];
   }
 
-  //get the type of the widget from the list
+  // get the type of the widget from the list
   WidgetType getWidgetType(int index) {
     return _widgetDataList[index]["type"];
   }
 
+  // get the content of the widget
+  String getContent(int index) {
+    return _widgetDataList[index]["content"];
+  }
+
+  // get the param
   int getParam(int index) {
     return _widgetDataList[index]["param"];
   }
 
-  //add a new gesture
+  // is selected or not
+  bool isSelected(int index) {
+    if (index == _selectedNum) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // ------------------------------------------------------------------------//
+  // -------------- Add methods ---------------------------------------------//
+  // ------------------------------------------------------------------------//
+  // add a new widget
+  void addNewWidget(WidgetType? newType) {
+    if (newType == WidgetType.bulletlist) {
+      // initialize the bulletlist
+      _widgetDataList.add({
+        "type": newType,
+        "content": "",
+        "param": 0,
+        "list": ["bullet point"]
+      });
+    } else {
+      _widgetDataList.add({"type": newType, "content": "", "param": 0});
+    }
+    updateSelectedNum(_widgetDataList.length - 1);
+  }
+
+  // add a new gesture
   void addNewGesture(String gestureName) {
     _allGestureList.add(gestureName);
 
@@ -100,7 +194,7 @@ class WidgetData extends ChangeNotifier {
     // for commands
     if (gestureName == "DUPLICATE") {
       if (_widgetDataList.isNotEmpty) {
-        insertNewWidget();
+        duplicateWidget();
       }
     }
     if (gestureName == "ERASE") {
@@ -108,33 +202,5 @@ class WidgetData extends ChangeNotifier {
         deleteWidget();
       }
     }
-  }
-
-  //reorder the widgets
-  void reorderWidgets(int oldIndex, int newIndex) {
-    final tempType = _widgetDataList.removeAt(oldIndex);
-    _widgetDataList.insert(newIndex, tempType);
-    updateSelectedNum(newIndex);
-  }
-
-  //is selected or not
-  bool isSelected(int index) {
-    if (index == _selectedNum) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  //modify content
-  void editContent(String content) {
-    if (_selectedNum != -1) {
-      _widgetDataList[_selectedNum]["content"] = content;
-      notifyListeners();
-    }
-  }
-
-  String getContent(int index) {
-    return _widgetDataList[index]["content"];
   }
 }

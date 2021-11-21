@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'widget_library/heading.dart';
 import 'widget_library/image_from_gallery.dart';
 import 'widget_library/table.dart';
+import 'widget_library/list.dart';
 
 enum WidgetType {
   // Component (6)
@@ -12,15 +13,15 @@ enum WidgetType {
   blockquote, //ok
   image, //ok
   table, //ok
-  bulletlist,
+  bulletlist, //ok
 
-  // Edit inside a widget (2)
+  // Edit inside a widget (4)
   bold,
   italicize,
   split,
   newline,
 
-  // Command outside the widget (4)
+  // Command outside the widget (2)
   duplicate, //ok
   erase, //ok
 }
@@ -60,6 +61,10 @@ class WidgetModel {
         {
           return TableWidget(widgetData: widgetData, index: index);
         }
+      case WidgetType.bulletlist:
+        {
+          return BulletList(widgetData: widgetData, index: index);
+        }
       default:
         {
           return Paragraph.widget(content: data.isEmpty ? 'content' : data);
@@ -68,6 +73,61 @@ class WidgetModel {
   }
 }
 
+class Paragraph {
+  const Paragraph._();
+
+  static Text widget({required String content}) => Text(content, style: style);
+
+  static get style => const TextStyle(
+      fontSize: 14.0, fontWeight: FontWeight.normal, letterSpacing: 0.25);
+}
+
+class Blockquote {
+  const Blockquote._();
+
+  static Padding widget({required String quote}) => Padding(
+        padding: const EdgeInsets.fromLTRB(40, 16, 40, 16),
+        child: Container(
+          child: Text(quote, style: Paragraph.style),
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(
+                width: 1.0,
+                color: Colors.blue,
+              ),
+            ),
+          ),
+        ),
+      );
+}
+
+class Bold {
+  const Bold._();
+
+  // Change selected text's fontweight to bold fontweight
+}
+
+class Italicize {
+  // Change selected text's style to FontStyle.italic
+}
+
+// class BulletList {
+//   //const BulletList._();
+//   // Create ordered list and unordered list
+//   // List items
+//   var bulletList = <Widget>[];
+//   final List<String> listItems = [];
+
+//   BulletList() {
+//     for (var i in listItems) {
+//       // bulletList.add(i);
+//     }
+//   }
+
+//   static Column widget() => Column(children: const []);
+
+//   //static widget() =>
+// }
 // class Heading {
 //   const Heading._();
 //   static const String _id = 'HEADING';
@@ -118,62 +178,6 @@ class WidgetModel {
 
 //   //static List<Heading> values = [h1, h2, h3, h4, h5, h6];
 // }
-
-class Paragraph {
-  const Paragraph._();
-
-  static Text widget({required String content}) => Text(content, style: style);
-
-  static get style => const TextStyle(
-      fontSize: 14.0, fontWeight: FontWeight.normal, letterSpacing: 0.25);
-}
-
-class Blockquote {
-  const Blockquote._();
-
-  static Padding widget({required String quote}) => Padding(
-        padding: const EdgeInsets.fromLTRB(40, 16, 40, 16),
-        child: Container(
-          child: Text(quote, style: Paragraph.style),
-          decoration: const BoxDecoration(
-            border: Border(
-              left: BorderSide(
-                width: 1.0,
-                color: Colors.blue,
-              ),
-            ),
-          ),
-        ),
-      );
-}
-
-class Bold {
-  const Bold._();
-
-  // Change selected text's fontweight to bold fontweight
-}
-
-class Italicize {
-  // Change selected text's style to FontStyle.italic
-}
-
-class BulletList {
-  //const BulletList._();
-  // Create ordered list and unordered list
-  // List items
-  var bulletList = <Widget>[];
-  final List<String> listItems = [];
-
-  BulletList() {
-    for (var i in listItems) {
-      // bulletList.add(i);
-    }
-  }
-
-  static Column widget() => Column(children: const []);
-
-  //static widget() =>
-}
 
 // class Table {
 //   const Table._();

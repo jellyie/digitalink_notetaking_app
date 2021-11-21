@@ -12,11 +12,25 @@ class TableWidget extends StatefulWidget {
 }
 
 class _TableWidgetState extends State<TableWidget> {
+  void _updateTable(value) {
+    switch (value) {
+      case 0: // add column
+        break;
+      case 1: // delete column
+        break;
+      case 2: // add row
+        break;
+      case 3: // delete row
+        break;
+      default:
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Table(
-        border: TableBorder.all(color: Colors.grey),
         children: [
           TableRow(children: [
             GestureDetector(
@@ -31,21 +45,21 @@ class _TableWidgetState extends State<TableWidget> {
                         child: Text("Add Column"),
                       ),
                       const PopupMenuItem(
-                        value: 0,
+                        value: 1,
                         child: Text("Delete Column"),
                       ),
                       const PopupMenuItem(
-                        value: 0,
+                        value: 2,
                         child: Text("Add Row"),
                       ),
                       const PopupMenuItem(
-                        value: 0,
+                        value: 3,
                         child: Text("Delete Row"),
                       ),
                     ],
-                  );
+                  ).then((value) => _updateTable(value));
                 },
-                child: Text("cell"))
+                child: Text("value")),
           ])
         ],
       ),
