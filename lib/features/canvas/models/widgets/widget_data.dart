@@ -96,8 +96,16 @@ class WidgetData extends ChangeNotifier {
     return _widgetDataList[index]["path"];
   }
 
+  // for Table: get table
+  List<List<String>> getTable(int index) {
+    return _widgetDataList[index]["table"];
+  }
+
   // for Table: set table
-  void setTable(int row, int column) {}
+  void setTable(int index, List<List<String>> tableList) {
+    _widgetDataList[index]["table"] = tableList;
+    notifyListeners();
+  }
 
   // for List: get list
   List getList(int index) {
