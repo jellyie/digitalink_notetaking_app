@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import '../../widget_library/table_widget.dart';
+=======
+>>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';

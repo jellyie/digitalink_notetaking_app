@@ -2,7 +2,11 @@ import '../../models/widgets/models/widget/widget.dart' as our;
 import '../../../../providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+<<<<<<< HEAD
 import 'package:reorderables/reorderables.dart';
+=======
+import 'package:reorderable_grid_view/reorderable_grid_view.dart';
+>>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
 
 class WidgetListBuilder extends ConsumerWidget {
   final int index;

@@ -33,10 +33,6 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     _languageModelManager.downloadModel(_language);
   }
 
-<<<<<<< HEAD
-=======
-  // final Stopwatch _timer = Stopwatch();
->>>>>>> 5b041db (Add timer)
   final oneSec = const Duration(seconds: 1);
   late Timer _timer;
   bool _timerInitialized = false;
@@ -118,6 +114,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
         _timer.cancel();
         _timerInitialized = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
         debugPrint("new pen input, timer stops");
       }
 =======
@@ -125,6 +122,10 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       }
       // _timer.stop();
 >>>>>>> 5b041db (Add timer)
+=======
+        debugPrint("new pen input, timer stops");
+      }
+>>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
       state = state.copyWith(
         activeStroke: Stroke(strokePoints: [_getPoint(d.localPosition)]),
       );
@@ -143,6 +144,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   void onPanEnd(DragEndDetails d) {
     if (state is GestureMode) {
       state = _completeStroke(state);
+<<<<<<< HEAD
 <<<<<<< HEAD
       _timerInitialized = true;
       _timer = Timer(const Duration(milliseconds: 1500), () {
@@ -167,8 +169,14 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
         print("no other input, recognize gesture");
 >>>>>>> 5b041db (Add timer)
 =======
+=======
+      _timerInitialized = true;
+      _timer = Timer(const Duration(seconds: 1), () {
+>>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
         if (_timerInitialized == true) {
-          print("no other input, recognize gesture");
+          recogniseShape(_trainingSet);
+          debugPrint("no other input, recognize gesture");
+          clear();
         }
 >>>>>>> 6b1db0e (Timer)
       });
@@ -211,7 +219,11 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     }
     _notifier.updateWidgetData(_recogniseText);
     //update the candidateList
+<<<<<<< HEAD
     //updateCandidateData(_candidatesList);
+=======
+    _notifier.updateCandidateData(_candidatesList);
+>>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
     debugPrint('Recognised as......$_recogniseText');
   }
 
