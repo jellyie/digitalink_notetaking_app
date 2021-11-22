@@ -46,7 +46,7 @@ class CanvasUI extends ConsumerWidget {
                           child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
-                              ignoring: true,
+                              ignoring: !notifier.ignore,
                               child: RepaintBoundary(
                                 key: notifier.globalkey,
                                 child: Container(
@@ -79,7 +79,7 @@ class CanvasUI extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
-                            ignoring: false,
+                            ignoring: notifier.ignore,
                             child: WidgetListBuilder(index: index),
                           ),
                         ),
