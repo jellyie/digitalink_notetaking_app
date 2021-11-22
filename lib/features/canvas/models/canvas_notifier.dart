@@ -161,6 +161,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   List<String> _candidatesList = [];
   Future<void> recogniseText() async {
     List<Offset> points = [];
+    List<String> _candidatesList = [];
     for (Stroke s in state.strokes) {
       List<Offset> _p = s.strokePoints.map((p) => p.asOffset).toList();
       points.addAll(_p);
@@ -183,7 +184,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     }
     _notifier.updateWidgetData(_recogniseText);
     //update the candidateList
-    updateCandidateData(_candidatesList);
+    //updateCandidateData(_candidatesList);
     debugPrint('Recognised as......$_recogniseText');
   }
 
