@@ -131,6 +131,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// Return the value of the handwritten text as recognised string
   Future<void> recogniseText() async {
     List<Offset> points = [];
+    List<String> _candidatesList = [];
     for (Stroke s in state.strokes) {
       List<Offset> _p = s.strokePoints.map((p) => p.asOffset).toList();
       points.addAll(_p);
@@ -140,10 +141,18 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       final candidates =
           await _digitalInkRecogniser.readText(points, _language);
       _recogniseText = (candidates.first).text;
+
+      _candidatesList = [];
+      // store the first 5 candidates
+      for (int i = 0; i < 5; i++) {
+        _candidatesList.add(candidates[i].text);
+      }
     } catch (e) {
       print(e.toString());
     }
     _notifier.updateWidgetData(_recogniseText);
+    //update the candidateList
+    _notifier.updateCandidateData(_candidatesList);
     print('Recognised as......$_recogniseText');
   }
 
