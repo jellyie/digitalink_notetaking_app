@@ -390,7 +390,7 @@ class Templates {
       Point(125.5, 65.5, 0),
       Point(92.5, 70.0, 0),
       Point(63.0, 78.0, 0),
-    ], name: 'SQUARE'),
+    ], name: 'PARAGRAPH'),
     Gesture([
       Point(132.5, 29.5, 0),
       Point(132.5, 85.5, 0),

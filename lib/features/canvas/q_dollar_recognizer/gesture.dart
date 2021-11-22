@@ -101,7 +101,8 @@ class Gesture {
 
   /// Resamples a list of points into n equally-distanced points
   List<Point> resample(List<Point> points, int n) {
-    List<Point> resampledPoints = List.filled(n, points[0]);
+    List<Point> resampledPoints =
+        List.filled(n, points.isNotEmpty ? points[0] : Point(0, 0));
 
     double interval = _pathLength(points) / (n - 1);
     double distance = 0;

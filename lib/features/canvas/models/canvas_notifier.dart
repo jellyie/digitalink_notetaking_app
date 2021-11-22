@@ -1,7 +1,10 @@
+import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_notifier.dart';
+import 'package:flutter/widgets.dart';
+
 import '../q_dollar_recognizer/gesture.dart';
 import '../q_dollar_recognizer/q_dollar_recognizer.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'stroke/stroke.dart';
 import 'canvas/canvas.dart';
@@ -18,12 +21,19 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     state = CanvasState.gesture(
       canvas: canvas ?? const Canvas(strokes: []),
     );
-
     _languageModelManager.downloadModel(_language);
   }
 
+  late WidgetNotifier _notifier;
+
   final GlobalKey _globalKey = GlobalKey();
   GlobalKey get globalkey => _globalKey;
+
+  /// Used to switch between the Canvas layer and the WidgetListBuilder layer
+  /// due to Stack terminating Hit Testing after the first widget (visually)
+  /// on top of another widget in the same stack is hit
+  bool ignore = true;
+  bool ignoreToFalse() => ignore = !ignore;
 
   // Initiate digital ink recogniser
   final DigitalInkRecogniser _digitalInkRecogniser =
@@ -32,7 +42,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       GoogleMlKit.vision.languageModelManager();
 
   String _recogniseText = ' ';
-  final String _language = 'zxx-Zsye-x-emoji';
+  final String _language = 'en-US';
 
   // Initiate gesture recogniser
   String _gesture = ' ';
@@ -43,6 +53,14 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   Point _getPoint(Offset o) {
     return Point(o.dx, o.dy);
   }
+
+  /// Access the WidgetNotifier from the same context
+  void readWidgetNotifier(WidgetNotifier notifier) {
+    _notifier = notifier;
+  }
+
+  /// Return the WidgetNotifier obtained from the same context
+  WidgetNotifier get getWidgetNotifier => _notifier;
 
   /// Returns a copy of the state with the new Point appended to a copy of the active Stroke
   CanvasState _addPoint(Offset o, CanvasState state) {
@@ -101,11 +119,12 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
 
   /// Clear the state or reset the canvas
   void clear() {
+    ignoreToFalse();
     state = const CanvasState.gesture(canvas: Canvas(strokes: []));
   }
 
   /// Return the value of the handwritten text as recognised string
-  Future<void> recgoniseText() async {
+  Future<void> recogniseText() async {
     List<Offset> points = [];
     for (Stroke s in state.strokes) {
       List<Offset> _p = s.strokePoints.map((p) => p.asOffset).toList();
@@ -122,6 +141,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     } catch (e) {
       print(e.toString());
     }
+    _notifier.updateWidgetData(_recogniseText);
     print('Recognised as......$_recogniseText');
   }
 
@@ -133,5 +153,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     _gesture = _recognizer.recognize(Gesture(qpoints), g);
     qpoints = []; // reset after recognition
     print('Recognised as......$_gesture');
+
+    _notifier.addWidget(_gesture);
   }
 }

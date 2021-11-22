@@ -24,10 +24,14 @@ class _$CanvasStateTearOff {
     );
   }
 
-  HandwritingMode handwriting({required Canvas canvas, Stroke? activeStroke}) {
+  HandwritingMode handwriting(
+      {required Canvas canvas,
+      Stroke? activeStroke,
+      required WidgetListBuilder widgetListBuilder}) {
     return HandwritingMode(
       canvas: canvas,
       activeStroke: activeStroke,
+      widgetListBuilder: widgetListBuilder,
     );
   }
 }
@@ -43,19 +47,25 @@ mixin _$CanvasState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Canvas canvas, Stroke? activeStroke) gesture,
-    required TResult Function(Canvas canvas, Stroke? activeStroke) handwriting,
+    required TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)
+        handwriting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke)? handwriting,
+    TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)?
+        handwriting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke)? handwriting,
+    TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)?
+        handwriting,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -228,7 +238,9 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Canvas canvas, Stroke? activeStroke) gesture,
-    required TResult Function(Canvas canvas, Stroke? activeStroke) handwriting,
+    required TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)
+        handwriting,
   }) {
     return gesture(canvas, activeStroke);
   }
@@ -237,7 +249,9 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke)? handwriting,
+    TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)?
+        handwriting,
   }) {
     return gesture?.call(canvas, activeStroke);
   }
@@ -246,7 +260,9 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke)? handwriting,
+    TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)?
+        handwriting,
     required TResult orElse(),
   }) {
     if (gesture != null) {
@@ -309,7 +325,10 @@ abstract class $HandwritingModeCopyWith<$Res>
           HandwritingMode value, $Res Function(HandwritingMode) then) =
       _$HandwritingModeCopyWithImpl<$Res>;
   @override
-  $Res call({Canvas canvas, Stroke? activeStroke});
+  $Res call(
+      {Canvas canvas,
+      Stroke? activeStroke,
+      WidgetListBuilder widgetListBuilder});
 
   @override
   $CanvasCopyWith<$Res> get canvas;
@@ -332,6 +351,7 @@ class _$HandwritingModeCopyWithImpl<$Res>
   $Res call({
     Object? canvas = freezed,
     Object? activeStroke = freezed,
+    Object? widgetListBuilder = freezed,
   }) {
     return _then(HandwritingMode(
       canvas: canvas == freezed
@@ -342,6 +362,10 @@ class _$HandwritingModeCopyWithImpl<$Res>
           ? _value.activeStroke
           : activeStroke // ignore: cast_nullable_to_non_nullable
               as Stroke?,
+      widgetListBuilder: widgetListBuilder == freezed
+          ? _value.widgetListBuilder
+          : widgetListBuilder // ignore: cast_nullable_to_non_nullable
+              as WidgetListBuilder,
     ));
   }
 }
@@ -349,17 +373,22 @@ class _$HandwritingModeCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HandwritingMode extends HandwritingMode with DiagnosticableTreeMixin {
-  const _$HandwritingMode({required this.canvas, this.activeStroke})
+  const _$HandwritingMode(
+      {required this.canvas,
+      this.activeStroke,
+      required this.widgetListBuilder})
       : super._();
 
   @override
   final Canvas canvas;
   @override
   final Stroke? activeStroke;
+  @override
+  final WidgetListBuilder widgetListBuilder;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CanvasState.handwriting(canvas: $canvas, activeStroke: $activeStroke)';
+    return 'CanvasState.handwriting(canvas: $canvas, activeStroke: $activeStroke, widgetListBuilder: $widgetListBuilder)';
   }
 
   @override
@@ -368,7 +397,8 @@ class _$HandwritingMode extends HandwritingMode with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'CanvasState.handwriting'))
       ..add(DiagnosticsProperty('canvas', canvas))
-      ..add(DiagnosticsProperty('activeStroke', activeStroke));
+      ..add(DiagnosticsProperty('activeStroke', activeStroke))
+      ..add(DiagnosticsProperty('widgetListBuilder', widgetListBuilder));
   }
 
   @override
@@ -378,11 +408,14 @@ class _$HandwritingMode extends HandwritingMode with DiagnosticableTreeMixin {
             other is HandwritingMode &&
             (identical(other.canvas, canvas) || other.canvas == canvas) &&
             (identical(other.activeStroke, activeStroke) ||
-                other.activeStroke == activeStroke));
+                other.activeStroke == activeStroke) &&
+            (identical(other.widgetListBuilder, widgetListBuilder) ||
+                other.widgetListBuilder == widgetListBuilder));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, canvas, activeStroke);
+  int get hashCode =>
+      Object.hash(runtimeType, canvas, activeStroke, widgetListBuilder);
 
   @JsonKey(ignore: true)
   @override
@@ -393,29 +426,35 @@ class _$HandwritingMode extends HandwritingMode with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Canvas canvas, Stroke? activeStroke) gesture,
-    required TResult Function(Canvas canvas, Stroke? activeStroke) handwriting,
+    required TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)
+        handwriting,
   }) {
-    return handwriting(canvas, activeStroke);
+    return handwriting(canvas, activeStroke, widgetListBuilder);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke)? handwriting,
+    TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)?
+        handwriting,
   }) {
-    return handwriting?.call(canvas, activeStroke);
+    return handwriting?.call(canvas, activeStroke, widgetListBuilder);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke)? handwriting,
+    TResult Function(Canvas canvas, Stroke? activeStroke,
+            WidgetListBuilder widgetListBuilder)?
+        handwriting,
     required TResult orElse(),
   }) {
     if (handwriting != null) {
-      return handwriting(canvas, activeStroke);
+      return handwriting(canvas, activeStroke, widgetListBuilder);
     }
     return orElse();
   }
@@ -454,13 +493,16 @@ class _$HandwritingMode extends HandwritingMode with DiagnosticableTreeMixin {
 
 abstract class HandwritingMode extends CanvasState {
   const factory HandwritingMode(
-      {required Canvas canvas, Stroke? activeStroke}) = _$HandwritingMode;
+      {required Canvas canvas,
+      Stroke? activeStroke,
+      required WidgetListBuilder widgetListBuilder}) = _$HandwritingMode;
   const HandwritingMode._() : super._();
 
   @override
   Canvas get canvas;
   @override
   Stroke? get activeStroke;
+  WidgetListBuilder get widgetListBuilder;
   @override
   @JsonKey(ignore: true)
   $HandwritingModeCopyWith<HandwritingMode> get copyWith =>

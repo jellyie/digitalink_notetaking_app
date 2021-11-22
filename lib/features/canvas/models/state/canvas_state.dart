@@ -1,3 +1,5 @@
+import 'package:digitalink_notetaking_app/features/canvas/ui/components/widget_list_builder.dart';
+
 import '../canvas/canvas.dart';
 import '../stroke/stroke.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,6 +20,7 @@ class CanvasState with _$CanvasState {
   const factory CanvasState.handwriting({
     required Canvas canvas,
     Stroke? activeStroke,
+    required WidgetListBuilder widgetListBuilder,
   }) = HandwritingMode;
 
   // Return a List of Strokes
@@ -25,5 +28,5 @@ class CanvasState with _$CanvasState {
       gesture: (g) => g.activeStroke == null
           ? canvas.strokes
           : [...canvas.strokes, g.activeStroke!],
-      handwriting: (h) => h.canvas.strokes);
+      handwriting: (h) => []);
 }

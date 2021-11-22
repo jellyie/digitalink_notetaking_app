@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 enum WidgetType {
+  command,
+  component,
   paragraph, // Component (8)
   heading,
   blockquote,
