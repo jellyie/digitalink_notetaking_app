@@ -34,11 +34,11 @@ class WidgetListBuilder extends ConsumerWidget {
           onHover: (hovering) {},
           // Show candidates when it's the selected widget
           onLongPress: () {
-            List<String> candidatesList = notifier.getCandidateData();
+            List<String> candidatesList = canvasNotifier.getCandidateData();
 
             // Check if the widget is selected and candidates exist
             if (widget.selected == true &&
-                notifier.getCandidateData().isNotEmpty) {
+                canvasNotifier.getCandidateData().isNotEmpty) {
               showMenu(
                   context: context,
                   position: const RelativeRect.fromLTRB(0, 0, 0, 0),
