@@ -5,9 +5,6 @@ import '../../../providers.dart';
 import 'components/widget_list_builder.dart';
 import '../models/widgets/widget_notifier.dart';
 
-import '../q_dollar_recognizer/gesture.dart';
-import '../q_dollar_recognizer/templates.dart';
-
 import '../models/canvas_notifier.dart';
 import '../models/state/canvas_state.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +13,6 @@ import 'painter/canvas_painter.dart';
 
 class CanvasUI extends ConsumerWidget {
   const CanvasUI({Key? key}) : super(key: key);
-
-  /// Load in geometric shapes training set for gesture recognition
-  static final List<Gesture> _trainingSet = Templates.templates;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,7 +42,7 @@ class CanvasUI extends ConsumerWidget {
                           child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
-                              ignoring: !notifier.ignore,
+                              ignoring: notifier.ignore,
                               child: RepaintBoundary(
                                 key: notifier.globalkey,
                                 child: Container(
@@ -73,15 +67,15 @@ class CanvasUI extends ConsumerWidget {
                             onPanStart: notifier.onPanStart,
                             onPanUpdate: notifier.onPanUpdate,
                             onPanEnd: notifier.onPanEnd,
-                            //onLongPress: () => notifier.toggleIgnore(),
-                            onTapDown: notifier.onTapDown,
+                            onLongPress: () => notifier.toggleIgnore(),
+                            // onTapDown: notifier.onTapDown,
                           ),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
-                            ignoring: true,
+                            ignoring: !notifier.ignore,
                             child: WidgetListBuilder(),
                           ),
                         ),
@@ -102,33 +96,6 @@ class CanvasUI extends ConsumerWidget {
                   child: const Text('Clear'),
                   onPressed: () {
                     notifier.clear();
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  child: Text('Recognize shape'),
-                  onPressed: () {
-                    notifier.recogniseShape(_trainingSet);
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  child: Text('Recognize text'),
-                  onPressed: () {
-                    notifier.recogniseText();
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  child: Text('Update widget content'),
-                  onPressed: () {
-                    widgetNotifier.updateWidgetData('this widget is updated');
                   },
                 ),
               ),
