@@ -199,7 +199,6 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   List<String> _candidatesList = [];
   Future<void> recogniseText() async {
     List<Offset> points = [];
-    List<String> _candidatesList = [];
     for (Stroke s in state.strokes) {
       List<Offset> _p = s.strokePoints.map((p) => p.asOffset).toList();
       points.addAll(_p);
@@ -236,6 +235,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
 
   /// For text candidates
 <<<<<<< HEAD
+<<<<<<< HEAD
   void updateCandidateData(List<String> c) {
     _candidatesList = c;
     print(_candidatesList);
@@ -245,16 +245,22 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   List<String> get candidatesList => _candidatesList;
 =======
   List<String> candidatesList = [];
+=======
+>>>>>>> bc3ed66 (Move candidate methods to canvas notifier)
   void updateCandidateData(List<String> c) {
-    candidatesList = c;
-    print(candidatesList);
+    _candidatesList = c;
+    print(_candidatesList);
   }
 
   // For getting the candidatesList
+<<<<<<< HEAD
   List<String> getCandidateData() {
     return candidatesList;
   }
 >>>>>>> d41edb1 (Move candidate methods to canvas notifier)
+=======
+  List<String> get candidatesList => _candidatesList;
+>>>>>>> bc3ed66 (Move candidate methods to canvas notifier)
 
   /// --------------------------------------------------------------------- ///
   /// -------------------------- Shapes Recognition ----------------------- ///

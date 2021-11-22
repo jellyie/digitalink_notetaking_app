@@ -2,11 +2,7 @@ import '../../models/widgets/models/widget/widget.dart' as our;
 import '../../../../providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-<<<<<<< HEAD
 import 'package:reorderables/reorderables.dart';
-=======
-import 'package:reorderable_grid_view/reorderable_grid_view.dart';
->>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
 
 class WidgetListBuilder extends ConsumerWidget {
   final int index;
@@ -52,12 +48,16 @@ class WidgetListBuilder extends ConsumerWidget {
                 canvasNotifier.candidatesList.isNotEmpty) {
 =======
           onLongPress: () {
-            List<String> candidatesList = canvasNotifier.getCandidateData();
+            List<String> candidatesList = canvasNotifier.candidatesList;
 
             // Check if the widget is selected and candidates exist
             if (widget.selected == true &&
+<<<<<<< HEAD
                 canvasNotifier.getCandidateData().isNotEmpty) {
 >>>>>>> d41edb1 (Move candidate methods to canvas notifier)
+=======
+                canvasNotifier.candidatesList.isNotEmpty) {
+>>>>>>> bc3ed66 (Move candidate methods to canvas notifier)
               showMenu(
                   context: context,
                   position: const RelativeRect.fromLTRB(0, 0, 0, 0),
