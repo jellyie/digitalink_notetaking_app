@@ -171,15 +171,21 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
 =======
 =======
       _timerInitialized = true;
+<<<<<<< HEAD
       _timer = Timer(const Duration(seconds: 1), () {
 >>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
         if (_timerInitialized == true) {
+=======
+      _timer = Timer(const Duration(milliseconds: 1500), () {
+        if (_timerInitialized) {
+>>>>>>> 6abf9d9 (Shape and handwriting recognition happens automatically)
           if (_notifier.selected) {
             recogniseText();
+            clear();
+          } else {
+            recogniseShape(_trainingSet);
+            clear();
           }
-          recogniseShape(_trainingSet);
-          debugPrint("no other input, recognize gesture");
-          clear();
         }
 >>>>>>> 6b1db0e (Timer)
       });

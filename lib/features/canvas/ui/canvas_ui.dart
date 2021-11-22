@@ -12,8 +12,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'painter/canvas_painter.dart';
 
 class CanvasUI extends ConsumerWidget {
+<<<<<<< HEAD
   final int index;
   const CanvasUI({Key? key, required this.index}) : super(key: key);
+=======
+  const CanvasUI({Key? key}) : super(key: key);
+>>>>>>> 6abf9d9 (Shape and handwriting recognition happens automatically)
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,7 +50,7 @@ class CanvasUI extends ConsumerWidget {
                           child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
-                              ignoring: !notifier.ignore,
+                              ignoring: notifier.ignore,
                               child: RepaintBoundary(
                                 key: notifier.globalkey,
                                 child: Container(
@@ -79,8 +83,13 @@ class CanvasUI extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
+<<<<<<< HEAD
                             ignoring: notifier.ignore,
                             child: WidgetListBuilder(index: index),
+=======
+                            ignoring: !notifier.ignore,
+                            child: WidgetListBuilder(),
+>>>>>>> 6abf9d9 (Shape and handwriting recognition happens automatically)
                           ),
                         ),
                       ],
