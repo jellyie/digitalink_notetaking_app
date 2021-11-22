@@ -33,7 +33,10 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     _languageModelManager.downloadModel(_language);
   }
 
-  final Stopwatch _timer = Stopwatch();
+  // final Stopwatch _timer = Stopwatch();
+  final oneSec = const Duration(seconds: 1);
+  late Timer _timer;
+  bool _timerInitialized = false;
 
   late WidgetNotifier _notifier;
 
@@ -108,6 +111,11 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// Create a copy of the state with a new Stroke appended
   void onPanStart(DragStartDetails d) {
     if (state is GestureMode) {
+      if (_timerInitialized == true) {
+        _timer.cancel();
+        _timerInitialized = false;
+        print("new pen input, timer stops");
+      }
       // _timer.stop();
       state = state.copyWith(
         activeStroke: Stroke(strokePoints: [_getPoint(d.localPosition)]),
@@ -134,6 +142,12 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       //   _timer.stop();
       //   recogniseShape(_trainingSet);
       // }
+      _timerInitialized = true;
+      _timer = Timer(Duration(seconds: 2), () {
+        if (_timerInitialized == true) {
+          print("no other input, recognize gesture");
+        }
+      });
     }
   }
 
