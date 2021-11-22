@@ -20,6 +20,7 @@ dependencies:
   reorderable_grid_view: ^2.0.0-alpha.1
   transparent_pointer: ^1.0.0
   dotted_border: ^2.0.0+1
+  provider: ^6.0.1
 
 dev_dependencies:
   flutter_test:

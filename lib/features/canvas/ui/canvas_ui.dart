@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/rendering.dart';
 
-import '../../../providers.dart';
+// import '../../../providers.dart';
 import 'components/widget_list_builder.dart';
 import '../models/widgets/widget_notifier.dart';
 
@@ -11,8 +11,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'painter/canvas_painter.dart';
 
+import '../../canvas/models/widgets/models/widget_list/widget_list.dart';
+
 class CanvasUI extends ConsumerWidget {
-  const CanvasUI({Key? key}) : super(key: key);
+  final StateNotifierProvider<CanvasNotifier, CanvasState>
+      canvasNotifierProvider;
+  final StateNotifierProvider<WidgetNotifier, WidgetList>
+      widgetNotifierProvider;
+  const CanvasUI(
+      {Key? key,
+      required this.canvasNotifierProvider,
+      required this.widgetNotifierProvider})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,6 +32,7 @@ class CanvasUI extends ConsumerWidget {
     notifier.readWidgetNotifier(widgetNotifier);
 
     return Scaffold(
+      appBar: AppBar(title: Text("canvas")),
       backgroundColor: Colors.grey.shade300,
       body: Stack(
         children: [
