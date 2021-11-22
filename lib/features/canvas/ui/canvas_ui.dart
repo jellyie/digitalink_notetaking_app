@@ -81,7 +81,7 @@ class CanvasUI extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
-                            ignoring: !notifier.ignore,
+                            ignoring: true,
                             child: WidgetListBuilder(),
                           ),
                         ),

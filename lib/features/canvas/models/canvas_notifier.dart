@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import '../q_dollar_recognizer/templates.dart';
+
 import 'widgets/widget_notifier.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,6 +16,9 @@ import 'state/canvas_state.dart';
 import '../q_dollar_recognizer/point.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 
+/// Load in geometric shapes training set for gesture recognition
+final List<Gesture> _trainingSet = Templates.templates;
+
 /// This class interprets the raw data about the user's input
 class CanvasNotifier extends StateNotifier<CanvasState> {
   CanvasNotifier({Canvas? canvas})
@@ -27,6 +32,8 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     );
     _languageModelManager.downloadModel(_language);
   }
+
+  final Stopwatch _timer = Stopwatch();
 
   late WidgetNotifier _notifier;
 
@@ -101,6 +108,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// Create a copy of the state with a new Stroke appended
   void onPanStart(DragStartDetails d) {
     if (state is GestureMode) {
+      // _timer.stop();
       state = state.copyWith(
         activeStroke: Stroke(strokePoints: [_getPoint(d.localPosition)]),
       );
@@ -118,7 +126,14 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// Complete the current stroke
   void onPanEnd(DragEndDetails d) {
     if (state is GestureMode) {
+      // print('is timer running? ${_timer.isRunning}');
+      // print(_timer.elapsed);
       state = _completeStroke(state);
+      // if (_timer.isRunning && _timer.elapsedMilliseconds > 1000) {
+      //   print('recognise?');
+      //   _timer.stop();
+      //   recogniseShape(_trainingSet);
+      // }
     }
   }
 
@@ -155,7 +170,6 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     _gesture = _recognizer.recognize(Gesture(qpoints), g);
     qpoints = []; // reset after recognition
     print('Recognised as......$_gesture');
-
     _notifier.addWidget(_gesture);
   }
 
