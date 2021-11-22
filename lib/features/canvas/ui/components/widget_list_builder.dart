@@ -33,6 +33,23 @@ class WidgetListBuilder extends ConsumerWidget {
           },
           // Hover not working here, need to add this function within WidgetNotifier
           onHover: (hovering) {},
+          // Show candidates when it's the selected widget
+          onLongPress: () {
+            List<String> candidatesList = notifier.getCandidateData();
+
+            if (widget.selected == true) {
+              showMenu(
+                  context: context,
+                  position: RelativeRect.fromLTRB(0, 0, 0, 0),
+                  items: [
+                    for (int i = 0; i < candidatesList.length; i++)
+                      PopupMenuItem(
+                          value: candidatesList[i],
+                          child: Text(candidatesList[i]))
+                  ]).then((value) =>
+                  {if (value != null) notifier.updateWidgetData(value)});
+            }
+          },
           child: widget.widget,
         ),
       );
