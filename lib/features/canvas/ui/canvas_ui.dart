@@ -14,13 +14,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'painter/canvas_painter.dart';
 
-final canvasNotifierProvider =
-    StateNotifierProvider<CanvasNotifier, CanvasState>(
-        (ref) => CanvasNotifier());
-
 class CanvasUI extends ConsumerWidget {
   const CanvasUI({Key? key}) : super(key: key);
 
+  /// Load in geometric shapes training set for gesture recognition
   static final List<Gesture> _trainingSet = Templates.templates;
 
   @override
@@ -41,8 +38,6 @@ class CanvasUI extends ConsumerWidget {
                 return SingleChildScrollView(
                   padding: EdgeInsets.symmetric(vertical: 100.0),
                   controller: scrollController,
-                  // key: notifier.globalkey,
-                  // padding: EdgeInsets.only(top: 100),
                   child: Center(
                     child: Stack(
                       children: [
@@ -50,6 +45,7 @@ class CanvasUI extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: GestureDetector(
+                            behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
                               ignoring: notifier.ignore,
                               child: RepaintBoundary(
@@ -76,6 +72,8 @@ class CanvasUI extends ConsumerWidget {
                             onPanStart: notifier.onPanStart,
                             onPanUpdate: notifier.onPanUpdate,
                             onPanEnd: notifier.onPanEnd,
+                            //onLongPress: () => notifier.toggleIgnore(),
+                            onTapDown: notifier.onTapDown,
                           ),
                         ),
                         SizedBox(
@@ -91,7 +89,8 @@ class CanvasUI extends ConsumerWidget {
                   ),
                 );
               }),
-          // Build a button to clear the canvas
+
+          /// Build a button to clear the canvas
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -102,7 +101,6 @@ class CanvasUI extends ConsumerWidget {
                   child: const Text('Clear'),
                   onPressed: () {
                     notifier.clear();
-                    //notifier.ignoreToFalse();
                   },
                 ),
               ),
@@ -111,7 +109,7 @@ class CanvasUI extends ConsumerWidget {
                 child: ElevatedButton(
                   child: Text('Swap layers'),
                   onPressed: () {
-                    notifier.ignoreToFalse();
+                    // notifier.ignoreToFalse();
                     //print(notifier.ignore);
                   },
                 ),
@@ -121,7 +119,6 @@ class CanvasUI extends ConsumerWidget {
                 child: ElevatedButton(
                   child: Text('Delete'),
                   onPressed: () {
-                    //notifier.clear();
                     widgetNotifier.deleteWidget();
                   },
                 ),
@@ -131,7 +128,6 @@ class CanvasUI extends ConsumerWidget {
                 child: ElevatedButton(
                   child: Text('Recognize shape'),
                   onPressed: () {
-                    // notifier.recgoniseText();
                     notifier.recogniseShape(_trainingSet);
                   },
                 ),
@@ -150,7 +146,6 @@ class CanvasUI extends ConsumerWidget {
                 child: ElevatedButton(
                   child: Text('Update widget content'),
                   onPressed: () {
-                    // notifier.recgoniseText();
                     widgetNotifier.updateWidgetData('this widget is updated');
                   },
                 ),

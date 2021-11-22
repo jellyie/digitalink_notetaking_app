@@ -1,5 +1,4 @@
-import 'package:digitalink_notetaking_app/features/canvas/models/widgets/models/widget/widget.dart'
-    as our;
+import '../../models/widgets/models/widget/widget.dart' as our;
 import '../../../../providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,9 +9,10 @@ class WidgetListBuilder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final canvasNotifier = ref.watch(canvasNotifierProvider.notifier);
     final notifier = ref.watch(widgetNotifierProvider.notifier);
-    final state = ref.watch(widgetNotifierProvider);
-    List<our.Widget> list = List.from(state.widgets);
+    List<our.Widget> list =
+        List.from(ref.watch(widgetNotifierProvider).widgets);
 
     Widget buildItem(our.Widget widget) {
       return Material(
@@ -42,6 +42,7 @@ class WidgetListBuilder extends ConsumerWidget {
         childAspectRatio: 6,
         onReorder: (oldIndex, newIndex) {
           notifier.reorderWidgets(oldIndex, newIndex);
+          canvasNotifier.toggleIgnore();
         },
         children: list.map((e) => buildItem(e)).toList(),
       ),

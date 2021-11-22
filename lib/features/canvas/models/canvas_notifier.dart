@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_notifier.dart';
 import 'package:flutter/widgets.dart';
 
@@ -35,7 +37,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// due to Stack terminating Hit Testing after the first widget (visually)
   /// on top of another widget in the same stack is hit
   bool ignore = false;
-  CanvasState ignoreToFalse() =>
+  CanvasState toggleIgnore() =>
       state = state.copyWith(ignore: ignore = !ignore);
 
   // Initiate digital ink recogniser
@@ -155,5 +157,9 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     print('Recognised as......$_gesture');
 
     _notifier.addWidget(_gesture);
+  }
+
+  void onTapDown(TapDownDetails details) {
+    toggleIgnore();
   }
 }

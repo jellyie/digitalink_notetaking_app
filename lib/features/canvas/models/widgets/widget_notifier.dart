@@ -42,10 +42,7 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     List<our.Widget> tempList = List.from(state.widgets);
     final element = tempList.removeAt(oldIndex);
     tempList.insert(newIndex, element);
-    print(tempList);
     state = state.copyWith(widgets: tempList);
-    print(state);
-    print('reorder');
   }
 
   /// Returns a copy of the WidgetList with the new widget appended
@@ -109,7 +106,6 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
 
   /// Removes the widget at the specified index
   WidgetList deleteWidget() {
-    print(selectedIndex);
     List<our.Widget> tempList = List.from(state.widgets);
     tempList.removeAt(selectedIndex as int);
     return state = state.copyWith(widgets: tempList);
