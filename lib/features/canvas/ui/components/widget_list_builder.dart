@@ -37,10 +37,12 @@ class WidgetListBuilder extends ConsumerWidget {
           onLongPress: () {
             List<String> candidatesList = notifier.getCandidateData();
 
-            if (widget.selected == true) {
+            // Check if the widget is selected and candidates exist
+            if (widget.selected == true &&
+                notifier.getCandidateData().isNotEmpty) {
               showMenu(
                   context: context,
-                  position: RelativeRect.fromLTRB(0, 0, 0, 0),
+                  position: const RelativeRect.fromLTRB(0, 0, 0, 0),
                   items: [
                     for (int i = 0; i < candidatesList.length; i++)
                       PopupMenuItem(
