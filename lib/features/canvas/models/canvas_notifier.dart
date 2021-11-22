@@ -33,7 +33,6 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     _languageModelManager.downloadModel(_language);
   }
 
-  // final Stopwatch _timer = Stopwatch();
   final oneSec = const Duration(seconds: 1);
   late Timer _timer;
   bool _timerInitialized = false;
@@ -137,6 +136,9 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       _timerInitialized = true;
       _timer = Timer(const Duration(seconds: 1), () {
         if (_timerInitialized == true) {
+          if (_notifier.selected) {
+            recogniseText();
+          }
           recogniseShape(_trainingSet);
           debugPrint("no other input, recognize gesture");
           clear();
@@ -151,6 +153,9 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
         CanvasState.gesture(canvas: const Canvas(strokes: []), ignore: ignore);
   }
 
+  /// --------------------------------------------------------------------- ///
+  /// ----------------- Handwriting to Text Recognition ------------------- ///
+  /// --------------------------------------------------------------------- ///
   /// Return the value of the handwritten text as recognised string
   Future<void> recogniseText() async {
     List<Offset> points = [];
@@ -175,9 +180,25 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     }
     _notifier.updateWidgetData(_recogniseText);
     //update the candidateList
-    _notifier.updateCandidateData(_candidatesList);
+    updateCandidateData(_candidatesList);
     debugPrint('Recognised as......$_recogniseText');
   }
+
+  /// For text candidates
+  List<String> candidatesList = [];
+  void updateCandidateData(List<String> c) {
+    candidatesList = c;
+    print(candidatesList);
+  }
+
+  // For getting the candidatesList
+  List<String> getCandidateData() {
+    return candidatesList;
+  }
+
+  /// --------------------------------------------------------------------- ///
+  /// -------------------------- Shapes Recognition ----------------------- ///
+  /// --------------------------------------------------------------------- ///
 
   /// Return the value of the drawn shape as a string
   void recogniseShape(List<Gesture> g) {

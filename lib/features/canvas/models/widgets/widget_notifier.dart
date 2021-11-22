@@ -80,27 +80,27 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
         return state = state.copyWith(
             widgets: [...state.widgets, const our.Widget.bulletedList()]);
       case "BOLD":
-        if (selectedWidget == null) return state;
+        if (!selected) return state;
         widget = const our.Widget.bold()
             .copyWith(data: (selectedWidget as our.Widget).data);
         return deleteAndReplace(widget);
       case "ITALIC":
-        if (selectedWidget == null) return state;
+        if (!selected) return state;
         widget = const our.Widget.italicize()
             .copyWith(data: (selectedWidget as our.Widget).data);
         return deleteAndReplace(widget);
       case "NEWLINE":
-        if (selectedWidget == null) return state;
+        if (!selected) return state;
         final String oldData = (selectedWidget as our.Widget).data.toString();
         widget = (selectedWidget as our.Widget)
             .copyWith(data: '$oldData \n new line');
         return deleteAndReplace(widget);
       case "DUPLICATE":
-        if (selectedWidget == null) return state;
+        if (!selected) return state;
         widget = (selectedWidget as our.Widget).copyWith(selected: false);
         return state = state.copyWith(widgets: [...state.widgets, widget]);
       case "ERASE":
-        if (selectedWidget == null) return state;
+        if (!selected) return state;
         return deleteWidget();
     }
 
@@ -112,7 +112,7 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
   /// Appends the new data to a copy of the widget at the selected index
   WidgetList updateWidgetData(String newData) {
     // Returns the current WidgetList if there is no selected index
-    if (selectedIndex == null) return state;
+    if (!selected) return state;
 
     final updatedWidget =
         (selectedWidget as our.Widget).copyWith(data: newData);
@@ -132,17 +132,5 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     tempList.removeAt(selectedIndex as int);
     tempList.insert(selectedIndex as int, widget);
     return state = state.copyWith(widgets: tempList);
-  }
-
-  /// For text candidates
-  List<String> candidatesList = [];
-  void updateCandidateData(List<String> c) {
-    candidatesList = c;
-    print(candidatesList);
-  }
-
-  // For getting the candidatesList
-  List<String> getCandidateData() {
-    return candidatesList;
   }
 }
