@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_notifier.dart';
+import 'widgets/widget_notifier.dart';
 import 'package:flutter/widgets.dart';
 
 import '../q_dollar_recognizer/gesture.dart';

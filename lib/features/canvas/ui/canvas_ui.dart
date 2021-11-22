@@ -36,6 +36,7 @@ class CanvasUI extends ConsumerWidget {
               minChildSize: 0.99,
               builder: (context, scrollController) {
                 return SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(vertical: 100.0),
                   controller: scrollController,
                   child: Center(
@@ -47,7 +48,7 @@ class CanvasUI extends ConsumerWidget {
                           child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
-                              ignoring: notifier.ignore,
+                              ignoring: false,
                               child: RepaintBoundary(
                                 key: notifier.globalkey,
                                 child: Container(
@@ -80,7 +81,7 @@ class CanvasUI extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
-                            ignoring: !notifier.ignore,
+                            ignoring: true,
                             child: WidgetListBuilder(),
                           ),
                         ),

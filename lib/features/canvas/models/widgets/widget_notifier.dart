@@ -1,7 +1,5 @@
 import 'models/widget/widget.dart' as our;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'models/widget/widget.dart';
 import 'models/widget_list/widget_list.dart';
 
 class WidgetNotifier extends StateNotifier<WidgetList> {
@@ -21,7 +19,6 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
   int? selectedIndex;
 
   void setSelectedIndex(int i) => selectedIndex = i;
-
   our.Widget getSelectedWidget() {
     return state.widgets[selectedIndex as int];
   }
@@ -89,13 +86,11 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     return state;
   }
 
-  /// Appends the new data to a copy of the widget at the specified index
+  /// Appends the new data to a copy of the widget at the selected index
   WidgetList updateWidgetData(String newData) {
-    // Returns the current WidgetList if the index is null
-    // if (selectedIndex != null) return state;
-    if (state.widgets[selectedIndex as int].type == WidgetType.command) {
-      return state;
-    }
+    // Returns the current WidgetList if there is no selected index
+    if (selectedIndex == null) return state;
+
     List<our.Widget> tempList = List.from(state.widgets);
     final updatedWidget = getSelectedWidget().copyWith(data: newData);
     print('update widget to => $updatedWidget');
@@ -104,7 +99,7 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     return state = state.copyWith(widgets: tempList);
   }
 
-  /// Removes the widget at the specified index
+  /// Removes the widget at the selected index
   WidgetList deleteWidget() {
     List<our.Widget> tempList = List.from(state.widgets);
     tempList.removeAt(selectedIndex as int);
