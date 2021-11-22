@@ -17,88 +17,134 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$WidgetTearOff {
   const _$WidgetTearOff();
 
-  Paragraph paragraph({String? data, WidgetType type = WidgetType.component}) {
+  Paragraph paragraph(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return Paragraph(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Heading heading({String? data, WidgetType type = WidgetType.component}) {
+  Heading heading(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return Heading(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
   Blockquote blockquote(
-      {String? data, WidgetType type = WidgetType.component}) {
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return Blockquote(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Bold bold({String? data, WidgetType type = WidgetType.component}) {
+  Bold bold(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return Bold(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Italicize italicize({String? data, WidgetType type = WidgetType.component}) {
+  Italicize italicize(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return Italicize(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
   BulletedList bulletedList(
-      {String? data, WidgetType type = WidgetType.component}) {
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return BulletedList(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Table table({String? data, WidgetType type = WidgetType.component}) {
+  Table table(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return Table(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Image image({String? data, WidgetType type = WidgetType.component}) {
+  Image image(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.component}) {
     return Image(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Duplicate duplicate({String? data, WidgetType type = WidgetType.command}) {
+  Duplicate duplicate(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.command}) {
     return Duplicate(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Erase erase({String? data, WidgetType type = WidgetType.command}) {
+  Erase erase(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.command}) {
     return Erase(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  Split split({String? data, WidgetType type = WidgetType.command}) {
+  Split split(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.command}) {
     return Split(
       data: data,
+      selected: selected,
       type: type,
     );
   }
 
-  NewLine newline({String? data, WidgetType type = WidgetType.command}) {
+  NewLine newline(
+      {String? data,
+      bool selected = false,
+      WidgetType type = WidgetType.command}) {
     return NewLine(
       data: data,
+      selected: selected,
       type: type,
     );
   }
@@ -110,54 +156,69 @@ const $Widget = _$WidgetTearOff();
 /// @nodoc
 mixin _$Widget {
   String? get data => throw _privateConstructorUsedError;
+  bool get selected => throw _privateConstructorUsedError;
   WidgetType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -219,7 +280,7 @@ mixin _$Widget {
 abstract class $WidgetCopyWith<$Res> {
   factory $WidgetCopyWith(Widget value, $Res Function(Widget) then) =
       _$WidgetCopyWithImpl<$Res>;
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -233,6 +294,7 @@ class _$WidgetCopyWithImpl<$Res> implements $WidgetCopyWith<$Res> {
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -240,6 +302,10 @@ class _$WidgetCopyWithImpl<$Res> implements $WidgetCopyWith<$Res> {
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -253,7 +319,7 @@ abstract class $ParagraphCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $ParagraphCopyWith(Paragraph value, $Res Function(Paragraph) then) =
       _$ParagraphCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -268,6 +334,7 @@ class _$ParagraphCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Paragraph(
@@ -275,6 +342,10 @@ class _$ParagraphCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -286,17 +357,22 @@ class _$ParagraphCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
-  const _$Paragraph({this.data, this.type = WidgetType.component}) : super._();
+  const _$Paragraph(
+      {this.data, this.selected = false, this.type = WidgetType.component})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.paragraph(data: $data, type: $type)';
+    return 'Widget.paragraph(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -305,6 +381,7 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.paragraph'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -314,11 +391,13 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Paragraph &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -328,60 +407,74 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return paragraph(data, type);
+    return paragraph(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return paragraph?.call(data, type);
+    return paragraph?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (paragraph != null) {
-      return paragraph(data, type);
+      return paragraph(data, selected, type);
     }
     return orElse();
   }
@@ -449,11 +542,14 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
 }
 
 abstract class Paragraph extends Widget {
-  const factory Paragraph({String? data, WidgetType type}) = _$Paragraph;
+  const factory Paragraph({String? data, bool selected, WidgetType type}) =
+      _$Paragraph;
   const Paragraph._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -467,7 +563,7 @@ abstract class $HeadingCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $HeadingCopyWith(Heading value, $Res Function(Heading) then) =
       _$HeadingCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -482,6 +578,7 @@ class _$HeadingCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Heading(
@@ -489,6 +586,10 @@ class _$HeadingCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -500,17 +601,22 @@ class _$HeadingCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Heading extends Heading with DiagnosticableTreeMixin {
-  const _$Heading({this.data, this.type = WidgetType.component}) : super._();
+  const _$Heading(
+      {this.data, this.selected = false, this.type = WidgetType.component})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.heading(data: $data, type: $type)';
+    return 'Widget.heading(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -519,6 +625,7 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.heading'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -528,11 +635,13 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Heading &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -542,60 +651,74 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return heading(data, type);
+    return heading(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return heading?.call(data, type);
+    return heading?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (heading != null) {
-      return heading(data, type);
+      return heading(data, selected, type);
     }
     return orElse();
   }
@@ -663,11 +786,14 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
 }
 
 abstract class Heading extends Widget {
-  const factory Heading({String? data, WidgetType type}) = _$Heading;
+  const factory Heading({String? data, bool selected, WidgetType type}) =
+      _$Heading;
   const Heading._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -681,7 +807,7 @@ abstract class $BlockquoteCopyWith<$Res> implements $WidgetCopyWith<$Res> {
           Blockquote value, $Res Function(Blockquote) then) =
       _$BlockquoteCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -696,6 +822,7 @@ class _$BlockquoteCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Blockquote(
@@ -703,6 +830,10 @@ class _$BlockquoteCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -714,17 +845,22 @@ class _$BlockquoteCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
-  const _$Blockquote({this.data, this.type = WidgetType.component}) : super._();
+  const _$Blockquote(
+      {this.data, this.selected = false, this.type = WidgetType.component})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.blockquote(data: $data, type: $type)';
+    return 'Widget.blockquote(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -733,6 +869,7 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.blockquote'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -742,11 +879,13 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Blockquote &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -756,60 +895,74 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return blockquote(data, type);
+    return blockquote(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return blockquote?.call(data, type);
+    return blockquote?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (blockquote != null) {
-      return blockquote(data, type);
+      return blockquote(data, selected, type);
     }
     return orElse();
   }
@@ -877,11 +1030,14 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
 }
 
 abstract class Blockquote extends Widget {
-  const factory Blockquote({String? data, WidgetType type}) = _$Blockquote;
+  const factory Blockquote({String? data, bool selected, WidgetType type}) =
+      _$Blockquote;
   const Blockquote._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -895,7 +1051,7 @@ abstract class $BoldCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $BoldCopyWith(Bold value, $Res Function(Bold) then) =
       _$BoldCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -910,6 +1066,7 @@ class _$BoldCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Bold(
@@ -917,6 +1074,10 @@ class _$BoldCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -928,17 +1089,22 @@ class _$BoldCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Bold extends Bold with DiagnosticableTreeMixin {
-  const _$Bold({this.data, this.type = WidgetType.component}) : super._();
+  const _$Bold(
+      {this.data, this.selected = false, this.type = WidgetType.component})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.bold(data: $data, type: $type)';
+    return 'Widget.bold(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -947,6 +1113,7 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.bold'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -956,11 +1123,13 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Bold &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -970,60 +1139,74 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return bold(data, type);
+    return bold(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return bold?.call(data, type);
+    return bold?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (bold != null) {
-      return bold(data, type);
+      return bold(data, selected, type);
     }
     return orElse();
   }
@@ -1091,11 +1274,13 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
 }
 
 abstract class Bold extends Widget {
-  const factory Bold({String? data, WidgetType type}) = _$Bold;
+  const factory Bold({String? data, bool selected, WidgetType type}) = _$Bold;
   const Bold._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -1108,7 +1293,7 @@ abstract class $ItalicizeCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $ItalicizeCopyWith(Italicize value, $Res Function(Italicize) then) =
       _$ItalicizeCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -1123,6 +1308,7 @@ class _$ItalicizeCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Italicize(
@@ -1130,6 +1316,10 @@ class _$ItalicizeCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1141,17 +1331,22 @@ class _$ItalicizeCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Italicize extends Italicize with DiagnosticableTreeMixin {
-  const _$Italicize({this.data, this.type = WidgetType.component}) : super._();
+  const _$Italicize(
+      {this.data, this.selected = false, this.type = WidgetType.component})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.italicize(data: $data, type: $type)';
+    return 'Widget.italicize(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -1160,6 +1355,7 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.italicize'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -1169,11 +1365,13 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Italicize &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -1183,60 +1381,74 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return italicize(data, type);
+    return italicize(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return italicize?.call(data, type);
+    return italicize?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (italicize != null) {
-      return italicize(data, type);
+      return italicize(data, selected, type);
     }
     return orElse();
   }
@@ -1304,11 +1516,14 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
 }
 
 abstract class Italicize extends Widget {
-  const factory Italicize({String? data, WidgetType type}) = _$Italicize;
+  const factory Italicize({String? data, bool selected, WidgetType type}) =
+      _$Italicize;
   const Italicize._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -1323,7 +1538,7 @@ abstract class $BulletedListCopyWith<$Res> implements $WidgetCopyWith<$Res> {
           BulletedList value, $Res Function(BulletedList) then) =
       _$BulletedListCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -1339,6 +1554,7 @@ class _$BulletedListCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(BulletedList(
@@ -1346,6 +1562,10 @@ class _$BulletedListCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1357,18 +1577,22 @@ class _$BulletedListCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
-  const _$BulletedList({this.data, this.type = WidgetType.component})
+  const _$BulletedList(
+      {this.data, this.selected = false, this.type = WidgetType.component})
       : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.bulletedList(data: $data, type: $type)';
+    return 'Widget.bulletedList(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -1377,6 +1601,7 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.bulletedList'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -1386,11 +1611,13 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is BulletedList &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -1400,60 +1627,74 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return bulletedList(data, type);
+    return bulletedList(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return bulletedList?.call(data, type);
+    return bulletedList?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (bulletedList != null) {
-      return bulletedList(data, type);
+      return bulletedList(data, selected, type);
     }
     return orElse();
   }
@@ -1521,11 +1762,14 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
 }
 
 abstract class BulletedList extends Widget {
-  const factory BulletedList({String? data, WidgetType type}) = _$BulletedList;
+  const factory BulletedList({String? data, bool selected, WidgetType type}) =
+      _$BulletedList;
   const BulletedList._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -1539,7 +1783,7 @@ abstract class $TableCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $TableCopyWith(Table value, $Res Function(Table) then) =
       _$TableCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -1554,6 +1798,7 @@ class _$TableCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Table(
@@ -1561,6 +1806,10 @@ class _$TableCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1572,17 +1821,22 @@ class _$TableCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Table extends Table with DiagnosticableTreeMixin {
-  const _$Table({this.data, this.type = WidgetType.component}) : super._();
+  const _$Table(
+      {this.data, this.selected = false, this.type = WidgetType.component})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.table(data: $data, type: $type)';
+    return 'Widget.table(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -1591,6 +1845,7 @@ class _$Table extends Table with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.table'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -1600,11 +1855,13 @@ class _$Table extends Table with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Table &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -1614,60 +1871,74 @@ class _$Table extends Table with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return table(data, type);
+    return table(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return table?.call(data, type);
+    return table?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (table != null) {
-      return table(data, type);
+      return table(data, selected, type);
     }
     return orElse();
   }
@@ -1735,11 +2006,13 @@ class _$Table extends Table with DiagnosticableTreeMixin {
 }
 
 abstract class Table extends Widget {
-  const factory Table({String? data, WidgetType type}) = _$Table;
+  const factory Table({String? data, bool selected, WidgetType type}) = _$Table;
   const Table._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -1752,7 +2025,7 @@ abstract class $ImageCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $ImageCopyWith(Image value, $Res Function(Image) then) =
       _$ImageCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -1767,6 +2040,7 @@ class _$ImageCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Image(
@@ -1774,6 +2048,10 @@ class _$ImageCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1785,17 +2063,22 @@ class _$ImageCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Image extends Image with DiagnosticableTreeMixin {
-  const _$Image({this.data, this.type = WidgetType.component}) : super._();
+  const _$Image(
+      {this.data, this.selected = false, this.type = WidgetType.component})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.component)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.image(data: $data, type: $type)';
+    return 'Widget.image(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -1804,6 +2087,7 @@ class _$Image extends Image with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.image'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -1813,11 +2097,13 @@ class _$Image extends Image with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Image &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -1827,60 +2113,74 @@ class _$Image extends Image with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return image(data, type);
+    return image(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return image?.call(data, type);
+    return image?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (image != null) {
-      return image(data, type);
+      return image(data, selected, type);
     }
     return orElse();
   }
@@ -1948,11 +2248,13 @@ class _$Image extends Image with DiagnosticableTreeMixin {
 }
 
 abstract class Image extends Widget {
-  const factory Image({String? data, WidgetType type}) = _$Image;
+  const factory Image({String? data, bool selected, WidgetType type}) = _$Image;
   const Image._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -1965,7 +2267,7 @@ abstract class $DuplicateCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $DuplicateCopyWith(Duplicate value, $Res Function(Duplicate) then) =
       _$DuplicateCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -1980,6 +2282,7 @@ class _$DuplicateCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Duplicate(
@@ -1987,6 +2290,10 @@ class _$DuplicateCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1998,17 +2305,22 @@ class _$DuplicateCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Duplicate extends Duplicate with DiagnosticableTreeMixin {
-  const _$Duplicate({this.data, this.type = WidgetType.command}) : super._();
+  const _$Duplicate(
+      {this.data, this.selected = false, this.type = WidgetType.command})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.command)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.duplicate(data: $data, type: $type)';
+    return 'Widget.duplicate(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -2017,6 +2329,7 @@ class _$Duplicate extends Duplicate with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.duplicate'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -2026,11 +2339,13 @@ class _$Duplicate extends Duplicate with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Duplicate &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -2040,60 +2355,74 @@ class _$Duplicate extends Duplicate with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return duplicate(data, type);
+    return duplicate(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return duplicate?.call(data, type);
+    return duplicate?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (duplicate != null) {
-      return duplicate(data, type);
+      return duplicate(data, selected, type);
     }
     return orElse();
   }
@@ -2161,11 +2490,14 @@ class _$Duplicate extends Duplicate with DiagnosticableTreeMixin {
 }
 
 abstract class Duplicate extends Widget {
-  const factory Duplicate({String? data, WidgetType type}) = _$Duplicate;
+  const factory Duplicate({String? data, bool selected, WidgetType type}) =
+      _$Duplicate;
   const Duplicate._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -2179,7 +2511,7 @@ abstract class $EraseCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $EraseCopyWith(Erase value, $Res Function(Erase) then) =
       _$EraseCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -2194,6 +2526,7 @@ class _$EraseCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Erase(
@@ -2201,6 +2534,10 @@ class _$EraseCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2212,17 +2549,22 @@ class _$EraseCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Erase extends Erase with DiagnosticableTreeMixin {
-  const _$Erase({this.data, this.type = WidgetType.command}) : super._();
+  const _$Erase(
+      {this.data, this.selected = false, this.type = WidgetType.command})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.command)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.erase(data: $data, type: $type)';
+    return 'Widget.erase(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -2231,6 +2573,7 @@ class _$Erase extends Erase with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.erase'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -2240,11 +2583,13 @@ class _$Erase extends Erase with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Erase &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -2254,60 +2599,74 @@ class _$Erase extends Erase with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return erase(data, type);
+    return erase(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return erase?.call(data, type);
+    return erase?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (erase != null) {
-      return erase(data, type);
+      return erase(data, selected, type);
     }
     return orElse();
   }
@@ -2375,11 +2734,13 @@ class _$Erase extends Erase with DiagnosticableTreeMixin {
 }
 
 abstract class Erase extends Widget {
-  const factory Erase({String? data, WidgetType type}) = _$Erase;
+  const factory Erase({String? data, bool selected, WidgetType type}) = _$Erase;
   const Erase._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -2392,7 +2753,7 @@ abstract class $SplitCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $SplitCopyWith(Split value, $Res Function(Split) then) =
       _$SplitCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -2407,6 +2768,7 @@ class _$SplitCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(Split(
@@ -2414,6 +2776,10 @@ class _$SplitCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2425,17 +2791,22 @@ class _$SplitCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Split extends Split with DiagnosticableTreeMixin {
-  const _$Split({this.data, this.type = WidgetType.command}) : super._();
+  const _$Split(
+      {this.data, this.selected = false, this.type = WidgetType.command})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.command)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.split(data: $data, type: $type)';
+    return 'Widget.split(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -2444,6 +2815,7 @@ class _$Split extends Split with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.split'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -2453,11 +2825,13 @@ class _$Split extends Split with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is Split &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -2467,60 +2841,74 @@ class _$Split extends Split with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return split(data, type);
+    return split(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return split?.call(data, type);
+    return split?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (split != null) {
-      return split(data, type);
+      return split(data, selected, type);
     }
     return orElse();
   }
@@ -2588,11 +2976,13 @@ class _$Split extends Split with DiagnosticableTreeMixin {
 }
 
 abstract class Split extends Widget {
-  const factory Split({String? data, WidgetType type}) = _$Split;
+  const factory Split({String? data, bool selected, WidgetType type}) = _$Split;
   const Split._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override
@@ -2605,7 +2995,7 @@ abstract class $NewLineCopyWith<$Res> implements $WidgetCopyWith<$Res> {
   factory $NewLineCopyWith(NewLine value, $Res Function(NewLine) then) =
       _$NewLineCopyWithImpl<$Res>;
   @override
-  $Res call({String? data, WidgetType type});
+  $Res call({String? data, bool selected, WidgetType type});
 }
 
 /// @nodoc
@@ -2620,6 +3010,7 @@ class _$NewLineCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? selected = freezed,
     Object? type = freezed,
   }) {
     return _then(NewLine(
@@ -2627,6 +3018,10 @@ class _$NewLineCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2638,17 +3033,22 @@ class _$NewLineCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NewLine extends NewLine with DiagnosticableTreeMixin {
-  const _$NewLine({this.data, this.type = WidgetType.command}) : super._();
+  const _$NewLine(
+      {this.data, this.selected = false, this.type = WidgetType.command})
+      : super._();
 
   @override
   final String? data;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool selected;
   @JsonKey(defaultValue: WidgetType.command)
   @override
   final WidgetType type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Widget.newline(data: $data, type: $type)';
+    return 'Widget.newline(data: $data, selected: $selected, type: $type)';
   }
 
   @override
@@ -2657,6 +3057,7 @@ class _$NewLine extends NewLine with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'Widget.newline'))
       ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('selected', selected))
       ..add(DiagnosticsProperty('type', type));
   }
 
@@ -2666,11 +3067,13 @@ class _$NewLine extends NewLine with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is NewLine &&
             (identical(other.data, data) || other.data == data) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, type);
+  int get hashCode => Object.hash(runtimeType, data, selected, type);
 
   @JsonKey(ignore: true)
   @override
@@ -2680,60 +3083,74 @@ class _$NewLine extends NewLine with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? data, WidgetType type) paragraph,
-    required TResult Function(String? data, WidgetType type) heading,
-    required TResult Function(String? data, WidgetType type) blockquote,
-    required TResult Function(String? data, WidgetType type) bold,
-    required TResult Function(String? data, WidgetType type) italicize,
-    required TResult Function(String? data, WidgetType type) bulletedList,
-    required TResult Function(String? data, WidgetType type) table,
-    required TResult Function(String? data, WidgetType type) image,
-    required TResult Function(String? data, WidgetType type) duplicate,
-    required TResult Function(String? data, WidgetType type) erase,
-    required TResult Function(String? data, WidgetType type) split,
-    required TResult Function(String? data, WidgetType type) newline,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        paragraph,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        heading,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        blockquote,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bold,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        italicize,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        bulletedList,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        table,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        image,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        duplicate,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        erase,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        split,
+    required TResult Function(String? data, bool selected, WidgetType type)
+        newline,
   }) {
-    return newline(data, type);
+    return newline(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
   }) {
-    return newline?.call(data, type);
+    return newline?.call(data, selected, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? data, WidgetType type)? paragraph,
-    TResult Function(String? data, WidgetType type)? heading,
-    TResult Function(String? data, WidgetType type)? blockquote,
-    TResult Function(String? data, WidgetType type)? bold,
-    TResult Function(String? data, WidgetType type)? italicize,
-    TResult Function(String? data, WidgetType type)? bulletedList,
-    TResult Function(String? data, WidgetType type)? table,
-    TResult Function(String? data, WidgetType type)? image,
-    TResult Function(String? data, WidgetType type)? duplicate,
-    TResult Function(String? data, WidgetType type)? erase,
-    TResult Function(String? data, WidgetType type)? split,
-    TResult Function(String? data, WidgetType type)? newline,
+    TResult Function(String? data, bool selected, WidgetType type)? paragraph,
+    TResult Function(String? data, bool selected, WidgetType type)? heading,
+    TResult Function(String? data, bool selected, WidgetType type)? blockquote,
+    TResult Function(String? data, bool selected, WidgetType type)? bold,
+    TResult Function(String? data, bool selected, WidgetType type)? italicize,
+    TResult Function(String? data, bool selected, WidgetType type)?
+        bulletedList,
+    TResult Function(String? data, bool selected, WidgetType type)? table,
+    TResult Function(String? data, bool selected, WidgetType type)? image,
+    TResult Function(String? data, bool selected, WidgetType type)? duplicate,
+    TResult Function(String? data, bool selected, WidgetType type)? erase,
+    TResult Function(String? data, bool selected, WidgetType type)? split,
+    TResult Function(String? data, bool selected, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (newline != null) {
-      return newline(data, type);
+      return newline(data, selected, type);
     }
     return orElse();
   }
@@ -2801,11 +3218,14 @@ class _$NewLine extends NewLine with DiagnosticableTreeMixin {
 }
 
 abstract class NewLine extends Widget {
-  const factory NewLine({String? data, WidgetType type}) = _$NewLine;
+  const factory NewLine({String? data, bool selected, WidgetType type}) =
+      _$NewLine;
   const NewLine._() : super._();
 
   @override
   String? get data;
+  @override
+  bool get selected;
   @override
   WidgetType get type;
   @override

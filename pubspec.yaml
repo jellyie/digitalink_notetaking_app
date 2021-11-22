@@ -19,6 +19,7 @@ dependencies:
   freezed_annotation: ^0.15.0
   reorderable_grid_view: ^2.0.0-alpha.1
   transparent_pointer: ^1.0.0
+  dotted_border: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:

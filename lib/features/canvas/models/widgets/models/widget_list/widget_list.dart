@@ -7,5 +7,6 @@ part 'widget_list.freezed.dart';
 @freezed
 class WidgetList with _$WidgetList {
   const WidgetList._();
-  const factory WidgetList({required List<Widget> widgets}) = _WidgetList;
+  const factory WidgetList(
+      {required List<Widget> widgets, int? selectedIndex}) = _WidgetList;
 }

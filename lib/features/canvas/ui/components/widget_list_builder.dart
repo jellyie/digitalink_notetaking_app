@@ -3,6 +3,7 @@ import '../../../../providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reorderable_grid_view/reorderable_grid_view.dart';
+import 'package:dotted_border/dotted_border.dart';
 
 class WidgetListBuilder extends ConsumerWidget {
   const WidgetListBuilder({Key? key}) : super(key: key);
@@ -17,17 +18,21 @@ class WidgetListBuilder extends ConsumerWidget {
     Widget buildItem(our.Widget widget) {
       return Material(
         key: ValueKey(widget),
-        borderRadius: BorderRadius.circular(2.0),
+        shape: (widget.selected == true)
+            ? RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(2.0),
+                side: const BorderSide(color: Colors.black),
+              )
+            : null,
         child: InkWell(
           key: ValueKey(widget),
           onTap: () {
-            print('tap detexted: ${list.indexOf(widget)}');
             notifier.setSelectedIndex(list.indexOf(widget));
+            notifier.toggleSelectedWidget();
+            canvasNotifier.toggleIgnore();
           },
           // Hover not working here, need to add this function within WidgetNotifier
-          onHover: (hovering) {
-            notifier.onHover = hovering;
-          },
+          onHover: (hovering) {},
           child: widget.widget,
         ),
       );

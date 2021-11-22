@@ -15,43 +15,63 @@ class Widget with _$Widget {
 
   const factory Widget.paragraph(
       {String? data,
+      @Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Paragraph;
 
   const factory Widget.heading(
-      {String? data, @Default(WidgetType.component) WidgetType type}) = Heading;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.component) WidgetType type}) = Heading;
 
   const factory Widget.blockquote(
       {String? data,
+      @Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Blockquote;
 
   const factory Widget.bold(
-      {String? data, @Default(WidgetType.component) WidgetType type}) = Bold;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.component) WidgetType type}) = Bold;
 
   const factory Widget.italicize(
       {String? data,
+      @Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Italicize;
 
   const factory Widget.bulletedList(
       {String? data,
+      @Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = BulletedList;
 
   const factory Widget.table(
-      {String? data, @Default(WidgetType.component) WidgetType type}) = Table;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.component) WidgetType type}) = Table;
 
   const factory Widget.image(
-      {String? data, @Default(WidgetType.component) WidgetType type}) = Image;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.component) WidgetType type}) = Image;
 
   const factory Widget.duplicate(
-      {String? data, @Default(WidgetType.command) WidgetType type}) = Duplicate;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.command) WidgetType type}) = Duplicate;
 
   const factory Widget.erase(
-      {String? data, @Default(WidgetType.command) WidgetType type}) = Erase;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.command) WidgetType type}) = Erase;
 
   const factory Widget.split(
-      {String? data, @Default(WidgetType.command) WidgetType type}) = Split;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.command) WidgetType type}) = Split;
 
   const factory Widget.newline(
-      {String? data, @Default(WidgetType.command) WidgetType type}) = NewLine;
+      {String? data,
+      @Default(false) bool selected,
+      @Default(WidgetType.command) WidgetType type}) = NewLine;
 
   dynamic get widget => map(
 

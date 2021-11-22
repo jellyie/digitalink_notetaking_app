@@ -5,22 +5,29 @@ import 'models/widget_list/widget_list.dart';
 class WidgetNotifier extends StateNotifier<WidgetList> {
   WidgetNotifier({WidgetList? widgetList})
       : super(
-          widgetList ?? const WidgetList(widgets: []),
+          widgetList ?? const WidgetList(widgets: [], selectedIndex: null),
         ) {
     state = widgetList ??
-        const WidgetList(widgets: [
-          our.Widget.paragraph(data: "Test paragraph"),
-          our.Widget.heading(data: "Test Heading")
-        ]);
+        WidgetList(widgets: [
+          const our.Widget.paragraph(data: "Test paragraph"),
+          const our.Widget.heading(data: "Test Heading")
+        ], selectedIndex: selectedIndex);
   }
 
   bool onHover = false;
 
+  /// Variables to support selection
+  bool selected = false;
   int? selectedIndex;
+  our.Widget? selectedWidget;
 
-  void setSelectedIndex(int i) => selectedIndex = i;
-  our.Widget getSelectedWidget() {
-    return state.widgets[selectedIndex as int];
+  void setSelectedIndex(int i) =>
+      state.copyWith(selectedIndex: selectedIndex = i);
+
+  WidgetList toggleSelectedWidget() {
+    selectedWidget = state.widgets[selectedIndex as int]
+        .copyWith(selected: selected = !selected);
+    return deleteAndReplace(selectedWidget as our.Widget);
   }
 
   /// Returns the length of the WidgetList
@@ -28,11 +35,11 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
 
   /// Returns the type of widget as a String where "type" refers to the Union object Widget,
   /// not the WidgetType parameter within the Union object Widget
-  String _parseToString(our.Widget widget) {
-    String type = widget.toString().split('(').first;
-    type = (type.split('.').last).toUpperCase();
-    return type;
-  }
+  // String _parseToString(our.Widget widget) {
+  //   String type = widget.toString().split('(').first;
+  //   type = (type.split('.').last).toUpperCase();
+  //   return type;
+  // }
 
   /// Reorders the widgets according to the oldIndex and newIndex params
   void reorderWidgets(int oldIndex, int newIndex) {
@@ -53,32 +60,34 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     // Match the new widget to the correct gesture and add it to the WidgetList
     switch (gesture) {
       case "PARAGRAPH":
-        widget = const our.Widget.paragraph();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state.copyWith(
+            widgets: [...state.widgets, const our.Widget.paragraph()]);
       case "HEADING":
-        widget = const our.Widget.heading();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state
+            .copyWith(widgets: [...state.widgets, const our.Widget.heading()]);
       case "BLOCKQUOTE":
-        widget = const our.Widget.blockquote();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state.copyWith(
+            widgets: [...state.widgets, const our.Widget.blockquote()]);
       case "IMAGE":
-        widget = const our.Widget.image();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state
+            .copyWith(widgets: [...state.widgets, const our.Widget.image()]);
       case "TABLE":
-        widget = const our.Widget.table();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state
+            .copyWith(widgets: [...state.widgets, const our.Widget.table()]);
       case "LIST":
-        widget = const our.Widget.bulletedList();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state.copyWith(
+            widgets: [...state.widgets, const our.Widget.bulletedList()]);
       case "BOLD":
-        widget = const our.Widget.bold();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state
+            .copyWith(widgets: [...state.widgets, const our.Widget.bold()]);
       case "ITALICIZE":
-        widget = const our.Widget.italicize();
-        return state = state.copyWith(widgets: [...state.widgets, widget]);
+        return state = state.copyWith(
+            widgets: [...state.widgets, const our.Widget.italicize()]);
       case "DUPLICATE":
-        // Duplicate
-        return state;
+        widget = (selectedWidget as our.Widget).copyWith(selected: false);
+        return state = state.copyWith(widgets: [...state.widgets, widget]);
+      case "ERASE":
+        return deleteWidget();
     }
 
     // Return the current WidgetList if gesture is not valid
@@ -91,18 +100,23 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     // Returns the current WidgetList if there is no selected index
     if (selectedIndex == null) return state;
 
-    List<our.Widget> tempList = List.from(state.widgets);
-    final updatedWidget = getSelectedWidget().copyWith(data: newData);
-    print('update widget to => $updatedWidget');
-    tempList.removeAt(selectedIndex as int);
-    tempList.insert(selectedIndex as int, updatedWidget);
-    return state = state.copyWith(widgets: tempList);
+    final updatedWidget =
+        (selectedWidget as our.Widget).copyWith(data: newData);
+    return deleteAndReplace(updatedWidget);
   }
 
   /// Removes the widget at the selected index
   WidgetList deleteWidget() {
     List<our.Widget> tempList = List.from(state.widgets);
     tempList.removeAt(selectedIndex as int);
+    return state = state.copyWith(widgets: tempList);
+  }
+
+  /// Removes the widget at the selected index and replaces it with the specified widget
+  WidgetList deleteAndReplace(our.Widget widget) {
+    List<our.Widget> tempList = List.from(state.widgets);
+    tempList.removeAt(selectedIndex as int);
+    tempList.insert(selectedIndex as int, widget);
     return state = state.copyWith(widgets: tempList);
   }
 }
