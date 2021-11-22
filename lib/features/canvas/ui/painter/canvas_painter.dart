@@ -12,6 +12,9 @@ class CanvasPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    Paint background = Paint()..color = Colors.white;
+    Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
+    canvas.drawRect(rect, background);
     Paint paint = Paint()
       ..color = Colors.blue
       ..strokeCap = StrokeCap.round

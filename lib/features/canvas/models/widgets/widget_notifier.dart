@@ -1,6 +1,7 @@
 import 'models/widget/widget.dart' as our;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'models/widget/widget.dart';
 import 'models/widget_list/widget_list.dart';
 
 class WidgetNotifier extends StateNotifier<WidgetList> {
@@ -20,6 +21,10 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
   int? selectedIndex;
 
   void setSelectedIndex(int i) => selectedIndex = i;
+
+  our.Widget getSelectedWidget() {
+    return state.widgets[selectedIndex as int];
+  }
 
   /// Returns the length of the WidgetList
   int get length => state.widgets.length;
@@ -77,6 +82,9 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
       case "ITALICIZE":
         widget = const our.Widget.italicize();
         return state = state.copyWith(widgets: [...state.widgets, widget]);
+      case "DUPLICATE":
+        // Duplicate
+        return state;
     }
 
     // Return the current WidgetList if gesture is not valid
@@ -88,9 +96,11 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
   WidgetList updateWidgetData(String newData) {
     // Returns the current WidgetList if the index is null
     // if (selectedIndex != null) return state;
+    if (state.widgets[selectedIndex as int].type == WidgetType.command) {
+      return state;
+    }
     List<our.Widget> tempList = List.from(state.widgets);
-    final updatedWidget =
-        state.widgets[selectedIndex as int].copyWith(data: newData);
+    final updatedWidget = getSelectedWidget().copyWith(data: newData);
     print('update widget to => $updatedWidget');
     tempList.removeAt(selectedIndex as int);
     tempList.insert(selectedIndex as int, updatedWidget);

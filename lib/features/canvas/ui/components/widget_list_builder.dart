@@ -35,7 +35,7 @@ class WidgetListBuilder extends ConsumerWidget {
 
     return Center(
       child: ReorderableGridView.count(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(100.0),
         crossAxisCount: 3,
         crossAxisSpacing: 10.0,
         mainAxisSpacing: 10.0,

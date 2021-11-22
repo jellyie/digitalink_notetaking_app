@@ -41,64 +41,82 @@ class Widget with _$Widget {
   const factory Widget.image(
       {String? data, @Default(WidgetType.component) WidgetType type}) = Image;
 
+  const factory Widget.duplicate(
+      {String? data, @Default(WidgetType.command) WidgetType type}) = Duplicate;
+
+  const factory Widget.erase(
+      {String? data, @Default(WidgetType.command) WidgetType type}) = Erase;
+
+  const factory Widget.split(
+      {String? data, @Default(WidgetType.command) WidgetType type}) = Split;
+
+  const factory Widget.newline(
+      {String? data, @Default(WidgetType.command) WidgetType type}) = NewLine;
+
   dynamic get widget => map(
-        /// Return a Paragraph Widget
-        paragraph: (p) => Text(
-          p.data ?? '',
-          style: const TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.normal,
-              letterSpacing: 0.25),
-        ),
 
-        /// Return a Heading Widget
-        heading: (h) => Text(
-          h.data as String,
-          style: const TextStyle(
-            fontSize: 96.0,
-            fontWeight: FontWeight.w300,
-            letterSpacing: -1.5,
+      /// Return a Paragraph Widget
+      paragraph: (p) => Text(
+            p.data ?? '',
+            style: const TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.normal,
+                letterSpacing: 0.25),
           ),
-        ),
 
-        /// Return a Blockquote Widget
-        blockquote: (b) => Padding(
-          padding: const EdgeInsets.fromLTRB(40, 16, 40, 16),
-          child: Container(
-            child: const Text('Placeholder for blockquote',
-                style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.normal,
-                    letterSpacing: 0.25)),
-            decoration: const BoxDecoration(
-              border: Border(
-                left: BorderSide(
-                  width: 1.0,
+      /// Return a Heading Widget
+      heading: (h) => Text(
+            h.data as String,
+            style: const TextStyle(
+              fontSize: 96.0,
+              fontWeight: FontWeight.w300,
+              letterSpacing: -1.5,
+            ),
+          ),
+
+      /// Return a Blockquote Widget
+      blockquote: (b) => Padding(
+            padding: const EdgeInsets.fromLTRB(40, 16, 40, 16),
+            child: Container(
+              child: const Text('Placeholder for blockquote',
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.normal,
+                      letterSpacing: 0.25)),
+              decoration: const BoxDecoration(
+                border: Border(
+                  left: BorderSide(
+                    width: 1.0,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
 
-        /// Return a Bold Widget
-        bold: (b) => Text(
-          b.data ?? '',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+      /// Return a Bold Widget
+      bold: (b) => Text(
+            b.data ?? '',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
 
-        /// Return an Italicize Widget
-        italicize: (i) => Text(
-          i.data ?? '',
-          style: const TextStyle(fontStyle: FontStyle.italic),
-        ),
+      /// Return an Italicize Widget
+      italicize: (i) => Text(
+            i.data ?? '',
+            style: const TextStyle(fontStyle: FontStyle.italic),
+          ),
 
-        /// Return a BulletedList Widget
-        bulletedList: (b) => const Text('Placeholder for bulleted list'),
+      /// Return a BulletedList Widget
+      bulletedList: (b) => const Text('Placeholder for bulleted list'),
 
-        /// Return a Table Widget
-        table: (t) => const Text('Placeholder for table'),
+      /// Return a Table Widget
+      table: (t) => const Text('Placeholder for table'),
 
-        /// Return an Image Widget
-        image: (i) => const Text('Placeholder for image'),
-      );
+      /// Return an Image Widget
+      image: (i) => const Text('Placeholder for image'),
+
+      /// Command Widgets
+      duplicate: (c) {},
+      erase: (c) {},
+      split: (c) {},
+      newline: (c) {});
 }

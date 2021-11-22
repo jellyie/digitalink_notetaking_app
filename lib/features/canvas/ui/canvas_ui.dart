@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:flutter/rendering.dart';
 
 import '../../../providers.dart';
 import 'components/widget_list_builder.dart';
@@ -30,36 +31,66 @@ class CanvasUI extends ConsumerWidget {
     notifier.readWidgetNotifier(widgetNotifier);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Canvas Screen'),
-      ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey.shade300,
       body: Stack(
         children: [
-          IgnorePointer(
-            ignoring: !notifier.ignore,
-            child: WidgetListBuilder(),
-          ),
-          GestureDetector(
-            child: IgnorePointer(
-              ignoring: notifier.ignore,
-              child: RepaintBoundary(
-                key: notifier.globalkey,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  padding: const EdgeInsets.all(4.0),
-                  child: CustomPaint(
-                    painter: CanvasPainter(state: state),
+          DraggableScrollableSheet(
+              initialChildSize: 1,
+              minChildSize: 0.99,
+              builder: (context, scrollController) {
+                return SingleChildScrollView(
+                  padding: EdgeInsets.symmetric(vertical: 100.0),
+                  controller: scrollController,
+                  // key: notifier.globalkey,
+                  // padding: EdgeInsets.only(top: 100),
+                  child: Center(
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.height * 1.5,
+                          child: GestureDetector(
+                            child: IgnorePointer(
+                              ignoring: notifier.ignore,
+                              child: RepaintBoundary(
+                                key: notifier.globalkey,
+                                child: Container(
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 0.15,
+                                        blurRadius: 15.0,
+                                        offset: Offset(6, 5)),
+                                  ]),
+                                  padding: EdgeInsets.all(10.0),
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                    child: CustomPaint(
+                                      painter: CanvasPainter(state: state),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            onPanStart: notifier.onPanStart,
+                            onPanUpdate: notifier.onPanUpdate,
+                            onPanEnd: notifier.onPanEnd,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.height * 1.5,
+                          child: IgnorePointer(
+                            ignoring: !notifier.ignore,
+                            child: WidgetListBuilder(),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-            ),
-            onPanStart: notifier.onPanStart,
-            onPanUpdate: notifier.onPanUpdate,
-            onPanEnd: notifier.onPanEnd,
-          ),
-
+                );
+              }),
           // Build a button to clear the canvas
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

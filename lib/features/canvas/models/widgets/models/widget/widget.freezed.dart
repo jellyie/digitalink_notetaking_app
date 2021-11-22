@@ -74,6 +74,34 @@ class _$WidgetTearOff {
       type: type,
     );
   }
+
+  Duplicate duplicate({String? data, WidgetType type = WidgetType.command}) {
+    return Duplicate(
+      data: data,
+      type: type,
+    );
+  }
+
+  Erase erase({String? data, WidgetType type = WidgetType.command}) {
+    return Erase(
+      data: data,
+      type: type,
+    );
+  }
+
+  Split split({String? data, WidgetType type = WidgetType.command}) {
+    return Split(
+      data: data,
+      type: type,
+    );
+  }
+
+  NewLine newline({String? data, WidgetType type = WidgetType.command}) {
+    return NewLine(
+      data: data,
+      type: type,
+    );
+  }
 }
 
 /// @nodoc
@@ -94,6 +122,10 @@ mixin _$Widget {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -106,6 +138,10 @@ mixin _$Widget {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -118,6 +154,10 @@ mixin _$Widget {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,6 +171,10 @@ mixin _$Widget {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -143,6 +187,10 @@ mixin _$Widget {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -155,6 +203,10 @@ mixin _$Widget {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -284,6 +336,10 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return paragraph(data, type);
   }
@@ -299,6 +355,10 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return paragraph?.call(data, type);
   }
@@ -314,6 +374,10 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (paragraph != null) {
@@ -333,6 +397,10 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return paragraph(this);
   }
@@ -348,6 +416,10 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return paragraph?.call(this);
   }
@@ -363,6 +435,10 @@ class _$Paragraph extends Paragraph with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (paragraph != null) {
@@ -474,6 +550,10 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return heading(data, type);
   }
@@ -489,6 +569,10 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return heading?.call(data, type);
   }
@@ -504,6 +588,10 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (heading != null) {
@@ -523,6 +611,10 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return heading(this);
   }
@@ -538,6 +630,10 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return heading?.call(this);
   }
@@ -553,6 +649,10 @@ class _$Heading extends Heading with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (heading != null) {
@@ -664,6 +764,10 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return blockquote(data, type);
   }
@@ -679,6 +783,10 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return blockquote?.call(data, type);
   }
@@ -694,6 +802,10 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (blockquote != null) {
@@ -713,6 +825,10 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return blockquote(this);
   }
@@ -728,6 +844,10 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return blockquote?.call(this);
   }
@@ -743,6 +863,10 @@ class _$Blockquote extends Blockquote with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (blockquote != null) {
@@ -854,6 +978,10 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return bold(data, type);
   }
@@ -869,6 +997,10 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return bold?.call(data, type);
   }
@@ -884,6 +1016,10 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (bold != null) {
@@ -903,6 +1039,10 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return bold(this);
   }
@@ -918,6 +1058,10 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return bold?.call(this);
   }
@@ -933,6 +1077,10 @@ class _$Bold extends Bold with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (bold != null) {
@@ -1043,6 +1191,10 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return italicize(data, type);
   }
@@ -1058,6 +1210,10 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return italicize?.call(data, type);
   }
@@ -1073,6 +1229,10 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (italicize != null) {
@@ -1092,6 +1252,10 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return italicize(this);
   }
@@ -1107,6 +1271,10 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return italicize?.call(this);
   }
@@ -1122,6 +1290,10 @@ class _$Italicize extends Italicize with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (italicize != null) {
@@ -1236,6 +1408,10 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return bulletedList(data, type);
   }
@@ -1251,6 +1427,10 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return bulletedList?.call(data, type);
   }
@@ -1266,6 +1446,10 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (bulletedList != null) {
@@ -1285,6 +1469,10 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return bulletedList(this);
   }
@@ -1300,6 +1488,10 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return bulletedList?.call(this);
   }
@@ -1315,6 +1507,10 @@ class _$BulletedList extends BulletedList with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (bulletedList != null) {
@@ -1426,6 +1622,10 @@ class _$Table extends Table with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return table(data, type);
   }
@@ -1441,6 +1641,10 @@ class _$Table extends Table with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return table?.call(data, type);
   }
@@ -1456,6 +1660,10 @@ class _$Table extends Table with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (table != null) {
@@ -1475,6 +1683,10 @@ class _$Table extends Table with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return table(this);
   }
@@ -1490,6 +1702,10 @@ class _$Table extends Table with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return table?.call(this);
   }
@@ -1505,6 +1721,10 @@ class _$Table extends Table with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (table != null) {
@@ -1615,6 +1835,10 @@ class _$Image extends Image with DiagnosticableTreeMixin {
     required TResult Function(String? data, WidgetType type) bulletedList,
     required TResult Function(String? data, WidgetType type) table,
     required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
   }) {
     return image(data, type);
   }
@@ -1630,6 +1854,10 @@ class _$Image extends Image with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
   }) {
     return image?.call(data, type);
   }
@@ -1645,6 +1873,10 @@ class _$Image extends Image with DiagnosticableTreeMixin {
     TResult Function(String? data, WidgetType type)? bulletedList,
     TResult Function(String? data, WidgetType type)? table,
     TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
     required TResult orElse(),
   }) {
     if (image != null) {
@@ -1664,6 +1896,10 @@ class _$Image extends Image with DiagnosticableTreeMixin {
     required TResult Function(BulletedList value) bulletedList,
     required TResult Function(Table value) table,
     required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
   }) {
     return image(this);
   }
@@ -1679,6 +1915,10 @@ class _$Image extends Image with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
   }) {
     return image?.call(this);
   }
@@ -1694,6 +1934,10 @@ class _$Image extends Image with DiagnosticableTreeMixin {
     TResult Function(BulletedList value)? bulletedList,
     TResult Function(Table value)? table,
     TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
     required TResult orElse(),
   }) {
     if (image != null) {
@@ -1714,4 +1958,857 @@ abstract class Image extends Widget {
   @override
   @JsonKey(ignore: true)
   $ImageCopyWith<Image> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DuplicateCopyWith<$Res> implements $WidgetCopyWith<$Res> {
+  factory $DuplicateCopyWith(Duplicate value, $Res Function(Duplicate) then) =
+      _$DuplicateCopyWithImpl<$Res>;
+  @override
+  $Res call({String? data, WidgetType type});
+}
+
+/// @nodoc
+class _$DuplicateCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
+    implements $DuplicateCopyWith<$Res> {
+  _$DuplicateCopyWithImpl(Duplicate _value, $Res Function(Duplicate) _then)
+      : super(_value, (v) => _then(v as Duplicate));
+
+  @override
+  Duplicate get _value => super._value as Duplicate;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(Duplicate(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as WidgetType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Duplicate extends Duplicate with DiagnosticableTreeMixin {
+  const _$Duplicate({this.data, this.type = WidgetType.command}) : super._();
+
+  @override
+  final String? data;
+  @JsonKey(defaultValue: WidgetType.command)
+  @override
+  final WidgetType type;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Widget.duplicate(data: $data, type: $type)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Widget.duplicate'))
+      ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('type', type));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Duplicate &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data, type);
+
+  @JsonKey(ignore: true)
+  @override
+  $DuplicateCopyWith<Duplicate> get copyWith =>
+      _$DuplicateCopyWithImpl<Duplicate>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? data, WidgetType type) paragraph,
+    required TResult Function(String? data, WidgetType type) heading,
+    required TResult Function(String? data, WidgetType type) blockquote,
+    required TResult Function(String? data, WidgetType type) bold,
+    required TResult Function(String? data, WidgetType type) italicize,
+    required TResult Function(String? data, WidgetType type) bulletedList,
+    required TResult Function(String? data, WidgetType type) table,
+    required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
+  }) {
+    return duplicate(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+  }) {
+    return duplicate?.call(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+    required TResult orElse(),
+  }) {
+    if (duplicate != null) {
+      return duplicate(data, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Paragraph value) paragraph,
+    required TResult Function(Heading value) heading,
+    required TResult Function(Blockquote value) blockquote,
+    required TResult Function(Bold value) bold,
+    required TResult Function(Italicize value) italicize,
+    required TResult Function(BulletedList value) bulletedList,
+    required TResult Function(Table value) table,
+    required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
+  }) {
+    return duplicate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+  }) {
+    return duplicate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+    required TResult orElse(),
+  }) {
+    if (duplicate != null) {
+      return duplicate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Duplicate extends Widget {
+  const factory Duplicate({String? data, WidgetType type}) = _$Duplicate;
+  const Duplicate._() : super._();
+
+  @override
+  String? get data;
+  @override
+  WidgetType get type;
+  @override
+  @JsonKey(ignore: true)
+  $DuplicateCopyWith<Duplicate> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EraseCopyWith<$Res> implements $WidgetCopyWith<$Res> {
+  factory $EraseCopyWith(Erase value, $Res Function(Erase) then) =
+      _$EraseCopyWithImpl<$Res>;
+  @override
+  $Res call({String? data, WidgetType type});
+}
+
+/// @nodoc
+class _$EraseCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
+    implements $EraseCopyWith<$Res> {
+  _$EraseCopyWithImpl(Erase _value, $Res Function(Erase) _then)
+      : super(_value, (v) => _then(v as Erase));
+
+  @override
+  Erase get _value => super._value as Erase;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(Erase(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as WidgetType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Erase extends Erase with DiagnosticableTreeMixin {
+  const _$Erase({this.data, this.type = WidgetType.command}) : super._();
+
+  @override
+  final String? data;
+  @JsonKey(defaultValue: WidgetType.command)
+  @override
+  final WidgetType type;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Widget.erase(data: $data, type: $type)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Widget.erase'))
+      ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('type', type));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Erase &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data, type);
+
+  @JsonKey(ignore: true)
+  @override
+  $EraseCopyWith<Erase> get copyWith =>
+      _$EraseCopyWithImpl<Erase>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? data, WidgetType type) paragraph,
+    required TResult Function(String? data, WidgetType type) heading,
+    required TResult Function(String? data, WidgetType type) blockquote,
+    required TResult Function(String? data, WidgetType type) bold,
+    required TResult Function(String? data, WidgetType type) italicize,
+    required TResult Function(String? data, WidgetType type) bulletedList,
+    required TResult Function(String? data, WidgetType type) table,
+    required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
+  }) {
+    return erase(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+  }) {
+    return erase?.call(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+    required TResult orElse(),
+  }) {
+    if (erase != null) {
+      return erase(data, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Paragraph value) paragraph,
+    required TResult Function(Heading value) heading,
+    required TResult Function(Blockquote value) blockquote,
+    required TResult Function(Bold value) bold,
+    required TResult Function(Italicize value) italicize,
+    required TResult Function(BulletedList value) bulletedList,
+    required TResult Function(Table value) table,
+    required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
+  }) {
+    return erase(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+  }) {
+    return erase?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+    required TResult orElse(),
+  }) {
+    if (erase != null) {
+      return erase(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Erase extends Widget {
+  const factory Erase({String? data, WidgetType type}) = _$Erase;
+  const Erase._() : super._();
+
+  @override
+  String? get data;
+  @override
+  WidgetType get type;
+  @override
+  @JsonKey(ignore: true)
+  $EraseCopyWith<Erase> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SplitCopyWith<$Res> implements $WidgetCopyWith<$Res> {
+  factory $SplitCopyWith(Split value, $Res Function(Split) then) =
+      _$SplitCopyWithImpl<$Res>;
+  @override
+  $Res call({String? data, WidgetType type});
+}
+
+/// @nodoc
+class _$SplitCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
+    implements $SplitCopyWith<$Res> {
+  _$SplitCopyWithImpl(Split _value, $Res Function(Split) _then)
+      : super(_value, (v) => _then(v as Split));
+
+  @override
+  Split get _value => super._value as Split;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(Split(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as WidgetType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Split extends Split with DiagnosticableTreeMixin {
+  const _$Split({this.data, this.type = WidgetType.command}) : super._();
+
+  @override
+  final String? data;
+  @JsonKey(defaultValue: WidgetType.command)
+  @override
+  final WidgetType type;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Widget.split(data: $data, type: $type)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Widget.split'))
+      ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('type', type));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Split &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data, type);
+
+  @JsonKey(ignore: true)
+  @override
+  $SplitCopyWith<Split> get copyWith =>
+      _$SplitCopyWithImpl<Split>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? data, WidgetType type) paragraph,
+    required TResult Function(String? data, WidgetType type) heading,
+    required TResult Function(String? data, WidgetType type) blockquote,
+    required TResult Function(String? data, WidgetType type) bold,
+    required TResult Function(String? data, WidgetType type) italicize,
+    required TResult Function(String? data, WidgetType type) bulletedList,
+    required TResult Function(String? data, WidgetType type) table,
+    required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
+  }) {
+    return split(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+  }) {
+    return split?.call(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+    required TResult orElse(),
+  }) {
+    if (split != null) {
+      return split(data, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Paragraph value) paragraph,
+    required TResult Function(Heading value) heading,
+    required TResult Function(Blockquote value) blockquote,
+    required TResult Function(Bold value) bold,
+    required TResult Function(Italicize value) italicize,
+    required TResult Function(BulletedList value) bulletedList,
+    required TResult Function(Table value) table,
+    required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
+  }) {
+    return split(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+  }) {
+    return split?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+    required TResult orElse(),
+  }) {
+    if (split != null) {
+      return split(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Split extends Widget {
+  const factory Split({String? data, WidgetType type}) = _$Split;
+  const Split._() : super._();
+
+  @override
+  String? get data;
+  @override
+  WidgetType get type;
+  @override
+  @JsonKey(ignore: true)
+  $SplitCopyWith<Split> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NewLineCopyWith<$Res> implements $WidgetCopyWith<$Res> {
+  factory $NewLineCopyWith(NewLine value, $Res Function(NewLine) then) =
+      _$NewLineCopyWithImpl<$Res>;
+  @override
+  $Res call({String? data, WidgetType type});
+}
+
+/// @nodoc
+class _$NewLineCopyWithImpl<$Res> extends _$WidgetCopyWithImpl<$Res>
+    implements $NewLineCopyWith<$Res> {
+  _$NewLineCopyWithImpl(NewLine _value, $Res Function(NewLine) _then)
+      : super(_value, (v) => _then(v as NewLine));
+
+  @override
+  NewLine get _value => super._value as NewLine;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? type = freezed,
+  }) {
+    return _then(NewLine(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as WidgetType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NewLine extends NewLine with DiagnosticableTreeMixin {
+  const _$NewLine({this.data, this.type = WidgetType.command}) : super._();
+
+  @override
+  final String? data;
+  @JsonKey(defaultValue: WidgetType.command)
+  @override
+  final WidgetType type;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Widget.newline(data: $data, type: $type)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Widget.newline'))
+      ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('type', type));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NewLine &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data, type);
+
+  @JsonKey(ignore: true)
+  @override
+  $NewLineCopyWith<NewLine> get copyWith =>
+      _$NewLineCopyWithImpl<NewLine>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? data, WidgetType type) paragraph,
+    required TResult Function(String? data, WidgetType type) heading,
+    required TResult Function(String? data, WidgetType type) blockquote,
+    required TResult Function(String? data, WidgetType type) bold,
+    required TResult Function(String? data, WidgetType type) italicize,
+    required TResult Function(String? data, WidgetType type) bulletedList,
+    required TResult Function(String? data, WidgetType type) table,
+    required TResult Function(String? data, WidgetType type) image,
+    required TResult Function(String? data, WidgetType type) duplicate,
+    required TResult Function(String? data, WidgetType type) erase,
+    required TResult Function(String? data, WidgetType type) split,
+    required TResult Function(String? data, WidgetType type) newline,
+  }) {
+    return newline(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+  }) {
+    return newline?.call(data, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? data, WidgetType type)? paragraph,
+    TResult Function(String? data, WidgetType type)? heading,
+    TResult Function(String? data, WidgetType type)? blockquote,
+    TResult Function(String? data, WidgetType type)? bold,
+    TResult Function(String? data, WidgetType type)? italicize,
+    TResult Function(String? data, WidgetType type)? bulletedList,
+    TResult Function(String? data, WidgetType type)? table,
+    TResult Function(String? data, WidgetType type)? image,
+    TResult Function(String? data, WidgetType type)? duplicate,
+    TResult Function(String? data, WidgetType type)? erase,
+    TResult Function(String? data, WidgetType type)? split,
+    TResult Function(String? data, WidgetType type)? newline,
+    required TResult orElse(),
+  }) {
+    if (newline != null) {
+      return newline(data, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Paragraph value) paragraph,
+    required TResult Function(Heading value) heading,
+    required TResult Function(Blockquote value) blockquote,
+    required TResult Function(Bold value) bold,
+    required TResult Function(Italicize value) italicize,
+    required TResult Function(BulletedList value) bulletedList,
+    required TResult Function(Table value) table,
+    required TResult Function(Image value) image,
+    required TResult Function(Duplicate value) duplicate,
+    required TResult Function(Erase value) erase,
+    required TResult Function(Split value) split,
+    required TResult Function(NewLine value) newline,
+  }) {
+    return newline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+  }) {
+    return newline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Paragraph value)? paragraph,
+    TResult Function(Heading value)? heading,
+    TResult Function(Blockquote value)? blockquote,
+    TResult Function(Bold value)? bold,
+    TResult Function(Italicize value)? italicize,
+    TResult Function(BulletedList value)? bulletedList,
+    TResult Function(Table value)? table,
+    TResult Function(Image value)? image,
+    TResult Function(Duplicate value)? duplicate,
+    TResult Function(Erase value)? erase,
+    TResult Function(Split value)? split,
+    TResult Function(NewLine value)? newline,
+    required TResult orElse(),
+  }) {
+    if (newline != null) {
+      return newline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NewLine extends Widget {
+  const factory NewLine({String? data, WidgetType type}) = _$NewLine;
+  const NewLine._() : super._();
+
+  @override
+  String? get data;
+  @override
+  WidgetType get type;
+  @override
+  @JsonKey(ignore: true)
+  $NewLineCopyWith<NewLine> get copyWith => throw _privateConstructorUsedError;
 }
