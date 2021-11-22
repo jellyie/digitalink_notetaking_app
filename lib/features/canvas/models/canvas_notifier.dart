@@ -157,9 +157,9 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// ----------------- Handwriting to Text Recognition ------------------- ///
   /// --------------------------------------------------------------------- ///
   /// Return the value of the handwritten text as recognised string
+  List<String> _candidatesList = [];
   Future<void> recogniseText() async {
     List<Offset> points = [];
-    List<String> _candidatesList = [];
     for (Stroke s in state.strokes) {
       List<Offset> _p = s.strokePoints.map((p) => p.asOffset).toList();
       points.addAll(_p);
@@ -185,16 +185,13 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   }
 
   /// For text candidates
-  List<String> candidatesList = [];
   void updateCandidateData(List<String> c) {
-    candidatesList = c;
-    print(candidatesList);
+    _candidatesList = c;
+    print(_candidatesList);
   }
 
   // For getting the candidatesList
-  List<String> getCandidateData() {
-    return candidatesList;
-  }
+  List<String> get candidatesList => _candidatesList;
 
   /// --------------------------------------------------------------------- ///
   /// -------------------------- Shapes Recognition ----------------------- ///
