@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'models/widget/widget.dart' as our;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'models/widget_list/widget_list.dart';
@@ -103,7 +105,7 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     }
 
     // Return the current WidgetList if gesture is not valid
-    print('Not a gesture');
+    debugPrint('Not a gesture');
     return state;
   }
 
