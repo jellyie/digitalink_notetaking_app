@@ -134,7 +134,8 @@ class Widget with _$Widget {
       /// Return an Image Widget
       image: (i) => const Text('Placeholder for image'),
 
-      /// Command Widgets
+      /// Command Widgets do not return a widget
+      /// This may be removed later actually...
       duplicate: (c) {},
       erase: (c) {},
       split: (c) {},

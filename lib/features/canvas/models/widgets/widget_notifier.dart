@@ -78,11 +78,13 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
         return state = state.copyWith(
             widgets: [...state.widgets, const our.Widget.bulletedList()]);
       case "BOLD":
-        return state = state
-            .copyWith(widgets: [...state.widgets, const our.Widget.bold()]);
-      case "ITALICIZE":
-        return state = state.copyWith(
-            widgets: [...state.widgets, const our.Widget.italicize()]);
+        widget = const our.Widget.bold()
+            .copyWith(data: (selectedWidget as our.Widget).data);
+        return deleteAndReplace(widget);
+      case "ITALIC":
+        widget = const our.Widget.italicize()
+            .copyWith(data: (selectedWidget as our.Widget).data);
+        return deleteAndReplace(widget);
       case "DUPLICATE":
         widget = (selectedWidget as our.Widget).copyWith(selected: false);
         return state = state.copyWith(widgets: [...state.widgets, widget]);
