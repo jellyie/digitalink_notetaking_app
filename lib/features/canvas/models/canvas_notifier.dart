@@ -33,6 +33,10 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     _languageModelManager.downloadModel(_language);
   }
 
+<<<<<<< HEAD
+=======
+  // final Stopwatch _timer = Stopwatch();
+>>>>>>> 5b041db (Add timer)
   final oneSec = const Duration(seconds: 1);
   late Timer _timer;
   bool _timerInitialized = false;
@@ -113,8 +117,14 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       if (_timerInitialized == true) {
         _timer.cancel();
         _timerInitialized = false;
+<<<<<<< HEAD
         debugPrint("new pen input, timer stops");
       }
+=======
+        print("new pen input, timer stops");
+      }
+      // _timer.stop();
+>>>>>>> 5b041db (Add timer)
       state = state.copyWith(
         activeStroke: Stroke(strokePoints: [_getPoint(d.localPosition)]),
       );
@@ -133,6 +143,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   void onPanEnd(DragEndDetails d) {
     if (state is GestureMode) {
       state = _completeStroke(state);
+<<<<<<< HEAD
       _timerInitialized = true;
       _timer = Timer(const Duration(milliseconds: 1500), () {
         if (_timerInitialized) {
@@ -144,6 +155,16 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
             clear();
           }
         }
+=======
+      // if (_timer.isRunning && _timer.elapsedMilliseconds > 1000) {
+      //   print('recognise?');
+      //   _timer.stop();
+      //   recogniseShape(_trainingSet);
+      // }
+      _timerInitialized = true;
+      _timer = Timer(Duration(seconds: 2), () {
+        print("no other input, recognize gesture");
+>>>>>>> 5b041db (Add timer)
       });
     }
   }
