@@ -42,6 +42,7 @@ class WidgetListBuilder extends ConsumerWidget {
           // Hover not working here, need to add this function within WidgetNotifier
           onHover: (hovering) {},
           // Show candidates when it's the selected widget
+<<<<<<< HEAD
           onDoubleTap: () {
             debugPrint('double tap');
             List<String> candidatesList = canvasNotifier.candidatesList;
@@ -49,6 +50,14 @@ class WidgetListBuilder extends ConsumerWidget {
             // Check if the widget is selected and candidates exist
             if (widget.selected == true &&
                 canvasNotifier.candidatesList.isNotEmpty) {
+=======
+          onLongPress: () {
+            List<String> candidatesList = canvasNotifier.getCandidateData();
+
+            // Check if the widget is selected and candidates exist
+            if (widget.selected == true &&
+                canvasNotifier.getCandidateData().isNotEmpty) {
+>>>>>>> d41edb1 (Move candidate methods to canvas notifier)
               showMenu(
                   context: context,
                   position: const RelativeRect.fromLTRB(0, 0, 0, 0),

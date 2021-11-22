@@ -132,16 +132,4 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     tempList.insert(selectedIndex as int, widget);
     return state = state.copyWith(widgets: tempList);
   }
-
-  /// For text candidates
-  List<String> candidatesList = [];
-  void updateCandidateData(List<String> c) {
-    candidatesList = c;
-    print(candidatesList);
-  }
-
-  // For getting the candidatesList
-  List<String> getCandidateData() {
-    return candidatesList;
-  }
 }

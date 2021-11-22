@@ -174,6 +174,9 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       _timer = Timer(const Duration(seconds: 1), () {
 >>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
         if (_timerInitialized == true) {
+          if (_notifier.selected) {
+            recogniseText();
+          }
           recogniseShape(_trainingSet);
           debugPrint("no other input, recognize gesture");
           clear();
@@ -220,14 +223,19 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     _notifier.updateWidgetData(_recogniseText);
     //update the candidateList
 <<<<<<< HEAD
+<<<<<<< HEAD
     //updateCandidateData(_candidatesList);
 =======
     _notifier.updateCandidateData(_candidatesList);
 >>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
+=======
+    updateCandidateData(_candidatesList);
+>>>>>>> d41edb1 (Move candidate methods to canvas notifier)
     debugPrint('Recognised as......$_recogniseText');
   }
 
   /// For text candidates
+<<<<<<< HEAD
   void updateCandidateData(List<String> c) {
     _candidatesList = c;
     print(_candidatesList);
@@ -235,6 +243,18 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
 
   // For getting the candidatesList
   List<String> get candidatesList => _candidatesList;
+=======
+  List<String> candidatesList = [];
+  void updateCandidateData(List<String> c) {
+    candidatesList = c;
+    print(candidatesList);
+  }
+
+  // For getting the candidatesList
+  List<String> getCandidateData() {
+    return candidatesList;
+  }
+>>>>>>> d41edb1 (Move candidate methods to canvas notifier)
 
   /// --------------------------------------------------------------------- ///
   /// -------------------------- Shapes Recognition ----------------------- ///
