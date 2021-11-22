@@ -91,6 +91,7 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     List<our.Widget> tempList = List.from(state.widgets);
     final updatedWidget =
         state.widgets[selectedIndex as int].copyWith(data: newData);
+    print('update widget to => $updatedWidget');
     tempList.removeAt(selectedIndex as int);
     tempList.insert(selectedIndex as int, updatedWidget);
     return state = state.copyWith(widgets: tempList);

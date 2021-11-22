@@ -37,12 +37,12 @@ class CanvasUI extends ConsumerWidget {
       body: Stack(
         children: [
           IgnorePointer(
-            ignoring: notifier.ignore,
+            ignoring: !notifier.ignore,
             child: WidgetListBuilder(),
           ),
           GestureDetector(
             child: IgnorePointer(
-              ignoring: !notifier.ignore,
+              ignoring: notifier.ignore,
               child: RepaintBoundary(
                 key: notifier.globalkey,
                 child: Container(
@@ -71,7 +71,7 @@ class CanvasUI extends ConsumerWidget {
                   child: const Text('Clear'),
                   onPressed: () {
                     notifier.clear();
-                    notifier.ignoreToFalse();
+                    //notifier.ignoreToFalse();
                   },
                 ),
               ),
@@ -102,6 +102,15 @@ class CanvasUI extends ConsumerWidget {
                   onPressed: () {
                     // notifier.recgoniseText();
                     notifier.recogniseShape(_trainingSet);
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ElevatedButton(
+                  child: Text('Recognize text'),
+                  onPressed: () {
+                    notifier.recogniseText();
                   },
                 ),
               ),

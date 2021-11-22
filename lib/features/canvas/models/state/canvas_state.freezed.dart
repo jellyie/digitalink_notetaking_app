@@ -17,21 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CanvasStateTearOff {
   const _$CanvasStateTearOff();
 
-  GestureMode gesture({required Canvas canvas, Stroke? activeStroke}) {
+  GestureMode gesture(
+      {required Canvas canvas, required bool ignore, Stroke? activeStroke}) {
     return GestureMode(
       canvas: canvas,
+      ignore: ignore,
       activeStroke: activeStroke,
-    );
-  }
-
-  HandwritingMode handwriting(
-      {required Canvas canvas,
-      Stroke? activeStroke,
-      required WidgetListBuilder widgetListBuilder}) {
-    return HandwritingMode(
-      canvas: canvas,
-      activeStroke: activeStroke,
-      widgetListBuilder: widgetListBuilder,
     );
   }
 }
@@ -42,49 +33,39 @@ const $CanvasState = _$CanvasStateTearOff();
 /// @nodoc
 mixin _$CanvasState {
   Canvas get canvas => throw _privateConstructorUsedError;
+  bool get ignore => throw _privateConstructorUsedError;
   Stroke? get activeStroke => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Canvas canvas, Stroke? activeStroke) gesture,
-    required TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)
-        handwriting,
+    required TResult Function(Canvas canvas, bool ignore, Stroke? activeStroke)
+        gesture,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)?
-        handwriting,
+    TResult Function(Canvas canvas, bool ignore, Stroke? activeStroke)? gesture,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)?
-        handwriting,
+    TResult Function(Canvas canvas, bool ignore, Stroke? activeStroke)? gesture,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GestureMode value) gesture,
-    required TResult Function(HandwritingMode value) handwriting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GestureMode value)? gesture,
-    TResult Function(HandwritingMode value)? handwriting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GestureMode value)? gesture,
-    TResult Function(HandwritingMode value)? handwriting,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,7 +80,7 @@ abstract class $CanvasStateCopyWith<$Res> {
   factory $CanvasStateCopyWith(
           CanvasState value, $Res Function(CanvasState) then) =
       _$CanvasStateCopyWithImpl<$Res>;
-  $Res call({Canvas canvas, Stroke? activeStroke});
+  $Res call({Canvas canvas, bool ignore, Stroke? activeStroke});
 
   $CanvasCopyWith<$Res> get canvas;
   $StrokeCopyWith<$Res>? get activeStroke;
@@ -116,6 +97,7 @@ class _$CanvasStateCopyWithImpl<$Res> implements $CanvasStateCopyWith<$Res> {
   @override
   $Res call({
     Object? canvas = freezed,
+    Object? ignore = freezed,
     Object? activeStroke = freezed,
   }) {
     return _then(_value.copyWith(
@@ -123,6 +105,10 @@ class _$CanvasStateCopyWithImpl<$Res> implements $CanvasStateCopyWith<$Res> {
           ? _value.canvas
           : canvas // ignore: cast_nullable_to_non_nullable
               as Canvas,
+      ignore: ignore == freezed
+          ? _value.ignore
+          : ignore // ignore: cast_nullable_to_non_nullable
+              as bool,
       activeStroke: activeStroke == freezed
           ? _value.activeStroke
           : activeStroke // ignore: cast_nullable_to_non_nullable
@@ -156,7 +142,7 @@ abstract class $GestureModeCopyWith<$Res>
           GestureMode value, $Res Function(GestureMode) then) =
       _$GestureModeCopyWithImpl<$Res>;
   @override
-  $Res call({Canvas canvas, Stroke? activeStroke});
+  $Res call({Canvas canvas, bool ignore, Stroke? activeStroke});
 
   @override
   $CanvasCopyWith<$Res> get canvas;
@@ -177,6 +163,7 @@ class _$GestureModeCopyWithImpl<$Res> extends _$CanvasStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? canvas = freezed,
+    Object? ignore = freezed,
     Object? activeStroke = freezed,
   }) {
     return _then(GestureMode(
@@ -184,6 +171,10 @@ class _$GestureModeCopyWithImpl<$Res> extends _$CanvasStateCopyWithImpl<$Res>
           ? _value.canvas
           : canvas // ignore: cast_nullable_to_non_nullable
               as Canvas,
+      ignore: ignore == freezed
+          ? _value.ignore
+          : ignore // ignore: cast_nullable_to_non_nullable
+              as bool,
       activeStroke: activeStroke == freezed
           ? _value.activeStroke
           : activeStroke // ignore: cast_nullable_to_non_nullable
@@ -195,16 +186,20 @@ class _$GestureModeCopyWithImpl<$Res> extends _$CanvasStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
-  const _$GestureMode({required this.canvas, this.activeStroke}) : super._();
+  const _$GestureMode(
+      {required this.canvas, required this.ignore, this.activeStroke})
+      : super._();
 
   @override
   final Canvas canvas;
+  @override
+  final bool ignore;
   @override
   final Stroke? activeStroke;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CanvasState.gesture(canvas: $canvas, activeStroke: $activeStroke)';
+    return 'CanvasState.gesture(canvas: $canvas, ignore: $ignore, activeStroke: $activeStroke)';
   }
 
   @override
@@ -213,6 +208,7 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'CanvasState.gesture'))
       ..add(DiagnosticsProperty('canvas', canvas))
+      ..add(DiagnosticsProperty('ignore', ignore))
       ..add(DiagnosticsProperty('activeStroke', activeStroke));
   }
 
@@ -222,12 +218,13 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is GestureMode &&
             (identical(other.canvas, canvas) || other.canvas == canvas) &&
+            (identical(other.ignore, ignore) || other.ignore == ignore) &&
             (identical(other.activeStroke, activeStroke) ||
                 other.activeStroke == activeStroke));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, canvas, activeStroke);
+  int get hashCode => Object.hash(runtimeType, canvas, ignore, activeStroke);
 
   @JsonKey(ignore: true)
   @override
@@ -237,36 +234,28 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Canvas canvas, Stroke? activeStroke) gesture,
-    required TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)
-        handwriting,
+    required TResult Function(Canvas canvas, bool ignore, Stroke? activeStroke)
+        gesture,
   }) {
-    return gesture(canvas, activeStroke);
+    return gesture(canvas, ignore, activeStroke);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)?
-        handwriting,
+    TResult Function(Canvas canvas, bool ignore, Stroke? activeStroke)? gesture,
   }) {
-    return gesture?.call(canvas, activeStroke);
+    return gesture?.call(canvas, ignore, activeStroke);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)?
-        handwriting,
+    TResult Function(Canvas canvas, bool ignore, Stroke? activeStroke)? gesture,
     required TResult orElse(),
   }) {
     if (gesture != null) {
-      return gesture(canvas, activeStroke);
+      return gesture(canvas, ignore, activeStroke);
     }
     return orElse();
   }
@@ -275,7 +264,6 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GestureMode value) gesture,
-    required TResult Function(HandwritingMode value) handwriting,
   }) {
     return gesture(this);
   }
@@ -284,7 +272,6 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GestureMode value)? gesture,
-    TResult Function(HandwritingMode value)? handwriting,
   }) {
     return gesture?.call(this);
   }
@@ -293,7 +280,6 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GestureMode value)? gesture,
-    TResult Function(HandwritingMode value)? handwriting,
     required TResult orElse(),
   }) {
     if (gesture != null) {
@@ -304,207 +290,20 @@ class _$GestureMode extends GestureMode with DiagnosticableTreeMixin {
 }
 
 abstract class GestureMode extends CanvasState {
-  const factory GestureMode({required Canvas canvas, Stroke? activeStroke}) =
-      _$GestureMode;
+  const factory GestureMode(
+      {required Canvas canvas,
+      required bool ignore,
+      Stroke? activeStroke}) = _$GestureMode;
   const GestureMode._() : super._();
 
   @override
   Canvas get canvas;
   @override
+  bool get ignore;
+  @override
   Stroke? get activeStroke;
   @override
   @JsonKey(ignore: true)
   $GestureModeCopyWith<GestureMode> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $HandwritingModeCopyWith<$Res>
-    implements $CanvasStateCopyWith<$Res> {
-  factory $HandwritingModeCopyWith(
-          HandwritingMode value, $Res Function(HandwritingMode) then) =
-      _$HandwritingModeCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {Canvas canvas,
-      Stroke? activeStroke,
-      WidgetListBuilder widgetListBuilder});
-
-  @override
-  $CanvasCopyWith<$Res> get canvas;
-  @override
-  $StrokeCopyWith<$Res>? get activeStroke;
-}
-
-/// @nodoc
-class _$HandwritingModeCopyWithImpl<$Res>
-    extends _$CanvasStateCopyWithImpl<$Res>
-    implements $HandwritingModeCopyWith<$Res> {
-  _$HandwritingModeCopyWithImpl(
-      HandwritingMode _value, $Res Function(HandwritingMode) _then)
-      : super(_value, (v) => _then(v as HandwritingMode));
-
-  @override
-  HandwritingMode get _value => super._value as HandwritingMode;
-
-  @override
-  $Res call({
-    Object? canvas = freezed,
-    Object? activeStroke = freezed,
-    Object? widgetListBuilder = freezed,
-  }) {
-    return _then(HandwritingMode(
-      canvas: canvas == freezed
-          ? _value.canvas
-          : canvas // ignore: cast_nullable_to_non_nullable
-              as Canvas,
-      activeStroke: activeStroke == freezed
-          ? _value.activeStroke
-          : activeStroke // ignore: cast_nullable_to_non_nullable
-              as Stroke?,
-      widgetListBuilder: widgetListBuilder == freezed
-          ? _value.widgetListBuilder
-          : widgetListBuilder // ignore: cast_nullable_to_non_nullable
-              as WidgetListBuilder,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$HandwritingMode extends HandwritingMode with DiagnosticableTreeMixin {
-  const _$HandwritingMode(
-      {required this.canvas,
-      this.activeStroke,
-      required this.widgetListBuilder})
-      : super._();
-
-  @override
-  final Canvas canvas;
-  @override
-  final Stroke? activeStroke;
-  @override
-  final WidgetListBuilder widgetListBuilder;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CanvasState.handwriting(canvas: $canvas, activeStroke: $activeStroke, widgetListBuilder: $widgetListBuilder)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CanvasState.handwriting'))
-      ..add(DiagnosticsProperty('canvas', canvas))
-      ..add(DiagnosticsProperty('activeStroke', activeStroke))
-      ..add(DiagnosticsProperty('widgetListBuilder', widgetListBuilder));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is HandwritingMode &&
-            (identical(other.canvas, canvas) || other.canvas == canvas) &&
-            (identical(other.activeStroke, activeStroke) ||
-                other.activeStroke == activeStroke) &&
-            (identical(other.widgetListBuilder, widgetListBuilder) ||
-                other.widgetListBuilder == widgetListBuilder));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, canvas, activeStroke, widgetListBuilder);
-
-  @JsonKey(ignore: true)
-  @override
-  $HandwritingModeCopyWith<HandwritingMode> get copyWith =>
-      _$HandwritingModeCopyWithImpl<HandwritingMode>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Canvas canvas, Stroke? activeStroke) gesture,
-    required TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)
-        handwriting,
-  }) {
-    return handwriting(canvas, activeStroke, widgetListBuilder);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)?
-        handwriting,
-  }) {
-    return handwriting?.call(canvas, activeStroke, widgetListBuilder);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Canvas canvas, Stroke? activeStroke)? gesture,
-    TResult Function(Canvas canvas, Stroke? activeStroke,
-            WidgetListBuilder widgetListBuilder)?
-        handwriting,
-    required TResult orElse(),
-  }) {
-    if (handwriting != null) {
-      return handwriting(canvas, activeStroke, widgetListBuilder);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GestureMode value) gesture,
-    required TResult Function(HandwritingMode value) handwriting,
-  }) {
-    return handwriting(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GestureMode value)? gesture,
-    TResult Function(HandwritingMode value)? handwriting,
-  }) {
-    return handwriting?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GestureMode value)? gesture,
-    TResult Function(HandwritingMode value)? handwriting,
-    required TResult orElse(),
-  }) {
-    if (handwriting != null) {
-      return handwriting(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class HandwritingMode extends CanvasState {
-  const factory HandwritingMode(
-      {required Canvas canvas,
-      Stroke? activeStroke,
-      required WidgetListBuilder widgetListBuilder}) = _$HandwritingMode;
-  const HandwritingMode._() : super._();
-
-  @override
-  Canvas get canvas;
-  @override
-  Stroke? get activeStroke;
-  WidgetListBuilder get widgetListBuilder;
-  @override
-  @JsonKey(ignore: true)
-  $HandwritingModeCopyWith<HandwritingMode> get copyWith =>
       throw _privateConstructorUsedError;
 }

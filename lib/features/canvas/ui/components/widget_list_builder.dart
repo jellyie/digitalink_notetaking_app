@@ -1,4 +1,3 @@
-import 'package:digitalink_notetaking_app/features/canvas/models/canvas_notifier.dart';
 import 'package:digitalink_notetaking_app/features/canvas/models/widgets/models/widget/widget.dart'
     as our;
 import '../../../../providers.dart';

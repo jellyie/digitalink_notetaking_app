@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import '../../widget_model.dart';
 
 part 'widget.freezed.dart';
+
+enum WidgetType {
+  command,
+  component,
+}
 
 @freezed
 class Widget with _$Widget {

@@ -17,9 +17,11 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   CanvasNotifier({Canvas? canvas})
       : super(CanvasState.gesture(
           canvas: canvas ?? const Canvas(strokes: []),
+          ignore: false,
         )) {
     state = CanvasState.gesture(
       canvas: canvas ?? const Canvas(strokes: []),
+      ignore: ignore,
     );
     _languageModelManager.downloadModel(_language);
   }
@@ -32,8 +34,9 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// Used to switch between the Canvas layer and the WidgetListBuilder layer
   /// due to Stack terminating Hit Testing after the first widget (visually)
   /// on top of another widget in the same stack is hit
-  bool ignore = true;
-  bool ignoreToFalse() => ignore = !ignore;
+  bool ignore = false;
+  CanvasState ignoreToFalse() =>
+      state = state.copyWith(ignore: ignore = !ignore);
 
   // Initiate digital ink recogniser
   final DigitalInkRecogniser _digitalInkRecogniser =
@@ -118,9 +121,9 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   }
 
   /// Clear the state or reset the canvas
-  void clear() {
-    ignoreToFalse();
-    state = const CanvasState.gesture(canvas: Canvas(strokes: []));
+  CanvasState clear() {
+    return state =
+        CanvasState.gesture(canvas: const Canvas(strokes: []), ignore: ignore);
   }
 
   /// Return the value of the handwritten text as recognised string
@@ -134,10 +137,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     try {
       final candidates =
           await _digitalInkRecogniser.readText(points, _language);
-      _recogniseText = "";
-      for (final candidate in candidates) {
-        _recogniseText += "\n ${candidate.text}";
-      }
+      _recogniseText = (candidates.first).text;
     } catch (e) {
       print(e.toString());
     }
