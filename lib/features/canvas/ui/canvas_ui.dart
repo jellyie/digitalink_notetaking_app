@@ -15,7 +15,8 @@ final canvasNotifierProvider =
         (ref) => CanvasNotifier());
 
 class CanvasUI extends ConsumerWidget {
-  const CanvasUI({Key? key}) : super(key: key);
+  final WidgetData widgetData;
+  const CanvasUI({Key? key, required this.widgetData}) : super(key: key);
 
   static final List<Gesture> _trainingSet = Templates.templates;
 
@@ -29,8 +30,8 @@ class CanvasUI extends ConsumerWidget {
           title: const Text('Canvas Screen'),
         ),
         backgroundColor: Colors.white,
-        body: provider.ChangeNotifierProvider<WidgetData>(
-            create: (_) => WidgetData(),
+        body: provider.ChangeNotifierProvider<WidgetData>.value(
+            value: widgetData,
             child: provider.Consumer<WidgetData>(
                 builder: (context, WidgetData widgetData, child) {
               return Row(children: [
