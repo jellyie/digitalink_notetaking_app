@@ -85,6 +85,11 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
         widget = const our.Widget.italicize()
             .copyWith(data: (selectedWidget as our.Widget).data);
         return deleteAndReplace(widget);
+      case "NEWLINE":
+        final String oldData = (selectedWidget as our.Widget).data.toString();
+        widget = (selectedWidget as our.Widget)
+            .copyWith(data: '$oldData \n new line');
+        return deleteAndReplace(widget);
       case "DUPLICATE":
         widget = (selectedWidget as our.Widget).copyWith(selected: false);
         return state = state.copyWith(widgets: [...state.widgets, widget]);
