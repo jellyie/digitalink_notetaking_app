@@ -107,16 +107,6 @@ class CanvasUI extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
-                  child: Text('Swap layers'),
-                  onPressed: () {
-                    // notifier.ignoreToFalse();
-                    //print(notifier.ignore);
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
                   child: Text('Delete'),
                   onPressed: () {
                     widgetNotifier.deleteWidget();
