@@ -134,14 +134,15 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     if (state is GestureMode) {
       state = _completeStroke(state);
       _timerInitialized = true;
-      _timer = Timer(const Duration(seconds: 1), () {
-        if (_timerInitialized == true) {
+      _timer = Timer(const Duration(milliseconds: 1500), () {
+        if (_timerInitialized) {
           if (_notifier.selected) {
             recogniseText();
+            clear();
+          } else {
+            recogniseShape(_trainingSet);
+            clear();
           }
-          recogniseShape(_trainingSet);
-          debugPrint("no other input, recognize gesture");
-          clear();
         }
       });
     }
