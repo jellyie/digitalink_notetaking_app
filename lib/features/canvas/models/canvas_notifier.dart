@@ -163,8 +163,14 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       // }
       _timerInitialized = true;
       _timer = Timer(Duration(seconds: 2), () {
+<<<<<<< HEAD
         print("no other input, recognize gesture");
 >>>>>>> 5b041db (Add timer)
+=======
+        if (_timerInitialized == true) {
+          print("no other input, recognize gesture");
+        }
+>>>>>>> 6b1db0e (Timer)
       });
     }
   }
