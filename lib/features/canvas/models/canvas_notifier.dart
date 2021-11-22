@@ -114,9 +114,8 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       if (_timerInitialized == true) {
         _timer.cancel();
         _timerInitialized = false;
-        print("new pen input, timer stops");
+        debugPrint("new pen input, timer stops");
       }
-      // _timer.stop();
       state = state.copyWith(
         activeStroke: Stroke(strokePoints: [_getPoint(d.localPosition)]),
       );
@@ -134,18 +133,13 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   /// Complete the current stroke
   void onPanEnd(DragEndDetails d) {
     if (state is GestureMode) {
-      // print('is timer running? ${_timer.isRunning}');
-      // print(_timer.elapsed);
       state = _completeStroke(state);
-      // if (_timer.isRunning && _timer.elapsedMilliseconds > 1000) {
-      //   print('recognise?');
-      //   _timer.stop();
-      //   recogniseShape(_trainingSet);
-      // }
       _timerInitialized = true;
-      _timer = Timer(Duration(seconds: 2), () {
+      _timer = Timer(const Duration(seconds: 1), () {
         if (_timerInitialized == true) {
-          print("no other input, recognize gesture");
+          recogniseShape(_trainingSet);
+          debugPrint("no other input, recognize gesture");
+          clear();
         }
       });
     }
@@ -177,12 +171,12 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
         _candidatesList.add(candidates[i].text);
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
     _notifier.updateWidgetData(_recogniseText);
     //update the candidateList
     _notifier.updateCandidateData(_candidatesList);
-    print('Recognised as......$_recogniseText');
+    debugPrint('Recognised as......$_recogniseText');
   }
 
   /// Return the value of the drawn shape as a string
@@ -192,7 +186,7 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     }
     _gesture = _recognizer.recognize(Gesture(qpoints), g);
     qpoints = []; // reset after recognition
-    print('Recognised as......$_gesture');
+    debugPrint('Recognised as......$_gesture');
     _notifier.addWidget(_gesture);
   }
 

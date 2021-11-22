@@ -59,6 +59,8 @@
 ///
 
 import 'dart:math';
+import 'package:flutter/material.dart';
+
 import '../q_dollar_recognizer/point.dart';
 
 /// Implements a gesture as a cloud of points (i.e., an unordered set of points).
@@ -82,7 +84,7 @@ class Gesture {
   Gesture(this.points, {this.name = ''}) {
     rawPoints = List<Point>.of(points, growable: false);
     normalize();
-    print('\n\nGesture: $name \n'); // for debugging..
+    debugPrint('\n\nGesture: $name \n'); // for debugging..
   }
 
   /// Normalizes the gesture path.

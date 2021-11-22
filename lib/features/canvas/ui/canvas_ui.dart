@@ -81,7 +81,7 @@ class CanvasUI extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
-                            ignoring: notifier.ignore,
+                            ignoring: true,
                             child: WidgetListBuilder(),
                           ),
                         ),
@@ -102,15 +102,6 @@ class CanvasUI extends ConsumerWidget {
                   child: const Text('Clear'),
                   onPressed: () {
                     notifier.clear();
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  child: Text('Delete'),
-                  onPressed: () {
-                    widgetNotifier.deleteWidget();
                   },
                 ),
               ),
