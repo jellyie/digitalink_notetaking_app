@@ -17,13 +17,13 @@ class DirectoryUI extends ConsumerWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('TextField in Dialog'),
+            title: Text('New file'),
             content: TextField(
               onChanged: (value) {
                 valueText = value;
               },
               controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Text Field in Dialog"),
+              decoration: InputDecoration(hintText: "Input file name"),
             ),
             actions: <Widget>[
               TextButton(
