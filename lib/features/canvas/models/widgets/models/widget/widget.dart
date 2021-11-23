@@ -1,3 +1,4 @@
+import '../../widget_library/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
@@ -129,7 +130,7 @@ class Widget with _$Widget {
       bulletedList: (b) => const Text('Placeholder for bulleted list'),
 
       /// Return a Table Widget
-      table: (t) => const Text('Placeholder for table'),
+      table: (t) => const TableWidget(),
 
       /// Return an Image Widget
       image: (i) => const Text('Placeholder for image'),

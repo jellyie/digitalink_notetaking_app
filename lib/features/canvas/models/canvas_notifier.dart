@@ -167,14 +167,16 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     }
 
     try {
-      final candidates =
-          await _digitalInkRecogniser.readText(points, _language);
-      _recogniseText = (candidates.first).text;
+      if (points.isNotEmpty) {
+        final candidates =
+            await _digitalInkRecogniser.readText(points, _language);
+        _recogniseText = (candidates.first).text;
 
-      _candidatesList = [];
-      // store the first 5 candidates
-      for (int i = 0; i < 5; i++) {
-        _candidatesList.add(candidates[i].text);
+        _candidatesList = [];
+        // store the first 5 candidates
+        for (int i = 0; i < 5; i++) {
+          _candidatesList.add(candidates[i].text);
+        }
       }
     } catch (e) {
       debugPrint(e.toString());
