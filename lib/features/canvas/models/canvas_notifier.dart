@@ -113,24 +113,14 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
       if (_timerInitialized == true) {
         _timer.cancel();
         _timerInitialized = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
         debugPrint("new pen input, timer stops");
       }
-=======
-        print("new pen input, timer stops");
       }
-      // _timer.stop();
->>>>>>> 5b041db (Add timer)
-=======
-        debugPrint("new pen input, timer stops");
-      }
->>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
       state = state.copyWith(
         activeStroke: Stroke(strokePoints: [_getPoint(d.localPosition)]),
       );
     }
-  }
+  
 
   /// Update the state with the new point and append a new stroke
   void onPanUpdate(DragUpdateDetails d) {
@@ -144,8 +134,6 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   void onPanEnd(DragEndDetails d) {
     if (state is GestureMode) {
       state = _completeStroke(state);
-<<<<<<< HEAD
-<<<<<<< HEAD
       _timerInitialized = true;
       _timer = Timer(const Duration(milliseconds: 1500), () {
         if (_timerInitialized) {
@@ -155,42 +143,11 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
           } else {
             recogniseShape(_trainingSet);
             clear();
-          }
-        }
-=======
-      // if (_timer.isRunning && _timer.elapsedMilliseconds > 1000) {
-      //   print('recognise?');
-      //   _timer.stop();
-      //   recogniseShape(_trainingSet);
-      // }
-      _timerInitialized = true;
-      _timer = Timer(Duration(seconds: 2), () {
-<<<<<<< HEAD
-        print("no other input, recognize gesture");
->>>>>>> 5b041db (Add timer)
-=======
-=======
-      _timerInitialized = true;
-<<<<<<< HEAD
-      _timer = Timer(const Duration(seconds: 1), () {
->>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
-        if (_timerInitialized == true) {
-=======
-      _timer = Timer(const Duration(milliseconds: 1500), () {
-        if (_timerInitialized) {
->>>>>>> 6abf9d9 (Shape and handwriting recognition happens automatically)
-          if (_notifier.selected) {
-            recogniseText();
-            clear();
-          } else {
-            recogniseShape(_trainingSet);
-            clear();
-          }
-        }
->>>>>>> 6b1db0e (Timer)
-      });
+          
     }
-  }
+        }
+  });
+    }
 
   /// Clear the state or reset the canvas
   CanvasState clear() {
@@ -225,48 +182,18 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
     } catch (e) {
       debugPrint(e.toString());
     }
-    _notifier.updateWidgetData(_recogniseText);
-    //update the candidateList
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //updateCandidateData(_candidatesList);
-=======
-    _notifier.updateCandidateData(_candidatesList);
->>>>>>> aea75b3 (Add null check to candidates list before showing popup menu)
-=======
-    updateCandidateData(_candidatesList);
->>>>>>> d41edb1 (Move candidate methods to canvas notifier)
+
     debugPrint('Recognised as......$_recogniseText');
   }
 
-  /// For text candidates
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+  // For getting the candidatesList
+  List<String> get candidatesList => _candidatesList;
   void updateCandidateData(List<String> c) {
     _candidatesList = c;
     print(_candidatesList);
   }
 
-  // For getting the candidatesList
-  List<String> get candidatesList => _candidatesList;
-=======
-  List<String> candidatesList = [];
-=======
->>>>>>> bc3ed66 (Move candidate methods to canvas notifier)
-  void updateCandidateData(List<String> c) {
-    _candidatesList = c;
-    print(_candidatesList);
-  }
-
-  // For getting the candidatesList
-<<<<<<< HEAD
-  List<String> getCandidateData() {
-    return candidatesList;
-  }
->>>>>>> d41edb1 (Move candidate methods to canvas notifier)
-=======
-  List<String> get candidatesList => _candidatesList;
->>>>>>> bc3ed66 (Move candidate methods to canvas notifier)
 
   /// --------------------------------------------------------------------- ///
   /// -------------------------- Shapes Recognition ----------------------- ///
@@ -286,4 +213,5 @@ class CanvasNotifier extends StateNotifier<CanvasState> {
   void onTapDown(TapDownDetails details) {
     toggleIgnore();
   }
+}
 }
