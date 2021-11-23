@@ -37,3 +37,13 @@ void addNewFile(String newName) {
 
   nameList.add(newName);
 }
+
+void changeFileName(String newName, int index) {
+  nameList[index] = newName;
+}
+
+// void deleteFile(int index) {
+//   wNPList.removeAt(index);
+//   cNPList.removeAt(index);
+//   nameList.removeAt(index);
+// }

@@ -50,6 +50,48 @@ class DirectoryUI extends ConsumerWidget {
         });
   }
 
+  // Show dialog for editing a file
+  Future<void> _displayChangeInputDialog(
+      BuildContext context, int index) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Edit file'),
+            content: TextField(
+              onChanged: (value) {
+                valueText = value;
+              },
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Input file name"),
+            ),
+            actions: <Widget>[
+              // TextButton(
+              //   child: Text('DELETE FILE\t'),
+              //   onPressed: () {
+              //     deleteFile(index);
+              //     Navigator.pop(context);
+              //   },
+              // ),
+              TextButton(
+                child: Text('CANCEL'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  changeFileName(valueText, index);
+                  // codeDialog = valueText;
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final wValue = ref.watch(wNPListProvider);
@@ -95,6 +137,9 @@ class DirectoryUI extends ConsumerWidget {
                                   MaterialPageRoute(
                                     builder: (context) => CanvasUI(index: i),
                                   ));
+                            },
+                            onLongPress: () {
+                              _displayChangeInputDialog(context, i);
                             },
                             child: Container(
                               child: Text(
