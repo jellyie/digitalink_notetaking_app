@@ -19,14 +19,11 @@ class WidgetListBuilder extends ConsumerWidget {
       canvasNotifier.toggleIgnore();
     }
 
-<<<<<<< HEAD
     void _onReorder(int oldIndex, int newIndex) {
       notifier.reorderWidgets(oldIndex, newIndex);
       canvasNotifier.toggleIgnore();
     }
 
-=======
->>>>>>> 6d6bc13be355d5a874f5476415be0c029f12112e
     int selectedWidgetIndex;
 
     Widget buildItem(our.Widget widget) {

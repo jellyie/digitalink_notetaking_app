@@ -12,12 +12,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'painter/canvas_painter.dart';
 
 class CanvasUI extends ConsumerWidget {
-<<<<<<< HEAD
   final int index;
   const CanvasUI({Key? key, required this.index}) : super(key: key);
-=======
-  const CanvasUI({Key? key}) : super(key: key);
->>>>>>> 6abf9d9 (Shape and handwriting recognition happens automatically)
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
