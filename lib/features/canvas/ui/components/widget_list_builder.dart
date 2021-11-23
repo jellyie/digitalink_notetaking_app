@@ -5,14 +5,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reorderables/reorderables.dart';
 
 class WidgetListBuilder extends ConsumerWidget {
-  const WidgetListBuilder({Key? key}) : super(key: key);
+  final int index;
+  const WidgetListBuilder({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final canvasNotifier = ref.watch(canvasNotifierProvider.notifier);
-    final notifier = ref.watch(widgetNotifierProvider.notifier);
-    List<our.Widget> list =
-        List.from(ref.watch(widgetNotifierProvider).widgets);
+    final canvasNotifier = ref.watch(cNPList[index].notifier);
+    final notifier = ref.watch(wNPList[index].notifier);
+    List<our.Widget> list = List.from(ref.watch(wNPList[index]).widgets);
 
     void _onReorder(int oldIndex, int newIndex) {
       notifier.reorderWidgets(oldIndex, newIndex);

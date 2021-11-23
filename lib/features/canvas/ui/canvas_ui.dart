@@ -12,16 +12,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'painter/canvas_painter.dart';
 
 class CanvasUI extends ConsumerWidget {
-  const CanvasUI({Key? key}) : super(key: key);
+  final int index;
+  const CanvasUI({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WidgetNotifier widgetNotifier = ref.watch(widgetNotifierProvider.notifier);
-    CanvasState state = ref.watch(canvasNotifierProvider);
-    CanvasNotifier notifier = ref.watch(canvasNotifierProvider.notifier);
+    WidgetNotifier widgetNotifier = ref.watch(wNPList[index].notifier);
+    CanvasState state = ref.watch(cNPList[index]);
+    CanvasNotifier notifier = ref.watch(cNPList[index].notifier);
     notifier.readWidgetNotifier(widgetNotifier);
 
+    final canvasName = ref.watch(nameProvider);
+
     return Scaffold(
+      appBar: AppBar(title: Text(canvasName[index])),
       backgroundColor: Colors.grey.shade300,
       body: Stack(
         children: [
@@ -76,7 +80,7 @@ class CanvasUI extends ConsumerWidget {
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
                             ignoring: false,
-                            child: WidgetListBuilder(),
+                            child: WidgetListBuilder(index: index),
                           ),
                         ),
                       ],

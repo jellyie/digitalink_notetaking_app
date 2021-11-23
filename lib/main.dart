@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'features/canvas/ui/canvas_ui.dart';
+// import 'features/canvas/ui/canvas_ui.dart';
+import 'features/directory/directory_ui.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CanvasUI(),
+      home: DirectoryUI(),
     );
   }
 }
