@@ -19,11 +19,14 @@ class WidgetListBuilder extends ConsumerWidget {
       canvasNotifier.toggleIgnore();
     }
 
+<<<<<<< HEAD
     void _onReorder(int oldIndex, int newIndex) {
       notifier.reorderWidgets(oldIndex, newIndex);
       canvasNotifier.toggleIgnore();
     }
 
+=======
+>>>>>>> 6d6bc13be355d5a874f5476415be0c029f12112e
     int selectedWidgetIndex;
 
     Widget buildItem(our.Widget widget) {
@@ -32,6 +35,7 @@ class WidgetListBuilder extends ConsumerWidget {
         child: Material(
           color: Colors.white,
           key: ValueKey(widget),
+<<<<<<< HEAD
 <<<<<<< HEAD
           onTap: () {
             notifier.setSelectedIndex(list.indexOf(widget));
@@ -106,6 +110,34 @@ class WidgetListBuilder extends ConsumerWidget {
               debugPrint('double tap');
               List<String> candidatesList = canvasNotifier.candidatesList;
 
+=======
+          shape: (widget.selected == true)
+              ? RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2.0),
+                  side: BorderSide(color: Colors.grey.shade300, width: 2),
+                )
+              : null,
+          child: InkWell(
+            splashColor: Colors.blue[50],
+            highlightColor: Colors.blue[50],
+            key: ValueKey(widget),
+            onTap: () {
+              selectedWidgetIndex = list.indexOf(widget);
+              if (notifier.selectedIndex != selectedWidgetIndex) {
+                notifier.toggleSelectedWidget();
+                notifier.setSelectedIndex(list.indexOf(widget));
+              }
+              notifier.toggleSelectedWidget();
+              canvasNotifier.toggleIgnore();
+            },
+            // Hover not working here, need to add this function within WidgetNotifier
+            onHover: (hovering) {},
+            // Show candidates when it's the selected widget
+            onDoubleTap: () {
+              debugPrint('double tap');
+              List<String> candidatesList = canvasNotifier.candidatesList;
+
+>>>>>>> 6d6bc13be355d5a874f5476415be0c029f12112e
               // Check if the widget is selected and candidates exist
               if (widget.selected == true &&
                   canvasNotifier.candidatesList.isNotEmpty) {
@@ -124,7 +156,10 @@ class WidgetListBuilder extends ConsumerWidget {
             child: Padding(
                 padding: const EdgeInsets.all(20.0), child: widget.widget),
           ),
+<<<<<<< HEAD
 >>>>>>> 6d6bc13 (Added image widget)
+=======
+>>>>>>> 6d6bc13be355d5a874f5476415be0c029f12112e
         ),
       );
     }
