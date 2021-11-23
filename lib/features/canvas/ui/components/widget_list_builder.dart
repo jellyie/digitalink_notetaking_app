@@ -19,6 +19,11 @@ class WidgetListBuilder extends ConsumerWidget {
       canvasNotifier.toggleIgnore();
     }
 
+    void _onReorder(int oldIndex, int newIndex) {
+      notifier.reorderWidgets(oldIndex, newIndex);
+      canvasNotifier.toggleIgnore();
+    }
+
     Widget buildItem(our.Widget widget) {
       return Material(
         key: ValueKey(widget),
@@ -39,6 +44,7 @@ class WidgetListBuilder extends ConsumerWidget {
           onHover: (hovering) {},
           // Show candidates when it's the selected widget
 <<<<<<< HEAD
+<<<<<<< HEAD
           onDoubleTap: () {
             debugPrint('double tap');
             List<String> candidatesList = canvasNotifier.candidatesList;
@@ -48,6 +54,10 @@ class WidgetListBuilder extends ConsumerWidget {
                 canvasNotifier.candidatesList.isNotEmpty) {
 =======
           onLongPress: () {
+=======
+          onDoubleTap: () {
+            debugPrint('double tap');
+>>>>>>> e4d8548 (Working on table)
             List<String> candidatesList = canvasNotifier.candidatesList;
 
             // Check if the widget is selected and candidates exist

@@ -50,7 +50,7 @@ class CanvasUI extends ConsumerWidget {
                           child: GestureDetector(
                             behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
-                              ignoring: notifier.ignore,
+                              ignoring: true,
                               child: RepaintBoundary(
                                 key: notifier.globalkey,
                                 child: Container(
@@ -84,10 +84,14 @@ class CanvasUI extends ConsumerWidget {
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
 <<<<<<< HEAD
+<<<<<<< HEAD
                             ignoring: notifier.ignore,
                             child: WidgetListBuilder(index: index),
 =======
                             ignoring: !notifier.ignore,
+=======
+                            ignoring: false,
+>>>>>>> e4d8548 (Working on table)
                             child: WidgetListBuilder(),
 >>>>>>> 6abf9d9 (Shape and handwriting recognition happens automatically)
                           ),
