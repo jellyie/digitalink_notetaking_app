@@ -19,45 +19,58 @@ class WidgetListBuilder extends ConsumerWidget {
       canvasNotifier.toggleIgnore();
     }
 
-    Widget buildItem(our.Widget widget) {
-      return Material(
-        key: ValueKey(widget),
-        shape: (widget.selected == true)
-            ? RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(2.0),
-                side: const BorderSide(color: Colors.black),
-              )
-            : null,
-        child: InkWell(
-          key: ValueKey(widget),
-          onTap: () {
-            notifier.setSelectedIndex(list.indexOf(widget));
-            notifier.toggleSelectedWidget();
-            canvasNotifier.toggleIgnore();
-          },
-          // Hover not working here, need to add this function within WidgetNotifier
-          onHover: (hovering) {},
-          // Show candidates when it's the selected widget
-          onDoubleTap: () {
-            debugPrint('double tap');
-            List<String> candidatesList = canvasNotifier.candidatesList;
+    int selectedWidgetIndex;
 
-            // Check if the widget is selected and candidates exist
-            if (widget.selected == true &&
-                canvasNotifier.candidatesList.isNotEmpty) {
-              showMenu(
-                  context: context,
-                  position: const RelativeRect.fromLTRB(0, 0, 0, 0),
-                  items: [
-                    for (int i = 0; i < candidatesList.length; i++)
-                      PopupMenuItem(
-                          value: candidatesList[i],
-                          child: Text(candidatesList[i]))
-                  ]).then((value) =>
-                  {if (value != null) notifier.updateWidgetData(value)});
-            }
-          },
-          child: widget.widget,
+    Widget buildItem(our.Widget widget) {
+      return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: Material(
+          color: Colors.white,
+          key: ValueKey(widget),
+          shape: (widget.selected == true)
+              ? RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2.0),
+                  side: BorderSide(color: Colors.grey.shade300, width: 2),
+                )
+              : null,
+          child: InkWell(
+            splashColor: Colors.blue[50],
+            highlightColor: Colors.blue[50],
+            key: ValueKey(widget),
+            onTap: () {
+              selectedWidgetIndex = list.indexOf(widget);
+              if (notifier.selectedIndex != selectedWidgetIndex) {
+                notifier.toggleSelectedWidget();
+                notifier.setSelectedIndex(list.indexOf(widget));
+              }
+              notifier.toggleSelectedWidget();
+              canvasNotifier.toggleIgnore();
+            },
+            // Hover not working here, need to add this function within WidgetNotifier
+            onHover: (hovering) {},
+            // Show candidates when it's the selected widget
+            onDoubleTap: () {
+              debugPrint('double tap');
+              List<String> candidatesList = canvasNotifier.candidatesList;
+
+              // Check if the widget is selected and candidates exist
+              if (widget.selected == true &&
+                  canvasNotifier.candidatesList.isNotEmpty) {
+                showMenu(
+                    context: context,
+                    position: const RelativeRect.fromLTRB(0, 0, 0, 0),
+                    items: [
+                      for (int i = 0; i < candidatesList.length; i++)
+                        PopupMenuItem(
+                            value: candidatesList[i],
+                            child: Text(candidatesList[i]))
+                    ]).then((value) =>
+                    {if (value != null) notifier.updateWidgetData(value)});
+              }
+            },
+            child: Padding(
+                padding: const EdgeInsets.all(20.0), child: widget.widget),
+          ),
         ),
       );
     }
@@ -66,7 +79,7 @@ class WidgetListBuilder extends ConsumerWidget {
       spacing: 10.0,
       runSpacing: 10.0,
       minMainAxisCount: 1,
-      maxMainAxisCount: 3,
+      maxMainAxisCount: 1,
       padding: const EdgeInsets.all(100.0),
       children: list.map((e) => buildItem(e)).toList(),
       onReorder: _onReorder,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'models/widget/widget.dart' as our;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'models/widget_list/widget_list.dart';
@@ -10,8 +11,8 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
         ) {
     state = widgetList ??
         WidgetList(widgets: [
-          const our.Widget.paragraph(data: "Test paragraph"),
-          const our.Widget.heading(data: "Test Heading")
+          const our.Widget.paragraph("Test paragraph"),
+          const our.Widget.heading("Test Heading")
         ], selectedIndex: selectedIndex);
   }
 
@@ -26,6 +27,7 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
       state.copyWith(selectedIndex: selectedIndex = i);
 
   WidgetList toggleSelectedWidget() {
+    if (selectedIndex == null) return state;
     selectedWidget = state.widgets[selectedIndex as int]
         .copyWith(selected: selected = !selected);
     return deleteAndReplace(selectedWidget as our.Widget);
@@ -36,11 +38,11 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
 
   /// Returns the type of widget as a String where "type" refers to the Union object Widget,
   /// not the WidgetType parameter within the Union object Widget
-  // String _parseToString(our.Widget widget) {
-  //   String type = widget.toString().split('(').first;
-  //   type = (type.split('.').last).toUpperCase();
-  //   return type;
-  // }
+  String _parseToString(our.Widget? widget) {
+    String type = widget.toString().split('(').first;
+    type = (type.split('.').last).toUpperCase();
+    return type;
+  }
 
   /// Reorders the widgets according to the oldIndex and newIndex params
   void reorderWidgets(int oldIndex, int newIndex) {
@@ -62,30 +64,30 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     switch (gesture) {
       case "PARAGRAPH":
         return state = state.copyWith(
-            widgets: [...state.widgets, const our.Widget.paragraph()]);
+            widgets: [...state.widgets, const our.Widget.paragraph('')]);
       case "HEADING":
-        return state = state
-            .copyWith(widgets: [...state.widgets, const our.Widget.heading()]);
+        return state = state.copyWith(
+            widgets: [...state.widgets, const our.Widget.heading('')]);
       case "BLOCKQUOTE":
         return state = state.copyWith(
-            widgets: [...state.widgets, const our.Widget.blockquote()]);
+            widgets: [...state.widgets, const our.Widget.blockquote('')]);
       case "IMAGE":
-        return state = state
-            .copyWith(widgets: [...state.widgets, const our.Widget.image()]);
+        return state = state.copyWith(
+            widgets: [...state.widgets, const our.Widget.image(null)]);
       case "TABLE":
-        return state = state
-            .copyWith(widgets: [...state.widgets, const our.Widget.table()]);
+        return state = state.copyWith(
+            widgets: [...state.widgets, const our.Widget.table(null)]);
       case "LIST":
         return state = state.copyWith(
-            widgets: [...state.widgets, const our.Widget.bulletedList()]);
+            widgets: [...state.widgets, const our.Widget.bulletedList(null)]);
       case "BOLD":
         if (!selected) return state;
-        widget = const our.Widget.bold()
+        widget = const our.Widget.bold('')
             .copyWith(data: (selectedWidget as our.Widget).data);
         return deleteAndReplace(widget);
       case "ITALIC":
         if (!selected) return state;
-        widget = const our.Widget.italicize()
+        widget = const our.Widget.italicize('')
             .copyWith(data: (selectedWidget as our.Widget).data);
         return deleteAndReplace(widget);
       case "NEWLINE":
@@ -109,10 +111,14 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
   }
 
   /// Appends the new data to a copy of the widget at the selected index
-  WidgetList updateWidgetData(String newData) {
+  WidgetList updateWidgetData(String newData, {XFile? img}) {
     // Returns the current WidgetList if there is no selected index
     if (!selected) return state;
-
+    if (_parseToString(selectedWidget) == "IMAGE") {
+      final updateImgWidget =
+          (selectedWidget as our.Widget).copyWith(data: img);
+      return deleteAndReplace(updateImgWidget);
+    }
     final updatedWidget =
         (selectedWidget as our.Widget).copyWith(data: newData);
     return deleteAndReplace(updatedWidget);
