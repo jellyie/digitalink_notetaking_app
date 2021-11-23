@@ -1,3 +1,6 @@
+import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_library/image/image_from_gallery.dart';
+import 'package:digitalink_notetaking_app/features/canvas/models/widgets/widget_library/list/list_widget.dart';
+
 import '../../widget_library/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,63 +17,52 @@ enum WidgetType {
 class Widget with _$Widget {
   const Widget._();
 
-  const factory Widget.paragraph(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.paragraph(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Paragraph;
 
-  const factory Widget.heading(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.heading(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Heading;
 
-  const factory Widget.blockquote(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.blockquote(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Blockquote;
 
-  const factory Widget.bold(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.bold(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Bold;
 
-  const factory Widget.italicize(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.italicize(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Italicize;
 
-  const factory Widget.bulletedList(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.bulletedList(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = BulletedList;
 
-  const factory Widget.table(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.table(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Table;
 
-  const factory Widget.image(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.image(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.component) WidgetType type}) = Image;
 
-  const factory Widget.duplicate(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.duplicate(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.command) WidgetType type}) = Duplicate;
 
-  const factory Widget.erase(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.erase(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.command) WidgetType type}) = Erase;
 
-  const factory Widget.split(
-      {String? data,
-      @Default(false) bool selected,
+  const factory Widget.split(dynamic data,
+      {@Default(false) bool selected,
       @Default(WidgetType.command) WidgetType type}) = Split;
 
   const factory Widget.newline(
-      {String? data,
+      {dynamic data,
       @Default(false) bool selected,
       @Default(WidgetType.command) WidgetType type}) = NewLine;
 
@@ -127,13 +119,15 @@ class Widget with _$Widget {
           ),
 
       /// Return a BulletedList Widget
-      bulletedList: (b) => const Text('Placeholder for bulleted list'),
+      bulletedList: (b) => const ListWidget(),
 
       /// Return a Table Widget
       table: (t) => const TableWidget(),
 
       /// Return an Image Widget
-      image: (i) => const Text('Placeholder for image'),
+      image: (i) => const ImageFromGallery(
+            imageFile: null,
+          ),
 
       /// Command Widgets do not return a widget
       /// This may be removed later actually...

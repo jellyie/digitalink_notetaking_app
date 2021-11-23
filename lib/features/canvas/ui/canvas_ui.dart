@@ -48,7 +48,7 @@ class CanvasUI extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
+                            // behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
                               ignoring: true,
                               child: RepaintBoundary(
