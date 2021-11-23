@@ -46,7 +46,7 @@ class CanvasUI extends ConsumerWidget {
                           child: GestureDetector(
                             // behavior: HitTestBehavior.translucent,
                             child: IgnorePointer(
-                              ignoring: true,
+                              ignoring: notifier.ignore,
                               child: RepaintBoundary(
                                 key: notifier.globalkey,
                                 child: Container(
@@ -71,25 +71,15 @@ class CanvasUI extends ConsumerWidget {
                             onPanStart: notifier.onPanStart,
                             onPanUpdate: notifier.onPanUpdate,
                             onPanEnd: notifier.onPanEnd,
-                            onLongPress: () => notifier.toggleIgnore(),
-                            // onTapDown: notifier.onTapDown,
+                            //onLongPress: () => notifier.toggleIgnore(),
                           ),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 1.5,
                           child: IgnorePointer(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            ignoring: notifier.ignore,
-                            child: WidgetListBuilder(index: index),
-=======
                             ignoring: !notifier.ignore,
-=======
-                            ignoring: false,
->>>>>>> e4d8548 (Working on table)
-                            child: WidgetListBuilder(),
->>>>>>> 6abf9d9 (Shape and handwriting recognition happens automatically)
+                            child: WidgetListBuilder(index: index),
                           ),
                         ),
                       ],
@@ -109,6 +99,15 @@ class CanvasUI extends ConsumerWidget {
                   child: const Text('Clear'),
                   onPressed: () {
                     notifier.clear();
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ElevatedButton(
+                  child: const Text('Toggle Layers'),
+                  onPressed: () {
+                    notifier.toggleIgnore();
                   },
                 ),
               ),

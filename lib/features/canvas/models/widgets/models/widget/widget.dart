@@ -72,7 +72,7 @@ class Widget with _$Widget {
       paragraph: (p) => Text(
             p.data ?? '',
             style: const TextStyle(
-                fontSize: 14.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.normal,
                 letterSpacing: 0.25),
           ),
@@ -81,7 +81,7 @@ class Widget with _$Widget {
       heading: (h) => Text(
             h.data as String,
             style: const TextStyle(
-              fontSize: 96.0,
+              fontSize: 64.0,
               fontWeight: FontWeight.w300,
               letterSpacing: -1.5,
             ),
@@ -91,15 +91,21 @@ class Widget with _$Widget {
       blockquote: (b) => Padding(
             padding: const EdgeInsets.fromLTRB(40, 16, 40, 16),
             child: Container(
-              child: const Text('Placeholder for blockquote',
-                  style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: 0.25)),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 10, 5),
+                child: Text('"${b.data}"',
+                    style: TextStyle(
+                        color: Colors.grey.shade700,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 0.25)),
+              ),
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
-                    width: 1.0,
+                    color: Colors.blueGrey,
+                    width: 2,
                   ),
                 ),
               ),

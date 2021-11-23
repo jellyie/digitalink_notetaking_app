@@ -4,106 +4,105 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DirectoryUI extends ConsumerWidget {
-  DirectoryUI({Key? key}) : super(key: key);
-
-  String codeDialog = '';
-  String valueText = '';
-  TextEditingController _textFieldController = TextEditingController();
-
-  // Show dialog for adding a new file name
-  Future<void> _displayTextInputDialog(
-      BuildContext context, int fileLength) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('New file'),
-            content: TextField(
-              onChanged: (value) {
-                valueText = value;
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Input file name"),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: Text('CANCEL'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  addNewFile(valueText);
-                  // codeDialog = valueText;
-                  Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CanvasUI(index: fileLength),
-                      ));
-                },
-              ),
-            ],
-          );
-        });
-  }
-
-  // Show dialog for editing a file
-  Future<void> _displayChangeInputDialog(
-      BuildContext context, int index) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Edit file'),
-            content: TextField(
-              onChanged: (value) {
-                valueText = value;
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Input file name"),
-            ),
-            actions: <Widget>[
-              // TextButton(
-              //   child: Text('DELETE FILE\t'),
-              //   onPressed: () {
-              //     deleteFile(index);
-              //     Navigator.pop(context);
-              //   },
-              // ),
-              TextButton(
-                child: Text('CANCEL'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  changeFileName(valueText, index);
-                  // codeDialog = valueText;
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          );
-        });
-  }
+  const DirectoryUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final wValue = ref.watch(wNPListProvider);
-    final cValue = ref.watch(cNPListProvider);
     final nameValue = ref.watch(nameProvider);
+
+    // String codeDialog = '';
+    String valueText = '';
+    TextEditingController _textFieldController = TextEditingController();
+
+    // Show dialog for adding a new file name
+    Future<void> _displayTextInputDialog(
+        BuildContext context, int fileLength) async {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('New file'),
+              content: TextField(
+                onChanged: (value) {
+                  valueText = value;
+                },
+                controller: _textFieldController,
+                decoration: const InputDecoration(hintText: "Input file name"),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('CANCEL'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                TextButton(
+                  child: const Text('OK'),
+                  onPressed: () {
+                    addNewFile(valueText);
+                    // codeDialog = valueText;
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CanvasUI(index: fileLength),
+                        ));
+                  },
+                ),
+              ],
+            );
+          });
+    }
+
+    // Show dialog for editing a file
+    Future<void> _displayChangeInputDialog(
+        BuildContext context, int index) async {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Edit file'),
+              content: TextField(
+                onChanged: (value) {
+                  valueText = value;
+                },
+                controller: _textFieldController,
+                decoration: const InputDecoration(hintText: "Input file name"),
+              ),
+              actions: <Widget>[
+                // TextButton(
+                //   child: Text('DELETE FILE\t'),
+                //   onPressed: () {
+                //     deleteFile(index);
+                //     Navigator.pop(context);
+                //   },
+                // ),
+                TextButton(
+                  child: const Text('CANCEL'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                TextButton(
+                  child: const Text('OK'),
+                  onPressed: () {
+                    changeFileName(valueText, index);
+                    // codeDialog = valueText;
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          });
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Files'),
       ),
       body: Container(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           alignment: Alignment.topLeft,
           decoration: const BoxDecoration(
               border: Border(
@@ -125,7 +124,7 @@ class DirectoryUI extends ConsumerWidget {
                             onTap: () {
                               _displayTextInputDialog(context, wValue.length);
                             },
-                            child: Icon(Icons.add, size: 80.0)))
+                            child: const Icon(Icons.add, size: 80.0)))
                     : //enter a current file
                     Card(
                         color: Colors.lightBlue[100],
@@ -144,7 +143,7 @@ class DirectoryUI extends ConsumerWidget {
                             child: Container(
                               child: Text(
                                 nameValue[i],
-                                style: TextStyle(fontSize: 30.0),
+                                style: const TextStyle(fontSize: 30.0),
                               ),
                               alignment: Alignment.center,
                             )))

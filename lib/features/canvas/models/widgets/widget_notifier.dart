@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../providers.dart';
 import 'models/widget/widget.dart' as our;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'models/widget_list/widget_list.dart';
@@ -11,8 +12,11 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
         ) {
     state = widgetList ??
         WidgetList(widgets: [
-          const our.Widget.paragraph("Test paragraph"),
-          const our.Widget.heading("Test Heading")
+          const our.Widget.heading("Hello there!"),
+          const our.Widget.paragraph(
+              "There are two layers here: Canvas and Widget Layers. By default, you are in Canvas mode, which means you can draw shapes to create new widgets! Once you've given it a try, you can switch to the Widget layer to reorder the widgets you see on screen. Press and hold to drag the widgets around."),
+          const our.Widget.blockquote(
+              "To edit a widget, first swap over to the widget layer, tap on the widget you want to edit until you see a border, then swap back to the canvas layer to write something."),
         ], selectedIndex: selectedIndex);
   }
 
@@ -106,7 +110,9 @@ class WidgetNotifier extends StateNotifier<WidgetList> {
     }
 
     // Return the current WidgetList if gesture is not valid
-    debugPrint('Not a gesture');
+    const SnackBar snackBar =
+        SnackBar(content: Text("Your gesture was not recognized."));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     return state;
   }
 
